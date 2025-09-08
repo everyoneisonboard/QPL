@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>España (MAD y otros) · Quisqueya Pet Logistics</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script defer src="../script.js"></script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html#inicio" class="brand"><img src="../assets/logo.png" class="logo" alt="Logo"/><span>Quisqueya Pet Logistics</span></a>
+    <nav class="nav">
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../index.html#requisitos">Requisitos</a>
+      <a href="../index.html#faq">Preguntas</a>
+      <a href="../index.html#contacto" class="btn btn-sm">Cotiza</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+<section class="hero" style="padding:72px 0">
+  <div class="container hero-content">
+    <h1>Viajar con tu mascota a España (MAD y otros)</h1>
+    <p>Checklist resumido y formulario rápido para iniciar tu caso.</p>
+    <div class="hero-ctas">
+      <a href="#form" class="btn">Solicitar cotización</a>
+      <a href="../index.html#requisitos" class="btn btn-secondary">Ver requisitos generales</a>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="grid" style="grid-template-columns: 1.1fr .9fr;align-items:start">
+      <div>
+        <h2 class="section-title">Checklist rápido</h2>
+        <ul class='checklist'><li>Microchip ISO 11784/11785 (antes de la vacuna).</li><li>Vacuna antirrábica vigente; 21 días desde la primera dosis.</li><li>Certificado zoosanitario de la UE (no comercial) + Owner Declaration.</li><li>Ingreso por Punto de Control designado; inspección de identidad/documentos.</li><li>Prueba serológica de rabia si aplica (≥ 0.5 IU/ml).</li><li>No se exige tratamiento contra Echinococcus para España.</li></ul>
+        <p class="note">Verificamos normativa y aerolínea antes de cada vuelo.</p>
+      </div>
+      <div>
+        <h2 class="section-title" id="form">Cotiza tu envío</h2>
+        <form id="quoteForm" class="form">
+          <div class="grid form-grid">
+            <label>Nombre<input type="text" name="name" required /></label>
+            <label>Correo<input type="email" name="email" required /></label>
+            <label>Teléfono (WhatsApp)<input type="tel" name="phone" required /></label>
+            <label>Origen<input type="text" name="origin" required value="Santo Domingo (SDQ)"/></label>
+            <label>Destino<input type="text" name="destination" required value="Madrid (MAD), España"/></label>
+            <label>Tipo de mascota<select name="petType" required><option value="" disabled selected>Selecciona</option><option>Perro</option><option>Gato</option><option>Otro</option></select></label>
+            <label>Peso (mascota + jaula)<input type="number" name="weight" step="0.1" /></label>
+            <label>Medidas de jaula (L x A x H)<input type="text" name="crate" /></label>
+            <label>Fecha estimada<input type="date" name="date" /></label>
+          </div>
+          <label>Mensaje<textarea name="message" rows="4"></textarea></label>
+          <div class="form-actions">
+            <button type="submit" class="btn">Enviar</button>
+            <button type="button" class="btn btn-secondary" id="btnWhatsapp">WhatsApp</button>
+          </div>
+          <p class="form-note">Al enviar aceptas que te contactemos por correo o WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>© 2025 Quisqueya Pet Logistics</p>
+    <a href="#inicio" class="top">↑ Volver arriba</a>
+  </div>
+</footer>
+</body>
+</html>
