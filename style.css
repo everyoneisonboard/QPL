@@ -2247,3 +2247,48 @@ body.home .footer > .container.footer-inner{ display:block !important; }
     color: #94a3b8; /* Slate-400 */
   }
 }
+
+/* ===== Divisores visibles en el footer – MODO CLARO ===== */
+@media (prefers-color-scheme: light) {
+  /* Color base de línea en modo claro */
+  :root {
+    --footer-line: #e2e8f0; /* Slate-200 */
+  }
+
+  /* Línea superior e inferior del bloque del footer */
+  .footer .footer-top,
+  .footer .footer-columns,
+  .footer .footer-info,
+  .footer .cols-grid {
+    border-top: 1px solid var(--footer-line);
+    border-bottom: 1px solid var(--footer-line);
+  }
+
+  /* Divisor vertical entre columnas (funciona con cualquiera de los
+     contenedores que has usado: .footer-cols / .footer-info / .cols-grid) */
+  .footer .footer-cols > *,
+  .footer .footer-info > *,
+  .footer .cols-grid > * {
+    position: relative;
+  }
+
+  .footer .footer-cols > *:not(:last-child)::after,
+  .footer .footer-info > *:not(:last-child)::after,
+  .footer .cols-grid > *:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -16px;          /* separa un poco la línea del contenido */
+    width: 1px;
+    height: 100%;
+    background: var(--footer-line);
+  }
+
+  /* Un poco de aire a los lados de cada columna para que se vea mejor */
+  .footer .footer-cols > *,
+  .footer .footer-info > *,
+  .footer .cols-grid > * {
+    padding-right: 24px;
+    margin-right: 24px;
+  }
+}
