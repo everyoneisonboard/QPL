@@ -290,5 +290,33 @@
       if (slides.length > 1) timer = setInterval(() => goTo((i+1)%slides.length), DURATION);
     })();
   </script>
+
+  <script>
+  document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    // Recomendado: asunto personalizado
+    data.append('_subject', 'Nueva solicitud de cotización desde la web');
+
+    // Recomendado: honeypot anti-spam (campo oculto)
+    // <input type="text" name="_gotcha" style="display:none">
+    // Si existe y viene con contenido, NO enviar.
+
+    try {
+      const r = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }});
+      if (r.ok) {
+        alert('¡Gracias! Hemos recibido tu solicitud.');
+        form.reset();
+      } else {
+        alert('Hubo un problema al enviar. Intenta de nuevo.');
+      }
+    } catch {
+      alert('Sin conexión. Intenta más tarde.');
+    }
+  });
+</script>
+
 </body>
 </html>
