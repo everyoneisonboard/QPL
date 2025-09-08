@@ -16,29 +16,39 @@
     --bg:#f7fafc; --surface:#fff; --text:#0b1722; --muted:#405361; --border:#d9e4ef;
     --brand:#ff7a00; --brand-2:#8458ff; --ring:rgba(132,88,255,.20);
 
-    /* Altura del header para “pegar” las pestañas debajo */
-    --header-h: 64px; /* ajusta a 56/72 si tu header cambia de alto */
+    /* Ajusta estas dos según tu header y alto real de la barra */
+    --header-h: 64px;   /* alto del header */
+    --tabs-h:   56px;   /* alto visual de la barra de pestañas */
+    --page-max: 1100px; /* ancho máximo del contenido */
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#0f1720; --surface:#121a24; --text:#e8f1ff; --muted:#9fb3c8; --border:#213448;
-      --ring:rgba(255,122,0,.35); --card-start:#1b2734; --card-end:#0f1720; --pill-bg:#0f1620; --pill-border:#2a3d52;
+      --ring:rgba(255,122,0,.35);
     }
   }
 
-  /* Layout base de la página de servicios */
+  /* Layout base */
   body{ background:var(--bg); color:var(--text); }
-  .wrap{ max-width:1100px; margin:0 auto; padding:28px 20px 64px; overflow:visible; }
+  .wrap{ max-width:var(--page-max); margin:0 auto; padding:28px 20px 64px; overflow:visible; }
 
-  /* ===== Pestañas “sticky” bajo el header ===== */
+  /* ===== Barra de pestañas FIJA (no baja nunca) ===== */
   .tabs{
-    position:-webkit-sticky; position:sticky;
-    top:var(--header-h);                 /* ← se queda debajo del header */
-    z-index:50;                          /* por encima de las tarjetas */
+    position:fixed;                 /* ← ahora es FIJA */
+    top:var(--header-h);            /* debajo del header */
+    left:50%;
+    transform:translateX(-50%);
+    width:min(var(--page-max), calc(100vw - 40px));
+    z-index:1000;                   /* por encima del contenido */
     display:flex; gap:6px; flex-wrap:wrap;
+    padding:8px 10px;
     background:linear-gradient(var(--bg),var(--bg));
-    padding:8px 0 10px; margin-top:6px;
     border-bottom:1px solid var(--border);
+    border-radius:12px;
+  }
+  /* Espaciador para que el contenido no “salte” bajo la barra fija */
+  .tabs-spacer{
+    height:calc(var(--tabs-h) + 14px);  /* ajusta si ves mucho/poco espacio */
   }
 
   .tab-btn{
@@ -57,7 +67,7 @@
   .panel.active{ display:block; }
   @keyframes fade{ from{ opacity:.6; transform:translateY(2px) } }
 
-  /* Tarjeta + hero de cada servicio */
+  /* Tarjetas / hero */
   .card{
     background:radial-gradient(120% 140% at 80% -10%, #fff, #f4f8fd);
     border:1px solid var(--border); border-radius:18px; overflow:hidden;
@@ -65,31 +75,18 @@
   @media (prefers-color-scheme: dark){
     .card{ background:radial-gradient(120% 140% at 80% -10%, #1b2734, #0f1720); }
   }
-
   .hero{ position:relative; min-height:240px; background:var(--surface); display:grid; place-items:center; }
   .hero img{ width:100%; height:100%; object-fit:cover; opacity:.9; filter:saturate(1.05); }
   .badge{ position:absolute; left:14px; bottom:12px; background:rgba(0,0,0,.55); color:#fff; padding:8px 10px; border-radius:12px; font-weight:700; }
-
   .content{ padding:18px; }
   .content h2{ margin:0 0 8px; font-size:22px; }
   .content p, ul{ color:var(--muted); }
-
   .cols{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px; }
 
-  .pill{ display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px 6px 0 0;
-         background:rgba(238,244,251,.8); color:inherit; }
-  @media (prefers-color-scheme: dark){
-    .pill{ background:#0f1620; border-color:#2a3d52; }
-  }
-
-  @media (min-width:960px){
-    .panel .card{ display:grid; grid-template-columns:6fr 6fr; }
-    .hero{ min-height:100%; }
-  }
-
-  /* Evita que anclas/scroll automáticos queden escondidos tras la barra sticky */
-  html{ scroll-padding-top: calc(var(--header-h) + 10px); }
+  /* Anclas: que no queden ocultas bajo la barra */
+  html{ scroll-padding-top: calc(var(--header-h) + var(--tabs-h) + 10px); }
 </style>
+
 
 </head>
 <body>
@@ -125,6 +122,9 @@
       <button class="tab-btn" role="tab" data-target="asesoria">🤝 Asesoría</button>
       <!-- <a class="btn-volver" href="index.html" style="margin-left:auto">← Volver a la página principal</a> -->
     </div>
+    
+<!-- Espaciador para compensar la barra fija -->
+<div class="tabs-spacer" aria-hidden="true"></div>
 
     <!-- PANEL: AÉREO -->
     <section id="transporte-aereo" class="panel active" role="tabpanel">
