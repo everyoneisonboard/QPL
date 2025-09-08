@@ -10,90 +10,85 @@
   <link rel="stylesheet" href="style.css" />
 
   <!-- Estilos mínimos solo para las pestañas -->
- <style>
-  /* ===== Tokens de tema (light por defecto) ===== */
+<style>
+  /* ===== Tokens (light por defecto) ===== */
   :root{
-    --bg: #f7fafc;
-    --surface: #ffffff;
-    --text: #0b1722;
-    --muted: #405361;
-    --border: #d9e4ef;
+    --bg:#f7fafc; --surface:#fff; --text:#0b1722; --muted:#405361; --border:#d9e4ef;
+    --brand:#ff7a00; --brand-2:#8458ff; --ring:rgba(132,88,255,.20);
 
-    --brand: #ff7a00;
-    --brand-2: #8458ff;
-    --ring: rgba(132,88,255,.20);
-
-    /* componentes */
-    --card-start: #ffffff;   /* gradiente de tarjeta (inicio) */
-    --card-end:   #f4f8fd;   /* gradiente de tarjeta (fin) */
-    --pill-bg:    #eef4fb;
-    --pill-border:#cfdbe8;
+    /* Altura del header para “pegar” las pestañas debajo */
+    --header-h: 64px; /* ajusta a 56/72 si tu header cambia de alto */
   }
-
-  /* ===== Overrides para modo oscuro ===== */
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#0f1720;
-      --surface:#121a24;
-      --text:#e8f1ff;
-      --muted:#9fb3c8;
-      --border:#213448;
-
-      --ring:rgba(255,122,0,.35);
-
-      --card-start:#1b2734;
-      --card-end:#0f1720;
-      --pill-bg:#0f1620;
-      --pill-border:#2a3d52;
+      --bg:#0f1720; --surface:#121a24; --text:#e8f1ff; --muted:#9fb3c8; --border:#213448;
+      --ring:rgba(255,122,0,.35); --card-start:#1b2734; --card-end:#0f1720; --pill-bg:#0f1620; --pill-border:#2a3d52;
     }
   }
 
-  /* ===== Layout de servicios (igual que ya tenías) ===== */
+  /* Layout base de la página de servicios */
   body{ background:var(--bg); color:var(--text); }
-  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
+  .wrap{ max-width:1100px; margin:0 auto; padding:28px 20px 64px; overflow:visible; }
 
+  /* ===== Pestañas “sticky” bajo el header ===== */
   .tabs{
-    display:flex;gap:6px;flex-wrap:wrap;
-    position:sticky;top:64px;
+    position:-webkit-sticky; position:sticky;
+    top:var(--header-h);                 /* ← se queda debajo del header */
+    z-index:50;                          /* por encima de las tarjetas */
+    display:flex; gap:6px; flex-wrap:wrap;
     background:linear-gradient(var(--bg),var(--bg));
-    padding:8px 0 10px;z-index:5
+    padding:8px 0 10px; margin-top:6px;
+    border-bottom:1px solid var(--border);
   }
+
   .tab-btn{
-    appearance:none;cursor:pointer;font-weight:700;
+    appearance:none; cursor:pointer; font-weight:700;
     border:1px solid var(--border);
-    background:var(--surface);color:var(--text);
-    padding:10px 14px;border-radius:12px
+    background:var(--surface); color:var(--text);
+    padding:10px 14px; border-radius:12px;
   }
   .tab-btn[aria-selected="true"]{
     background:linear-gradient(120deg,var(--brand),var(--brand-2));
-    border-color:transparent;color:#fff;box-shadow:0 0 0 6px var(--ring) inset
+    border-color:transparent; color:#fff; box-shadow:0 0 0 6px var(--ring) inset;
   }
 
-  .panel{display:none;animation:fade .22s ease}
-  .panel.active{display:block}
-  @keyframes fade{from{opacity:.6;transform:translateY(2px)}}
+  /* Paneles */
+  .panel{ display:none; animation:fade .22s ease; }
+  .panel.active{ display:block; }
+  @keyframes fade{ from{ opacity:.6; transform:translateY(2px) } }
 
+  /* Tarjeta + hero de cada servicio */
   .card{
-    background:radial-gradient(120% 140% at 80% -10%, var(--card-start), var(--card-end));
-    border:1px solid var(--border);border-radius:18px;overflow:hidden
+    background:radial-gradient(120% 140% at 80% -10%, #fff, #f4f8fd);
+    border:1px solid var(--border); border-radius:18px; overflow:hidden;
+  }
+  @media (prefers-color-scheme: dark){
+    .card{ background:radial-gradient(120% 140% at 80% -10%, #1b2734, #0f1720); }
   }
 
-  .hero{position:relative;min-height:240px;background:var(--surface);display:grid;place-items:center}
-  .hero img{width:100%;height:100%;object-fit:cover;opacity:.9;filter:saturate(1.05)}
-  .badge{position:absolute;left:14px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;padding:8px 10px;border-radius:12px;font-weight:700}
+  .hero{ position:relative; min-height:240px; background:var(--surface); display:grid; place-items:center; }
+  .hero img{ width:100%; height:100%; object-fit:cover; opacity:.9; filter:saturate(1.05); }
+  .badge{ position:absolute; left:14px; bottom:12px; background:rgba(0,0,0,.55); color:#fff; padding:8px 10px; border-radius:12px; font-weight:700; }
 
-  .content{padding:18px}
-  .content h2{margin:0 0 8px;font-size:22px}
-  .content p, ul{color:var(--muted)}
+  .content{ padding:18px; }
+  .content h2{ margin:0 0 8px; font-size:22px; }
+  .content p, ul{ color:var(--muted); }
 
-  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px}
+  .cols{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:12px; }
 
-  .pill{display:inline-block;padding:6px 10px;border:1px solid var(--pill-border);border-radius:999px;margin:4px 6px 0 0;background:var(--pill-bg);color:inherit}
+  .pill{ display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px 6px 0 0;
+         background:rgba(238,244,251,.8); color:inherit; }
+  @media (prefers-color-scheme: dark){
+    .pill{ background:#0f1620; border-color:#2a3d52; }
+  }
 
   @media (min-width:960px){
-    .panel .card{display:grid;grid-template-columns:6fr 6fr}
-    .hero{min-height:100%}
+    .panel .card{ display:grid; grid-template-columns:6fr 6fr; }
+    .hero{ min-height:100%; }
   }
+
+  /* Evita que anclas/scroll automáticos queden escondidos tras la barra sticky */
+  html{ scroll-padding-top: calc(var(--header-h) + 10px); }
 </style>
 
 </head>
