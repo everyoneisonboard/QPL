@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta name="color-scheme" content="light dark">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quisqueya Pet Logistics</title>
+  
+  <!-- 👇 Rompemos caché -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=35" />
+ 
+</head>
+<body class="home">
+
+  <!-- Header -->
+  <header class="header" id="inicio">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" class="logo" alt="Logo Quisqueya Pet Logistics" />
+        <span>Quisqueya Pet Logistics</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="#servicios">Servicios</a>
+        <a href="#requisitos-destino">Requisitos por destino</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto" class="btn btn-sm">Cotiza</a>
+        <a href="https://wa.me/18095203331?text=Hola,%20quiero%20cotizar%20el%20traslado%20de%20mi%20mascota" class="btn btn-sm btn-whatsapp" target="_blank">
+          Contacto
+        </a>
+      </nav>
+       <!-- <button class="nav-toggle" aria-label="Abrir menú">☰</button> -->
+    </div>
+  </header>
+
+  <!-- Hero con slider -->
+  <section id="hero" class="hero" aria-label="Portada">
+    <div class="hero-slide is-active" style="--bg:url('assets/hero-1.webp')">
+      <div class="hero-layer"></div>
+      <div class="hero-inner">
+        <div class="reveal">
+          <h1 class="hero-title">LOGÍSTICA AÉREA Y TERRESTRE</h1>
+          <p class="hero-sub">Conectamos tu mascota con el mundo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="--bg:url('assets/hero-2.webp')">
+      <div class="hero-layer"></div>
+      <div class="hero-inner">
+        <div class="reveal">
+          <h1 class="hero-title">✈️ + 🐾 Rutas y cuidado premium</h1>
+          <p class="hero-sub">
+            Transporte nacional e internacional, gestión de documentos y acompañamiento en cada paso.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide" style="--bg:url('assets/hero-3.webp')">
+      <div class="hero-layer"></div>
+      <div class="hero-inner">
+        <div class="reveal">
+          <h1 class="hero-title">Tu mascota, nuestra prioridad.</h1>
+          <div class="hero-cta">
+            <a href="#contacto" class="btn btn-solid">Solicitar cotización</a>
+            <!-- antes: class="btn btn-outline" -->
+            <a href="#requisitos-destino" class="btn btn-solid">Ver requisitos</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <nav class="hero-dots" aria-label="Cambiar imagen"></nav>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <h2 class="section-title">Nuestros servicios</h2>
+      <div class="grid cards">
+        <a class="card" href="servicios.html#transporte-aereo">
+          <img src="assets/service-1.webp" alt="Transporte aéreo" />
+          <div class="card-body"><h3>Transporte aéreo</h3></div>
+        </a>
+        <a class="card" href="servicios.html#transporte-terrestre">
+          <img src="assets/service-2.webp" alt="Transporte terrestre" />
+          <div class="card-body"><h3>Transporte terrestre</h3></div>
+        </a>
+        <a class="card" href="servicios.html#documentacion">
+          <img src="assets/service-3.webp" alt="Gestión de documentos" />
+          <div class="card-body"><h3>Gestión de documentos</h3></div>
+        </a>
+        <a class="card" href="servicios.html#puerta-a-puerta">
+          <img src="assets/service-4.webp" alt="Acompañamiento personalizado" />
+          <div class="card-body"><h3>Acompañamiento personalizado</h3></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requisitos por destino -->
+  <section id="requisitos-destino" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Requisitos según el destino</h2>
+      <div class="grid cards">
+        <a class="card" href="requisitos/index.html?dest=europa">
+          <img src="assets/dest-1.webp" alt="Europa" />
+          <div class="card-body"><h3>Europa</h3></div>
+        </a>
+        <a class="card" href="requisitos/index.html?dest=caribe">
+          <img src="assets/dest-2.webp" alt="Caribe" />
+          <div class="card-body"><h3>Caribe</h3></div>
+        </a>
+        <a class="card" href="requisitos/index.html?dest=usa">
+          <img src="assets/dest-3.webp" alt="USA" />
+          <div class="card-body"><h3>USA</h3></div>
+        </a>
+        <a class="card" href="requisitos/index.html?dest=latam">
+          <img src="assets/dest-4.webp" alt="Latinoamérica" />
+          <div class="card-body"><h3>Latinoamérica</h3></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿Cómo trabajamos? -->
+  <section class="section steps">
+    <div class="container">
+      <h2 class="section-title">¿Cómo trabajamos?</h2>
+      <ol class="stepper">
+        <li><span>1</span> Evaluación y cotización (peso, medidas, destino, aerolínea).</li>
+        <li><span>2</span> Preparación de documentos y reserva.</li>
+        <li><span>3</span> Pesaje y entrega en aeropuerto (D-1).</li>
+        <li><span>4</span> Seguimiento de vuelo y coordinación de retiro en destino.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <div class="accordion">
+        <details>
+          <summary>¿Con cuánta anticipación debo iniciar?</summary>
+          <p>Recomendamos 4–8 semanas; si hay serología de rabia, 3–4 meses.</p>
+        </details>
+        <details>
+          <summary>¿Aceptan mascotas sedadas?</summary>
+          <p>No, por seguridad las aerolíneas lo desaconsejan.</p>
+        </details>
+        <details>
+          <summary>¿Recogen a mi mascota en casa?</summary>
+          <p>Sí, logística puerta a puerta con aliados en Santo Domingo y otras ciudades.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cotiza -->
+  <section id="contacto" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Solicita tu cotización</h2>
+      <form id="quoteForm" class="form">
+        <div class="grid form-grid">
+          <label>Nombre
+            <input type="text" name="name" required placeholder="Tu nombre completo" />
+          </label>
+          <label>Correo
+            <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+          </label>
+          <label>Teléfono (WhatsApp)
+            <input type="tel" name="phone" required placeholder="+1 809..." />
+          </label>
+          <label>Origen
+            <input type="text" name="origin" required placeholder="Santo Domingo (SDQ)" />
+          </label>
+          <label>Destino
+            <input type="text" name="destination" required placeholder="Madrid (MAD)" />
+          </label>
+          <label>Tipo de mascota
+            <select name="petType" required>
+              <option value="" disabled selected>Selecciona</option>
+              <option>Perro</option><option>Gato</option><option>Otro</option>
+            </select>
+          </label>
+          <label>Peso (mascota + jaula)
+            <input type="number" name="weight" step="0.1" placeholder="kg" />
+          </label>
+          <label>Medidas de jaula en pulgadas (L x A x H)
+            <input type="text" name="crate" placeholder="en cm o pulgadas" />
+          </label>
+          <label>Fecha estimada de viaje
+            <input type="date" name="date" />
+          </label>
+          <label class="full">Cuéntanos cualquier detalle adicional
+            <textarea name="message" rows="4" placeholder="Edad, raza, aerolínea preferida, restricciones, etc."></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Enviar</button>
+          <button type="button" class="btn btn-whatsapp" id="btnWhatsapp">WhatsApp</button>
+        </div>
+        <p class="form-note">Al enviar aceptas que te contactemos por correo o WhatsApp. Nunca compartimos tus datos.</p>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+
+    <!-- 4 columnas -->
+    <div class="footer-columns">
+      <div class="footer-col col-dir">
+        <h4>📍 Dirección</h4>
+        <p>
+          Ruta 66, Aeropuerto Las Américas.<br>
+          Terminal de Carga<br>
+          Santo Domingo, RD 11336
+        </p>
+      </div>
+
+      <div class="footer-col col-contacto">
+        <h4>📞 Contacto</h4>
+        <p>
+          +1 (809)520-3331<br>
+          ventas.quisqueyapetlogistics<wbr>@gmail.com<br>
+          quisqueyapetlogistics@gmail.com
+        </p>
+      </div>
+
+      <div class="footer-col col-horario">
+        <h4>⏰ Horario de seguimiento</h4>
+        <p>24/7</p>
+      </div>
+
+      <div class="footer-col col-redes">
+        <h4>🔗 Redes sociales</h4>
+        <div class="social-icons">
+          <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Franja inferior (copy) -->
+    <div class="footer-bottom">
+      <p>© 2025 Quisqueya Pet Logistics · Santo Domingo, RD</p>
+    </div>
+
+  </div>
+</footer>
+
+  <button id="backtop" class="backtop" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+  <script src="script.js?v=7"></script>
+  <script>
+    (() => {
+      const hero = document.getElementById('hero');
+      const slides = [...hero.querySelectorAll('.hero-slide')];
+      const dotsNav = hero.querySelector('.hero-dots');
+      let i = 0, timer = null, DURATION = 6500;
+
+      slides.forEach((_, idx) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (idx === 0 ? ' is-active' : '');
+        b.setAttribute('aria-label', 'Ir a la imagen ' + (idx + 1));
+        b.addEventListener('click', () => goTo(idx, true));
+        dotsNav.appendChild(b);
+      });
+      const dots = [...dotsNav.children];
+
+      function goTo(next, user = false) {
+        if (next === i) return;
+        slides[i].classList.add('is-leaving');
+        slides[i].classList.remove('is-active');
+        dots[i].classList.remove('is-active');
+        slides[next].classList.add('is-active');
+        dots[next].classList.add('is-active');
+        setTimeout(() => slides[i].classList.remove('is-leaving'), 900);
+        i = next;
+        if (user) { clearInterval(timer); timer = setInterval(() => goTo((i+1)%slides.length), DURATION); }
+      }
+      if (slides.length > 1) timer = setInterval(() => goTo((i+1)%slides.length), DURATION);
+    })();
+  </script>
+</body>
+</html>
