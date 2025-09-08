@@ -2217,3 +2217,33 @@ body.home .footer > .container.footer-inner{ display:block !important; }
     box-shadow:none;
   }
 }
+
+/* === Mejora de contraste para labels del formulario (modo claro) === */
+@media (prefers-color-scheme: light) {
+  /* Texto de los labels (Nombre, Correo, etc.) */
+  .form label {
+    color: #0f172a !important;  /* azul gris oscuro, buen contraste */
+    font-weight: 600;           /* un poco más “fuerte” */
+    opacity: 1 !important;      /* por si algún estilo anterior lo atenuaba */
+  }
+
+  /* El texto de ayuda debajo del form */
+  .form-note {
+    color: #475569;             /* Slate-600, legible en blanco */
+  }
+
+  /* Borde de los inputs un poco más definido en día */
+  .form input,
+  .form select,
+  .form textarea {
+    border-color: #cbd5e1 !important; /* Slate-300 */
+    color: #0f172a !important;
+    background: #fff !important;
+  }
+
+  /* Placeholders (ligeramente gris) */
+  .form input::placeholder,
+  .form textarea::placeholder {
+    color: #94a3b8; /* Slate-400 */
+  }
+}
