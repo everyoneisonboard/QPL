@@ -59,44 +59,91 @@
 </head>
 <body>
 
- <section id="requisitos-destino" class="section">
+<section id="requisitos-destino" class="section">
   <h1 class="section-title">Requisitos por destino</h1>
-  <div class="cards">
+
+  <!-- Botones de selección -->
+  <div class="tabs" role="tablist">
+    <button class="tab-btn" role="tab" aria-selected="true" aria-controls="usa">USA</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="caribe">Caribe</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="latam">Latinoamérica</button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="europa">Europa</button>
+  </div>
+
+  <!-- Paneles de contenido -->
+  <div class="panels">
 
     <!-- USA -->
-    <div class="card">
-      <img src="usa.webp" alt="USA">
-      <div class="card-body">
-        <strong>USA</strong> — Documentos solicitados y aduanales.
+    <div class="panel" id="usa" role="tabpanel">
+      <div class="card">
+        <div class="hero">
+          <img src="usa.webp" alt="USA">
+        </div>
+        <div class="content">
+          <h2>USA — Documentos solicitados y aduanales</h2>
+          <ul>
+            <li>Certificado de salud vigente.</li>
+            <li>Certificado de vacunas al día.</li>
+            <li>Documentos exigidos por aduanas.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- Caribe -->
-    <div class="card">
-      <img src="caribe.webp" alt="Caribe">
-      <div class="card-body">
-        <strong>Caribe</strong> — Certificados y requisitos sanitarios.
+    <div class="panel" id="caribe" role="tabpanel" hidden>
+      <div class="card">
+        <div class="hero">
+          <img src="caribe.webp" alt="Caribe">
+        </div>
+        <div class="content">
+          <h2>Caribe — Certificados y requisitos sanitarios</h2>
+          <ul>
+            <li>Certificado de salud emitido por veterinario autorizado.</li>
+            <li>Vacunas obligatorias según el país de destino.</li>
+            <li>Documentación de importación/exportación.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- Latinoamérica -->
-    <div class="card">
-      <img src="latam.webp" alt="Latinoamérica">
-      <div class="card-body">
-        <strong>Latinoamérica</strong> — Certificados y vacunación.
+    <div class="panel" id="latam" role="tabpanel" hidden>
+      <div class="card">
+        <div class="hero">
+          <img src="latam.webp" alt="Latinoamérica">
+        </div>
+        <div class="content">
+          <h2>Latinoamérica — Certificados y vacunación</h2>
+          <ul>
+            <li>Certificado de salud vigente.</li>
+            <li>Vacunas obligatorias según el país.</li>
+            <li>Documentos de ingreso y salida de mascotas.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- Europa -->
-    <div class="card">
-      <img src="europa.webp" alt="Europa">
-      <div class="card-body">
-        <strong>Europa</strong> — Certificados, vacunación y aduanales.
+    <div class="panel" id="europa" role="tabpanel" hidden>
+      <div class="card">
+        <div class="hero">
+          <img src="europa.webp" alt="Europa">
+        </div>
+        <div class="content">
+          <h2>Europa — Certificados, vacunación y aduanales</h2>
+          <ul>
+            <li>Certificado de salud y vacunación antirrábica.</li>
+            <li>Microchip homologado.</li>
+            <li>Documentos exigidos por la UE.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
+
 
 
 </body>
