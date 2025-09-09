@@ -353,5 +353,35 @@
     window.addEventListener('hashchange', openFromHash);
     openFromHash();
   </script>
+  <script>
+(() => {
+  const tabsBar   = document.getElementById('tabsBar');
+  const sentinel  = document.querySelector('.tabs-sentinel');
+
+  if (!tabsBar || !sentinel) return;
+
+  // Qué tan abajo fijamos la barra (alto de header + espacio)
+  const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64;
+  const rootMarginTop = -(headerH + 8);  // mismo gap que en CSS
+
+  // Observa cuando el sentinel sale por arriba: pegamos la barra
+  const io = new IntersectionObserver((entries) => {
+    const e = entries[0];
+    tabsBar.classList.toggle('is-stuck', e.intersectionRatio === 0);
+  }, { root: null, rootMargin: `${rootMarginTop}px 0px 0px 0px`, threshold: [0, 1] });
+
+  io.observe(sentinel);
+
+  // Recalcula ancho / posición al redimensionar
+  const onResize = () => {
+    if (!tabsBar.classList.contains('is-stuck')) return;
+    // (el CSS con left:50% + translateX(-50%) ya centra la barra,
+    //  solo forzamos reflow para Safari viejito)
+    void tabsBar.offsetWidth;
+  };
+  window.addEventListener('resize', onResize);
+})();
+</script>
+
 </body>
 </html>
