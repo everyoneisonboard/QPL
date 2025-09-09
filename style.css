@@ -2384,3 +2384,8 @@ body.home .footer > .container.footer-inner{ display:block !important; }
     top: auto !important;
     z-index: auto !important;
 }
+.service-menu.is-stuck,
+.service-menu.sticky {
+    position: static !important;
+    top: auto !important;
+}
