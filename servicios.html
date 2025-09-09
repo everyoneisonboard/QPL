@@ -117,19 +117,22 @@
     </div>
   </header>
 
-  <div class="wrap">
-    <h1 style="margin:18px 0">Nuestros servicios</h1>
+ <div class="wrap">
+  <h1 style="margin:18px 0">Nuestros servicios</h1>
 
-    <!-- Pestañas -->
-    <div id="svcTabs" class="tabs" role="tablist" aria-label="Servicios">
-      <button class="tab-btn" role="tab" data-target="transporte-aereo" aria-selected="true">✈️ Transporte aéreo</button>
-      <button class="tab-btn" role="tab" data-target="transporte-terrestre">🚚 Transporte terrestre</button>
-      <button class="tab-btn" role="tab" data-target="documentacion">📄 Documentación</button>
-      <button class="tab-btn" role="tab" data-target="puerta-a-puerta">🏠 Puerta a puerta</button>
-      <button class="tab-btn" role="tab" data-target="aduanas">🛃 Aduanas</button>
-      <button class="tab-btn" role="tab" data-target="asesoria">🤝 Asesoría</button>
-      <!-- <a class="btn-volver" href="index.html" style="margin-left:auto">← Volver a la página principal</a> -->
-    </div>
+  <!-- 👇 sentinel para fijar la barra -->
+  <div class="tabs-sentinel" aria-hidden="true"></div>
+
+  <!-- 👇 la barra de pestañas conserva su clase "tabs" y recibe id -->
+  <div id="tabsBar" class="tabs" role="tablist" aria-label="Servicios">
+    <button class="tab-btn" role="tab" data-target="transporte-aereo" aria-selected="true">✈️ Transporte aéreo</button>
+    <button class="tab-btn" role="tab" data-target="transporte-terrestre">🚛 Transporte terrestre</button>
+    <button class="tab-btn" role="tab" data-target="documentacion">📁 Documentación</button>
+    <button class="tab-btn" role="tab" data-target="puerta-a-puerta">🧳 Puerta a puerta</button>
+    <button class="tab-btn" role="tab" data-target="aduanas">🧾 Aduanas</button>
+    <button class="tab-btn" role="tab" data-target="asesoria">💬 Asesoría</button>
+  </div>
+</div>
     
     <div id="svcTabsSpacer" aria-hidden="true"></div>
 
