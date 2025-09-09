@@ -2435,7 +2435,7 @@ body.home .footer > .container.footer-inner{ display:block !important; }
     position: absolute;
     top: 0;
     right: 0; /* lado derecho de la imagen */
-    width: 40px; /* ancho del difuminado */
+    width: 35px; /* ancho del difuminado */
     height: 100%;
     background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
     pointer-events: none;
