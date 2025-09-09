@@ -61,26 +61,33 @@
     padding:8px 0 10px;
     z-index: auto;
   }
-  .tab-btn{
-    appearance:none;cursor:pointer;font-weight:700;
-    border:1px solid var(--border);
-    background:var(--surface);color:var(--text);
-    padding:10px 14px;border-radius:12px
+
+  /* Botones de pestañas con degradado naranja suave */
+  .tab-btn {
+  appearance: none;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   }
-  .tab-btn[aria-selected="true"]{
-    background: linear-gradient(120deg, #fff 85%, rgba(255,122,0,0.15) 100%);
-    border: 1px solid var(--brand);
-    color: var(--text);
-    box-shadow: none;
+
+  /* Hover: zoom + brillo */
+  .tab-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
   }
-  .tab-btn{
-    background: linear-gradient(120deg, #fff 85%, rgba(255,122,0,0.15) 100%);
-    border: 1px solid var(--brand);
-    color: var(--text);
-  }
-  .tab-btn:hover{
-    background: linear-gradient(120deg, #fff 70%, rgba(255,122,0,0.25) 100%);
-  }
+
+/* Estado activo/seleccionado */
+.tab-btn[aria-selected="true"] {
+  background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
 
   .panel{display:none;animation:fade .22s ease}
   .panel.active{display:block}
