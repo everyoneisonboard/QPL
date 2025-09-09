@@ -152,15 +152,51 @@ a{color:inherit;text-decoration:none}
 }
 
 /* WhatsApp también en color marca (como pediste) */
-.btn.btn-whatsapp{
-  background: var(--brand) !important;
-  color:#1a0c00 !important;
+/* Botones generales (Cotiza, Contacto) con degradado naranja */
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
   border: none;
+  font-weight: 700;
+  color: #fff !important;
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
-.btn.btn-whatsapp:hover{
-  background: var(--brand-600) !important;
-  box-shadow: 0 10px 28px var(--brand-glow) !important;
+
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
 }
+
+/* Botón volver arriba con mismo degradado */
+.backtop {
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%) !important;
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.backtop:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
 
 /* ========== HERO (HOME) ========== */
 .home .hero{position:relative;min-height:72vh;overflow:hidden}
