@@ -2351,72 +2351,9 @@ body.home .footer > .container.footer-inner{ display:block !important; }
 }
 
 /* Fija SOLO la barra de pestañas en la página de servicios */
-.servicios .tabs{
-  position: fixed;
-  top: var(--svc-header-h);             /* queda justo debajo del header */
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1100px, calc(100% - 40px));/* mismo ancho visual del contenido */
-  z-index: 999;                         /* por encima del contenido */
-  background: inherit;                  /* mantiene el mismo fondo */
-}
-
-/* Espaciador para que el contenido no quede escondido bajo la barra fija */
-.servicios .tabs-guard{
-  height: calc(var(--svc-tabs-h) + 8px);
-}
-
-/* ====== Barra de pestañas fija SOLO en servicios ====== */
-:root { --svc-top: 64px; } /* altura aproximada del header */
-
-#svcTabs{
-  position: fixed !important;
-  top: var(--svc-top) !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 1002 !important;
-  width: min(1100px, calc(100% - 40px)); /* mismo ancho visual que tu contenido */
-  /* no tocamos colores/bordes para mantener el look original */
-}
-
-#svcTabsSpacer{
-  height: 60px; /* compensa la altura visual de la barra */
-}
-
-/* Ajuste en móviles (si tu header es algo más bajo) */
-@media (max-width: 768px){
-  :root { --svc-top: 56px; }
-  #svcTabs{ width: calc(100% - 24px); }
-  #svcTabsSpacer{ height: 56px; }
-}
-/* ===== Sticky tabs (Servicios) ===== */
-:root{
-  /* alto del header fijo; ajusta si el tuyo es diferente */
-  --header-h: 64px;
-  --tabs-gap: 8px;
-  --content-max: 1120px; /* ancho del contenedor central */
-}
-
-/* el sentinel solo ocupa 1px y marca el punto donde se "pega" */
-.tabs-sentinel{
-  height: 1px;
-  margin-top: 8px; /* separa un poco del título */
-}
-
-/* estado normal de la barra: fluye con la página */
-#tabsBar{
-  position: relative;
-  z-index: 10;
-}
-
-/* cuando se pega: pasa a fixed y queda justo bajo el header */
-#tabsBar.is-stuck{
-  position: fixed;
-  top: calc(var(--header-h) + var(--tabs-gap));
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(var(--content-max), 100vw - 32px);
-  z-index: 50;
+.service-menu {
+    position: static; /* o relative */
+    top: auto;
 }
 
 /* fondo y sombra sólo cuando está pegada para que se lea siempre */
