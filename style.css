@@ -2365,3 +2365,27 @@ body.home .footer > .container.footer-inner{ display:block !important; }
 .servicios .tabs-guard{
   height: calc(var(--svc-tabs-h) + 8px);
 }
+
+/* ====== Barra de pestañas fija SOLO en servicios ====== */
+:root { --svc-top: 64px; } /* altura aproximada del header */
+
+#svcTabs{
+  position: fixed !important;
+  top: var(--svc-top) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1002 !important;
+  width: min(1100px, calc(100% - 40px)); /* mismo ancho visual que tu contenido */
+  /* no tocamos colores/bordes para mantener el look original */
+}
+
+#svcTabsSpacer{
+  height: 60px; /* compensa la altura visual de la barra */
+}
+
+/* Ajuste en móviles (si tu header es algo más bajo) */
+@media (max-width: 768px){
+  :root { --svc-top: 56px; }
+  #svcTabs{ width: calc(100% - 24px); }
+  #svcTabsSpacer{ height: 56px; }
+}
