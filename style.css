@@ -2342,3 +2342,26 @@ body.home .footer > .container.footer-inner{ display:block !important; }
     }
   }
 }
+
+/* ========= SERVICIOS: barra de pestañas fija ========= */
+/* Ajusta estos dos valores si tu header o la barra tienen otra altura */
+:root {
+  --svc-header-h: 64px;  /* altura del header */
+  --svc-tabs-h:   56px;  /* altura visual de la barra de pestañas */
+}
+
+/* Fija SOLO la barra de pestañas en la página de servicios */
+.servicios .tabs{
+  position: fixed;
+  top: var(--svc-header-h);             /* queda justo debajo del header */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, calc(100% - 40px));/* mismo ancho visual del contenido */
+  z-index: 999;                         /* por encima del contenido */
+  background: inherit;                  /* mantiene el mismo fondo */
+}
+
+/* Espaciador para que el contenido no quede escondido bajo la barra fija */
+.servicios .tabs-guard{
+  height: calc(var(--svc-tabs-h) + 8px);
+}
