@@ -68,10 +68,18 @@
     padding:10px 14px;border-radius:12px
   }
   .tab-btn[aria-selected="true"]{
-    background:linear-gradient(120deg, var(--brand) 70%, #c7a8ff 30%);
-    border-color:transparent;
-    color:#fff;
-    box-shadow:0 0 0 6px var(--ring) inset;
+    background: linear-gradient(120deg, #fff 85%, rgba(255,122,0,0.15) 100%);
+    border: 1px solid var(--brand);
+    color: var(--text);
+    box-shadow: none;
+  }
+  .tab-btn{
+    background: linear-gradient(120deg, #fff 85%, rgba(255,122,0,0.15) 100%);
+    border: 1px solid var(--brand);
+    color: var(--text);
+  }
+  .tab-btn:hover{
+    background: linear-gradient(120deg, #fff 70%, rgba(255,122,0,0.25) 100%);
   }
 
   .panel{display:none;animation:fade .22s ease}
