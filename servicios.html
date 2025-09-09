@@ -114,6 +114,26 @@
     .panel .card{display:grid;grid-template-columns:6fr 6fr}
     .hero{min-height:100%}
   }
+
+  @media (min-width:960px) {
+  .panel .card .hero {
+    position: relative;
+    overflow: hidden; /* para que el degradado no se salga */
+  }
+
+  .panel .card .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0; /* lado donde empieza el texto */
+    width: 60px; /* ancho del difuminado */
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, var(--surface) 100%);
+    pointer-events: none;
+  }
+}
+  
+   
 </style>
 
 </head>
