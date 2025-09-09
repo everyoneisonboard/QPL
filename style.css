@@ -2389,3 +2389,56 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   #svcTabs{ width: calc(100% - 24px); }
   #svcTabsSpacer{ height: 56px; }
 }
+/* ===== Sticky tabs (Servicios) ===== */
+:root{
+  /* alto del header fijo; ajusta si el tuyo es diferente */
+  --header-h: 64px;
+  --tabs-gap: 8px;
+  --content-max: 1120px; /* ancho del contenedor central */
+}
+
+/* el sentinel solo ocupa 1px y marca el punto donde se "pega" */
+.tabs-sentinel{
+  height: 1px;
+  margin-top: 8px; /* separa un poco del título */
+}
+
+/* estado normal de la barra: fluye con la página */
+#tabsBar{
+  position: relative;
+  z-index: 10;
+}
+
+/* cuando se pega: pasa a fixed y queda justo bajo el header */
+#tabsBar.is-stuck{
+  position: fixed;
+  top: calc(var(--header-h) + var(--tabs-gap));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--content-max), 100vw - 32px);
+  z-index: 50;
+}
+
+/* fondo y sombra sólo cuando está pegada para que se lea siempre */
+#tabsBar.is-stuck::before{
+  content: "";
+  position: absolute;
+  inset: -8px -12px;               /* crea una “pastilla” detrás de los botones */
+  background: var(--bg, rgba(20,22,26,0.78));
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.22);
+  z-index: -1;
+}
+
+/* tema claro: fondo más claro cuando está pegada */
+@media (prefers-color-scheme: light){
+  #tabsBar.is-stuck::before{
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  }
+}
+
+/* Asegúrate de NO tener overflow: hidden/auto en un ancestro directo de #tabsBar,
+   porque rompe sticky/fixed. Si lo tienes, quítalo en ese contenedor. */
