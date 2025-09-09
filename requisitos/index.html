@@ -143,6 +143,19 @@
 
   </div>
 </section>
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Desactivar todos
+      document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', 'false'));
+      document.querySelectorAll('.panel').forEach(p => p.hidden = true);
+
+      // Activar el seleccionado
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = false;
+    });
+  });
+</script>
 
 
 
