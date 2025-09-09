@@ -54,9 +54,12 @@
 
   .tabs{
     display:flex;gap:6px;flex-wrap:wrap;
-    position:sticky;top:64px;
+    position: static;
+    top: auto;
+    z-index: auto;
     background:linear-gradient(var(--bg),var(--bg));
-    padding:8px 0 10px;z-index:5
+    padding:8px 0 10px;
+    z-index: auto;
   }
   .tab-btn{
     appearance:none;cursor:pointer;font-weight:700;
