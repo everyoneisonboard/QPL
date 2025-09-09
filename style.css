@@ -2377,5 +2377,10 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   }
 }
 
-/* Asegúrate de NO tener overflow: hidden/auto en un ancestro directo de #tabsBar,
-   porque rompe sticky/fixed. Si lo tienes, quítalo en ese contenedor. */
+/* Forzar que la barra de pestañas en servicios NO sea fija */
+.servicios-page .service-menu,
+.service-menu {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+}
