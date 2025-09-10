@@ -1,181 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Requisitos por destino</title>
-  <style>
-    /* ====== ESTILOS GENERALES ====== */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    h1.section-title,
-    .content h2 {
-      color: #000; /* Negro en modo claro */
-    }
-    .section {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Requisitos por destino</title>
+<style>
+/* ====== ESTILOS GENERALES ====== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+h1.section-title,
+.content h2 {
+  color: #000; /* Negro en modo claro */
+}
+.section {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
 
-    /* ====== HEADER ====== */
-    header.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    header .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    header .logo img {
-      height: 40px;
-    }
-    header nav a {
-      margin-left: 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    header nav a.btn-contacto {
-      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-      color: #fff !important;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    header nav a.btn-contacto:hover {
-      filter: brightness(1.05);
-      box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
-    }
+/* ====== HEADER ====== */
+header.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header .logo img {
+  height: 40px;
+}
+header nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+header nav a.btn-contacto {
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+  color: #fff !important;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+header nav a.btn-contacto:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
+}
 
-    /* ====== TABS ====== */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .tab-btn {
-      appearance: none;
-      cursor: pointer;
-      font-weight: 700;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: none;
-      color: #fff; /* Siempre blanco */
-      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-    }
-    .tab-btn:hover {
-      transform: scale(1.05);
-      filter: brightness(1.05);
-      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
-    }
-    .tab-btn[aria-selected="true"] {
-      background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
-      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
-    }
+/* ====== TABS ====== */
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tab-btn {
+  appearance: none;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  color: #fff; /* Siempre blanco */
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.tab-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+.tab-btn[aria-selected="true"] {
+  background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
 
-    /* ====== PANEL ====== */
-    .panel {
-      width: 100%;
-      height: auto;
-      overflow: visible;
-    }
+/* ====== PANEL ====== */
+.panel {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.panels .panel {
+  display: none;
+}
+.panels .panel[hidden] {
+  display: none;
+}
+.panels .panel:not([hidden]) {
+  display: block;
+}
 
-    .panels .panel {
-      display: none;
-    }
-    .panels .panel[hidden] {
-      display: none;
-    }
-    .panels .panel:not([hidden]) {
-      display: block;
-    }
+/* ====== CARD ====== */
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.hero {
+  flex: 1 1 50%;
+  position: relative;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.content {
+  flex: 1 1 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.content ul {
+  padding-left: 20px;
+}
+.content li {
+  margin-bottom: 8px;
+}
 
-    /* ====== CARD ====== */
-    .card {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .hero {
-      flex: 1 1 50%;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .content {
-      flex: 1 1 50%;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .content ul {
-      padding-left: 20px;
-    }
-    .content li {
-      margin-bottom: 8px;
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+  .hero, .content {
+    flex: 1 1 100%;
+  }
+}
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .card {
-        flex-direction: column;
-      }
-      .hero, .content {
-        flex: 1 1 100%;
-      }
-    }
-
-    /* ====== DARK MODE ====== */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-      header.navbar {
-        background: #1e1e1e;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      }
-      header nav a {
-        color: #fff;
-      }
-      .card {
-        background: #1e1e1e;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      }
-      h1.section-title,
-      .content h2 {
-        color: #fff; /* Blanco en modo oscuro */
-      }
-      .tab-btn {
-        color: #fff; /* Siempre blanco */
-      }
-    }
-  </style>
+/* ====== DARK MODE ====== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  header.navbar {
+    background: #1e1e1e;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  }
+  header nav a {
+    color: #fff;
+  }
+  .card {
+    background: #1e1e1e;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  }
+  h1.section-title,
+  .content h2 {
+    color: #fff; /* Blanco en modo oscuro */
+  }
+  .tab-btn {
+    color: #fff; /* Siempre blanco */
+  }
+}
+</style>
 </head>
 <body>
 
@@ -249,33 +248,7 @@
           <img src="latam.webp" alt="Latinoamérica">
         </div>
         <div class="content">
-          <h2>Latinoamérica —
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.panel');
-
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Desactivar todos los botones
-      tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
-      // Ocultar todos los paneles
-      panels.forEach(p => {
-        p.hidden = true;
-        p.style.display = 'none';
-      });
-
-      // Activar el botón clickeado
-      btn.setAttribute('aria-selected', 'true');
-      // Mostrar el panel correspondiente
-      const targetPanel = document.getElementById(btn.getAttribute('aria-controls'));
-      if (targetPanel) {
-        targetPanel.hidden = false;
-        targetPanel.style.display = 'block';
-      }
-    });
-  });
-});
-</script>
-
-
+          <h2>Latinoamérica — Certificados y vacunación</h2>
+          <ul>
+            <li>Certificado de salud vigente.</li>
+            <li
