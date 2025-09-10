@@ -144,13 +144,18 @@
         background-color: #121212;
         color: #e0e0e0;
       }
-      header.navbar {
-        background: #1e1e1e;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      header nav a.btn-contacto {
+        background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+        color: #fff !important;
+        padding: 6px 12px;
+        border-radius: 8px;
+        text-decoration: none;
       }
-      header nav a {
-        color: #fff;
-      }
+header nav a.btn-contacto:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
+}
+
       .card {
         background: #1e1e1e;
         box-shadow: 0 4px 10px rgba(0,0,0,0.6);
@@ -169,15 +174,16 @@
 
 <header class="navbar">
   <div class="logo">
-    <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
-    <span>Quisqueya Pet Logistics</span>
+    <a href="../index.html">
+      <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
+    </a>
   </div>
   <nav>
-    <a href="../index.html">Servicios</a>
+    <a href="../index.html#servicios">Servicios</a>
     <a href="index.html">Requisitos por destino</a>
     <a href="../preguntas.html">Preguntas</a>
-    <a href="../cotiza.html">Cotiza</a>
-    <a href="../contacto.html" class="btn-contacto">Contacto</a>
+    <a href="../cotiza.html" class="btn-contacto">Cotiza</a>
+    <a href="https://wa.me/18095551234?text=Hola%20Quisqueya%20Pet%20Logistics" target="_blank" class="btn-contacto">Contacto</a>
   </nav>
 </header>
 
