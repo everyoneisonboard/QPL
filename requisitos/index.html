@@ -1,409 +1,318 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Requisitos por destino</title>
-<style>
-/* ====== ESTILOS GENERALES ====== */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
-}
-h1.section-title,
-.content h2 {
-  color: #000; /* Negro en modo claro */
-}
-.section {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Requisitos por destino</title>
 
-/* ====== HEADER ====== */
-header.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-header .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-header .logo img {
-  height: 40px;
-}
-header nav a {
-  margin-left: 15px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-header nav a.btn-contacto {
-  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-  color: #fff !important;
-  padding: 6px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-}
-header nav a.btn-contacto:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
-}
+  <!-- Estilos globales (mismos que Servicios) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../style.css"/>
 
-/* ====== TABS ====== */
-.tabs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.tab-btn {
-  appearance: none;
-  cursor: pointer;
-  font-weight: 700;
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: none;
-  color: #fff; /* Siempre blanco */
-  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-}
-.tab-btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.05);
-  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
-}
-.tab-btn[aria-selected="true"] {
-  background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
-  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
-}
+  <style>
+    /* ====== Estilos específicos de esta página ====== */
 
-/* ====== PANEL ====== */
-.panel {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.panels .panel {
-  display: none;
-}
-.panels .panel[hidden] {
-  display: none;
-}
-.panels .panel:not([hidden]) {
-  display: block;
-}
+    /* Contenedor principal de la sección */
+    .section {
+      padding: 28px 20px 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-/* ====== CARD ====== */
-.card {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.hero {
-  flex: 1 1 50%;
-  position: relative;
-  overflow: hidden;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.content {
-  flex: 1 1 50%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.content ul {
-  padding-left: 20px;
-}
-.content li {
-  margin-bottom: 8px;
-}
+    /* Título de sección */
+    .section-title {
+      margin: 18px 0 16px;
+      font-size: 28px;
+    }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .card {
-    flex-direction: column;
-  }
-  .hero, .content {
-    flex: 1 1 100%;
-  }
-}
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: linear-gradient(var(--bg), var(--bg));
+      padding: 8px 0 12px;
+    }
+    .tab-btn {
+      appearance: none;
+      cursor: pointer;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      color: #fff;
+      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .tab-btn:hover {
+      transform: scale(1.05);
+      filter: brightness(1.05);
+      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+    }
+    .tab-btn[aria-selected="true"] {
+      background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
+      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+    }
 
-/* ====== DARK MODE ====== */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
-  header.navbar {
-    background: #1e1e1e;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
-  header nav a {
-    color: #fff;
-  }
-  .card {
-    background: #1e1e1e;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-  }
-  h1.section-title,
-  .content h2 {
-    color: #fff; /* Blanco en modo oscuro */
-  }
-  .tab-btn {
-    color: #fff; /* Siempre blanco */
-  }
-}
-  /* ====== FOOTER ====== */
-.footer {
-  background-color: #222;
-  color: #ccc;
-  padding: 40px 20px 20px;
-  font-family: 'Poppins', sans-serif;
-  border-top: 2px solid rgba(255,255,255,0.1);
-}
-.footer-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: auto;
-}
-.footer-section h3 {
-  margin-bottom: 10px;
-  color: #ffb347;
-}
-.footer-section p, 
-.footer-section a {
-  color: #ccc;
-  font-size: 14px;
-  text-decoration: none;
-}
-.footer-section a:hover {
-  color: #fff;
-}
-.social-icons a img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  filter: brightness(0) invert(1);
-}
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 13px;
-  color: #aaa;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 10px;
-}
+    /* Paneles */
+    .panels .panel { display: none; }
+    .panels .panel[hidden] { display: none; }
+    .panels .panel:not([hidden]) { display: block; }
+    .panel { width: 100%; height: auto; overflow: visible; animation: fade .22s ease; }
+    @keyframes fade { from { opacity: .6; transform: translateY(2px);} }
 
-/* Dark mode coherente */
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background-color: #111;
-  }
-  .footer-section a {
-    color: #bbb;
-  }
-  .footer-section a:hover {
-    color: #fff;
-  }
-}
+    /* Tarjeta */
+    .card{
+      background: radial-gradient(120% 140% at 80% -10%, var(--card-start), var(--card-end));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .hero{
+      position: relative;
+      min-height: 240px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+    }
+    .hero img{ width: 100%; height: 100%; object-fit: cover; opacity: .95; filter: saturate(1.05); }
+    .content{ padding: 18px; }
+    .content h2{ margin: 0 0 10px; font-size: 22px; }
+    .content ul{ color: var(--muted); padding-left: 20px; }
+    .content li{ margin-bottom: 8px; }
 
-</style>
+    @media (min-width: 960px){
+      .panel .card{
+        grid-template-columns: 6fr 6fr;
+      }
+      .panel .card .hero{
+        min-height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .panel .card .hero::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 100%;
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%, var(--surface) 100%);
+        pointer-events: none;
+      }
+    }
+
+    /* Botones de acción en header (consistencia con Servicios) */
+    header.navbar a.btn-contacto {
+      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+      color: #fff !important;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    header.navbar a.btn-contacto:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
+    }
+
+    /* Header base (alineado al estilo global) */
+    header.navbar{
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px; background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    header .logo img{ height: 40px; }
+    header nav a{
+      margin-left: 15px; text-decoration: none; color: var(--text); font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 
-<header class="navbar">
-  <div class="logo">
-    <a href="../index.html">
-      <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
-    </a>
-  </div>
-  <nav>
-    <a href="../index.html#servicios">Servicios</a>
-    <a href="index.html">Requisitos por destino</a>
-    <a href="../preguntas.html">Preguntas</a>
-    <a href="../cotiza.html" class="btn-contacto">Cotiza</a>
-    <a href="https://wa.me/18095551234?text=Hola%20Quisqueya%20Pet%20Logistics" target="_blank" class="btn-contacto">Contacto</a>
-  </nav>
-</header>
+  <!-- HEADER -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
+      </a>
+    </div>
+    <nav class="links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#servicios">Servicios</a>
+      <a href="../preguntas.html">Preguntas</a>
+      <a href="../cotiza.html" class="btn-contacto">Cotiza</a>
+      <a href="https://wa.me/18095551234?text=Hola%20Quisqueya%20Pet%20Logistics" target="_blank" class="btn-contacto">Contacto</a>
+    </nav>
+  </header>
 
-<section id="requisitos-destino" class="section">
-  <h1 class="section-title">Requisitos por destino</h1>
+  <!-- CONTENIDO -->
+  <section id="requisitos-destino" class="section">
+    <h1 class="section-title">Requisitos por destino</h1>
 
-  <!-- Botones -->
-  <div class="tabs" role="tablist">
-    <button class="tab-btn" role="tab" aria-selected="true" aria-controls="usa">USA</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="caribe">Caribe</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="latam">Latinoamérica</button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="europa">Europa</button>
-  </div>
-
-  <!-- Paneles -->
-  <div class="panels">
-
-    <!-- USA -->
-    <div class="panel" id="usa" role="tabpanel">
-      <div class="card">
-        <div class="hero">
-          <img src="usa.webp" alt="USA">
-        </div>
-        <div class="content">
-          <h2>USA — Documentos solicitados y aduanales</h2>
-          <ul>
-            <li>Certificado de salud vigente.</li>
-            <li>Certificado de vacunas al día.</li>
-            <li>Documentos exigidos por aduanas.</li>
-          </ul>
-        </div>
-      </div>
+    <!-- Botones -->
+    <div class="tabs" role="tablist" aria-label="Destinos">
+      <button class="tab-btn" role="tab" aria-selected="true" aria-controls="usa">USA</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="caribe">Caribe</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="latam">Latinoamérica</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="europa">Europa</button>
     </div>
 
-    <!-- Caribe -->
-    <div class="panel" id="caribe" role="tabpanel" hidden>
-      <div class="card">
-        <div class="hero">
-          <img src="caribe.webp" alt="Caribe">
-        </div>
-        <div class="content">
-          <h2>Caribe — Certificados y requisitos sanitarios</h2>
-          <ul>
-            <li>Certificado de salud emitido por veterinario autorizado.</li>
-            <li>Vacunas obligatorias según el país de destino.</li>
-            <li>Documentación de importación/exportación.</li>
-          </ul>
+    <!-- Paneles -->
+    <div class="panels">
+
+      <!-- USA -->
+      <div class="panel" id="usa" role="tabpanel">
+        <div class="card">
+          <div class="hero">
+            <img src="usa.webp" alt="USA">
+          </div>
+          <div class="content">
+            <h2>USA — Documentos solicitados y aduanales</h2>
+            <ul>
+              <li>Certificado de salud vigente.</li>
+              <li>Certificado de vacunas al día.</li>
+              <li>Documentos exigidos por aduanas.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Latinoamérica -->
-    <div class="panel" id="latam" role="tabpanel" hidden>
-      <div class="card">
-        <div class="hero">
-          <img src="latam.webp" alt="Latinoamérica">
-        </div>
-        <div class="content">
-          <h2>Latinoamérica — Certificados y vacunación</h2>
-          <ul>
-            <li>Certificado de salud vigente.</li>
-            <li>Vacunas obligatorias según el país.</li>
-            <li>Documentos de ingreso y salida de mascotas.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-       <!-- Europa -->
-    <div class="panel" id="europa" role="tabpanel" hidden>
-      <div class="card">
-        <div class="hero">
-          <img src="europa.webp" alt="Europa">
-        </div>
-        <div class="content">
-          <h2>Europa — Certificados, vacunación y aduanales</h2>
-          <ul>
-            <li>Certificado de salud y vacunación antirrábica.</li>
-            <li>Microchip homologado.</li>
-            <li>Documentos exigidos por la UE.</li>
-          </ul>
+      <!-- Caribe -->
+      <div class="panel" id="caribe" role="tabpanel" hidden>
+        <div class="card">
+          <div class="hero">
+            <img src="caribe.webp" alt="Caribe">
+          </div>
+          <div class="content">
+            <h2>Caribe — Certificados y requisitos sanitarios</h2>
+            <ul>
+              <li>Certificado de salud emitido por veterinario autorizado.</li>
+              <li>Vacunas obligatorias según el país de destino.</li>
+              <li>Documentación de importación/exportación.</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <!-- Latinoamérica -->
+      <div class="panel" id="latam" role="tabpanel" hidden>
+        <div class="card">
+          <div class="hero">
+            <img src="latam.webp" alt="Latinoamérica">
+          </div>
+          <div class="content">
+            <h2>Latinoamérica — Certificados y vacunación</h2>
+            <ul>
+              <li>Certificado de salud vigente.</li>
+              <li>Vacunas obligatorias según el país.</li>
+              <li>Documentos de ingreso y salida de mascotas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Europa -->
+      <div class="panel" id="europa" role="tabpanel" hidden>
+        <div class="card">
+          <div class="hero">
+            <img src="europa.webp" alt="Europa">
+          </div>
+          <div class="content">
+            <h2>Europa — Certificados, vacunación y aduanales</h2>
+            <ul>
+              <li>Certificado de salud y vacunación antirrábica.</li>
+              <li>Microchip homologado.</li>
+              <li>Documentos exigidos por la UE.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-  </div> <!-- cierre de .panels -->
-</section>
-
+  <!-- FOOTER (idéntico al de Servicios) -->
   <footer class="footer">
-  <div class="footer-container">
-    <!-- Dirección -->
-    <div class="footer-section">
-      <h3>Dirección</h3>
-      <p>Ruta 66, Aeropuerto Las Américas<br>
-      Terminal de Carga<br>
-      Santo Domingo, RD 11363</p>
-    </div>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col col-dir">
+          <h4>📍 Dirección</h4>
+          <p>
+            Ruta 66, Aeropuerto Las Américas.<br>
+            Terminal de Carga<br>
+            Santo Domingo, RD 11336
+          </p>
+        </div>
+        <div class="footer-col col-contacto">
+          <h4>📞 Contacto</h4>
+          <p>
+            +1 (809)520-3331<br>
+            ventas.quisqueyapetlogistics@gmail.com<br>
+            quisqueyapetlogistics@gmail.com
+          </p>
+        </div>
+        <div class="footer-col col-horario">
+          <h4>⏰ Horarios</h4>
+          <p>Horario de seguimiento 24/7</p>
+          <p>Servicio al cliente Lun. a Vie. 8:30AM a 5:30PM</p>
+        </div>
+        <div class="footer-col col-redes">
+          <h4>🔗 Redes sociales</h4>
+          <div class="social-icons">
+            <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
 
-    <!-- Contacto -->
-    <div class="footer-section">
-      <h3>Contacto</h3>
-      <p>Tel: <a href="tel:+13052902331">+1 (305) 290-2331</a></p>
-      <p>Email: <a href="mailto:veritas.quisqueyapetlogistics@gmail.com">veritas.quisqueyapetlogistics@gmail.com</a></p>
-      <p>Email: <a href="mailto:quisqueyapetlogistics@gmail.com">quisqueyapetlogistics@gmail.com</a></p>
-    </div>
-
-    <!-- Horarios -->
-    <div class="footer-section">
-      <h3>Horarios</h3>
-      <p>Seguimiento: 24/7</p>
-      <p>Servicio al cliente: Lun a Vie, 8:30AM a 5:30PM</p>
-    </div>
-
-    <!-- Redes Sociales -->
-    <div class="footer-section">
-      <h3>Redes sociales</h3>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><img src="../assets/img/facebook.svg" alt="Facebook"></a>
-        <a href="#" aria-label="Instagram"><img src="../assets/img/instagram.svg" alt="Instagram"></a>
-        <a href="#" aria-label="LinkedIn"><img src="../assets/img/linkedin.svg" alt="LinkedIn"></a>
+      <div class="footer-bottom">
+        <p>© 2025 Quisqueya Pet Logistics · Santo Domingo, RD</p>
       </div>
     </div>
-  </div>
+  </footer>
 
-  <div class="footer-bottom">
-    <p>© 2023 Quisqueya Pet Logistics - Santo Domingo, RD</p>
-  </div>
-</footer>
+  <!-- Script de pestañas -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.panel');
 
-<!-- Script de pestañas -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.panel');
-
-  tabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Desactivar todos los botones
-      tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
-      // Ocultar todos los paneles
+      // Estado inicial: mostrar USA, ocultar resto
       panels.forEach(p => {
-        p.hidden = true;
-        p.style.display = 'none';
+        if (p.id === 'usa') {
+          p.hidden = false;
+          p.style.display = 'block';
+        } else {
+          p.hidden = true;
+          p.style.display = 'none';
+        }
       });
 
-      // Activar el botón clickeado
-      btn.setAttribute('aria-selected', 'true');
-
-      // Mostrar el panel correspondiente
-      const targetPanel = document.getElementById(btn.getAttribute('aria-controls'));
-      if (targetPanel) {
-        targetPanel.hidden = false;
-        targetPanel.style.display = 'block';
-      }
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Desactivar todos los botones
+          tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
+          // Ocultar todos los paneles
+          panels.forEach(p => {
+            p.hidden = true;
+            p.style.display = 'none';
+          });
+          // Activar botón clickeado
+          btn.setAttribute('aria-selected', 'true');
+          // Mostrar panel destino
+          const target = btn.getAttribute('aria-controls');
+          const panel = document.getElementById(target);
+          if (panel) {
+            panel.hidden = false;
+            panel.style.display = 'block';
+          }
+        });
+      });
     });
-  });
-});
-</script>
-
+  </script>
 </body>
 </html>
