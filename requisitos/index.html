@@ -244,3 +244,27 @@
         </div>
         <div class="content">
           <h2>Latinoamérica —
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Desactivar todos los botones
+      tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
+      // Ocultar todos los paneles
+      panels.forEach(p => p.hidden = true);
+
+      // Activar el botón clickeado
+      btn.setAttribute('aria-selected', 'true');
+      // Mostrar el panel correspondiente
+      const targetPanel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (targetPanel) {
+        targetPanel.hidden = false;
+      }
+    });
+  });
+});
+</script>
+
