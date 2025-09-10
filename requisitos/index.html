@@ -10,7 +10,25 @@
   <link rel="stylesheet" href="../style.css"/>
 
   <style>
-    
+
+    /* Asegurar layout del header como en Servicios */
+.header .header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo { height: 40px; width: auto; }
+
+/* Evitar superposiciones: que nada cubra el header */
+.header { position: relative; z-index: 1000; }
+.tabs { position: static; z-index: auto; } /* evita que las tabs tapen el menú */
+.section { position: relative; }
+
+/* Si algún contenedor accidentalmente estaba bloqueando clics */
+header *, nav * { pointer-events: auto; }
+
     /* ====== Estilos específicos de esta página ====== */
     .logo {
       height: 40px;
@@ -139,7 +157,7 @@
 <body>
 
   <!-- HEADER -->
-<header class="header">
+<header class="header" id="inicio">
   <div class="container header-inner">
     <a href="../index.html" class="brand">
       <img src="../assets/logo.png" class="logo" alt="Logo Quisqueya Pet Logistics" />
@@ -149,12 +167,13 @@
     <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="../index.html#servicios">Servicios</a>
-      <a href="/preguntas.html">Preguntas</a>
-      <a href="/cotiza.html" class="btn btn-sm">Cotiza</a>
+      <a href="/QPL/preguntas.html">Preguntas</a>
+      <a href="/QPL/cotiza.html" class="btn btn-sm">Cotiza</a>
       <a href="https://wa.me/18095203331?text=Hola,%20quiero%20cotizar%20el%20traslado%20de%20mi%20mascota" class="btn btn-sm btn-whatsapp" target="_blank">Contacto</a>
     </nav>
   </div>
 </header>
+
 
   <!-- CONTENIDO -->
   <section id="requisitos-destino" class="section">
