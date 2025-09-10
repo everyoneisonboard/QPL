@@ -2428,3 +2428,7 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   .panel .card {
     position: relative;
   }
+.section-title {
+  text-align: center;
+  margin: 18px 0;
+}
