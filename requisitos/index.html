@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="color-scheme" content="light dark">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Requisitos por destino</title>
   <style>
-    /* ====== ESTILOS GENERALES ====== */
+    /* ====== ESTILOS BASE (Light Mode por defecto) ====== */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -87,14 +86,12 @@
       object-fit: cover;
       display: block;
     }
-     .content {
-        flex: 1 1 50%;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* antes estaba center */
-    }
-
+    .content {
+      flex: 1 1 50%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Texto empieza arriba */
     }
     .content h2 {
       color: #ff7a00;
@@ -114,6 +111,27 @@
       }
       .hero, .content {
         flex: 1 1 100%;
+      }
+    }
+
+    /* ====== DARK MODE ====== */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+      .card {
+        background: #1e1e1e;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+      }
+      .content h2 {
+        color: #ffb347;
+      }
+      .tab-btn {
+        background: linear-gradient(135deg, #ff7a00 0%, #cc5500 100%);
+      }
+      .tab-btn[aria-selected="true"] {
+        background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
       }
     }
   </style>
