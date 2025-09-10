@@ -2581,3 +2581,18 @@ body.home .footer > .container.footer-inner{ display:block !important; }
 
 /* Separación del panel respecto a los tabs */
 #requisitos-destino .req-panel{ margin-top: 14px; }
+
+#requisitos-destino .card > .card-body {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--brand);
+  color: #1a0c00;
+  font-weight: 800;
+  border-top: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
