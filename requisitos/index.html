@@ -252,3 +252,61 @@ header nav a.btn-contacto:hover {
           <ul>
             <li>Certificado de salud vigente.</li>
             <li>Vacunas obligatorias según el país.</li>
+            <li>Documentos de ingreso y salida de mascotas.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+       <!-- Europa -->
+    <div class="panel" id="europa" role="tabpanel" hidden>
+      <div class="card">
+        <div class="hero">
+          <img src="europa.webp" alt="Europa">
+        </div>
+        <div class="content">
+          <h2>Europa — Certificados, vacunación y aduanales</h2>
+          <ul>
+            <li>Certificado de salud y vacunación antirrábica.</li>
+            <li>Microchip homologado.</li>
+            <li>Documentos exigidos por la UE.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- cierre de .panels -->
+</section>
+
+<!-- Script de pestañas -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Desactivar todos los botones
+      tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
+      // Ocultar todos los paneles
+      panels.forEach(p => {
+        p.hidden = true;
+        p.style.display = 'none';
+      });
+
+      // Activar el botón clickeado
+      btn.setAttribute('aria-selected', 'true');
+
+      // Mostrar el panel correspondiente
+      const targetPanel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (targetPanel) {
+        targetPanel.hidden = false;
+        targetPanel.style.display = 'block';
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
