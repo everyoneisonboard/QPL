@@ -2432,3 +2432,35 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   text-align: center;
   margin: 18px 0;
 }
+
+/* === DEGRADADO NARANJA (aplicar a botones y banners) === */
+:root {
+  --brand-gradient: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+}
+
+/* Botones generales */
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
+/* Banda inferior en las cards (Servicios / Requisitos) */
+.home .cards .card > .card-body,
+#requisitos-destino .cards .card > .card-body {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  font-weight: 800;
+}
