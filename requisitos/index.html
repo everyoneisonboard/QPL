@@ -254,7 +254,10 @@ document.addEventListener("DOMContentLoaded", function() {
       // Desactivar todos los botones
       tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
       // Ocultar todos los paneles
-      panels.forEach(p => p.hidden = true);
+      panels.forEach(p => {
+        p.hidden = true;
+        p.style.display = 'none';
+      });
 
       // Activar el botón clickeado
       btn.setAttribute('aria-selected', 'true');
@@ -262,9 +265,11 @@ document.addEventListener("DOMContentLoaded", function() {
       const targetPanel = document.getElementById(btn.getAttribute('aria-controls'));
       if (targetPanel) {
         targetPanel.hidden = false;
+        targetPanel.style.display = 'block';
       }
     });
   });
 });
 </script>
+
 
