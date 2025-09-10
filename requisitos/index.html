@@ -46,15 +46,15 @@
       color: #333;
       font-weight: bold;
     }
-  /* Botones naranja para Cotiza y Contacto */
-    header nav a.btn-contacto {
-      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-      color: #fff !important;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-    }
+      @media (prefers-color-scheme: dark) {
+  header.navbar {
+    background: #1e1e1e;
+  }
+  header.navbar a {
+    color: #fff;
+  }
+}
+
 header nav a.btn-contacto:hover {
   filter: brightness(1.05);
   box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
@@ -182,7 +182,7 @@ header nav a.btn-contacto:hover {
 <header class="navbar">
   <div class="logo">
     <a href="../index.html">
-      <img src="assets/logo.png" class="logo" alt="Logo Quisqueya Pet Logistics" />
+    <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
     </a>
   </div>
   <nav>
