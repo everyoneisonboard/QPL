@@ -86,7 +86,7 @@ header *, nav * { pointer-events: auto; }
     @keyframes fade { from { opacity: .6; transform: translateY(2px);} }
 
     /* Tarjeta */
-    .card{
+     /*.card{
       background: radial-gradient(120% 140% at 80% -10%, var(--card-start), var(--card-end));
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -105,7 +105,69 @@ header *, nav * { pointer-events: auto; }
     .content{ padding: 18px; }
     .content h2{ margin: 0 0 10px; font-size: 22px; }
     .content ul{ color: var(--muted); padding-left: 20px; }
-    .content li{ margin-bottom: 8px; }
+    .content li{ margin-bottom: 8px; } */
+
+    /* === Recuadro para requisitos, estilo "Servicios" === */
+#requisitos-destino .card {
+  position: relative;
+  border-radius: 18px;
+  background: rgba(15, 22, 32, 0.92);       /* mismo fondo oscuro que servicios */
+  border: 1px solid rgba(255, 255, 255, .06);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 14px;
+}
+
+/* línea interna sutil */
+#requisitos-destino .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+  pointer-events: none;
+}
+
+/* Imagen */
+#requisitos-destino .card .hero {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+#requisitos-destino .card .hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contenido */
+#requisitos-destino .card .content {
+  padding: 24px 28px;
+}
+#requisitos-destino .card .content h2 {
+  margin: 0 0 12px;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+}
+#requisitos-destino .card .content ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--c-muted, #cfd6df);
+}
+
+/* Responsive: imagen arriba, texto abajo */
+@media (min-width: 960px) {
+  #requisitos-destino .card {
+    grid-template-columns: 1.1fr 1fr; /* imagen | texto */
+  }
+  #requisitos-destino .card .hero { min-height: 100%; }
+}
 
     @media (min-width: 960px){
       .panel .card{
