@@ -46,19 +46,18 @@
       color: #333;
       font-weight: bold;
     }
-      @media (prefers-color-scheme: dark) {
-  header.navbar {
-    background: #1e1e1e;
-  }
-  header.navbar a {
-    color: #fff;
-  }
-}
-
-header nav a.btn-contacto:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
-}
+    header nav a.btn-contacto {
+      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+      color: #fff !important;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    header nav a.btn-contacto:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
+    }
 
     /* ====== TABS ====== */
     .tabs {
@@ -151,18 +150,13 @@ header nav a.btn-contacto:hover {
         background-color: #121212;
         color: #e0e0e0;
       }
-      header nav a.btn-contacto {
-        background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-        color: #fff !important;
-        padding: 6px 12px;
-        border-radius: 8px;
-        text-decoration: none;
+      header.navbar {
+        background: #1e1e1e;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.6);
       }
-header nav a.btn-contacto:hover {
-  filter: brightness(1.05);
-  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
-}
-
+      header nav a {
+        color: #fff;
+      }
       .card {
         background: #1e1e1e;
         box-shadow: 0 4px 10px rgba(0,0,0,0.6);
@@ -182,15 +176,15 @@ header nav a.btn-contacto:hover {
 <header class="navbar">
   <div class="logo">
     <a href="../index.html">
-    <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
+      <img src="../assets/img/logo.png" alt="Logo Quisqueya Pet Logistics">
     </a>
   </div>
   <nav>
-    <a href="../index.html">Home</a>
     <a href="../index.html#servicios">Servicios</a>
+    <a href="index.html">Requisitos por destino</a>
     <a href="../preguntas.html">Preguntas</a>
     <a href="../cotiza.html" class="btn-contacto">Cotiza</a>
-    <a href="https://wa.me/18095203331?text=Hola,%20quiero%20cotizar%20el%20traslado%20de%20mi%20mascota" target="_blank" class="btn-contacto">Contacto</a>
+    <a href="https://wa.me/18095551234?text=Hola%20Quisqueya%20Pet%20Logistics" target="_blank" class="btn-contacto">Contacto</a>
   </nav>
 </header>
 
@@ -249,20 +243,4 @@ header nav a.btn-contacto:hover {
           <img src="latam.webp" alt="Latinoamérica">
         </div>
         <div class="content">
-          <h2>Latinoamérica — Certificados y vacunación</h2>
-          <ul>
-            <li>Certificado de salud vigente.</li>
-            <li>Vacunas obligatorias según el país.</li>
-            <li>Documentos de ingreso y salida de mascotas.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Europa -->
-    <div class="panel" id="europa" role="tabpanel" hidden>
-      <div class="card">
-        <div class="hero">
-          <img src="europa.webp" alt="Europa">
-        </div>
-        <div class
+          <h2>Latinoamérica —
