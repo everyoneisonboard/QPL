@@ -2464,3 +2464,38 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   color: #fff !important;
   font-weight: 800;
 }
+
+/* ==== FINAL OVERRIDE: degradado para TODOS los botones ==== */
+:root{
+  --brand-gradient: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+}
+
+/* Header (Cotiza/Contacto), formulario (Enviar/WhatsApp) y botones generales */
+.header .nav .btn,
+.form .btn,
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+
+/* Hover consistente */
+.header .nav .btn:hover,
+.form .btn:hover,
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 28px rgba(255,122,0,.35) !important;
+}
+
+/* Bandas naranjas de las cards (Servicios / Requisitos) */
+.home .cards .card > .card-body,
+#requisitos-destino .cards .card > .card-body {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+}
