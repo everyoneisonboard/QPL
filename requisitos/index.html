@@ -1,421 +1,300 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Requisitos por destino</title>
-
-  <!-- Estilos globales (mismos que Servicios) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet" href="../style.css"/>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Requisitos según destino | Quisqueya Pet Logistics</title>
+  <meta name="description" content="Requisitos de viaje con mascotas por destino: USA, Caribe, Latinoamérica y Europa.">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <style>
+    /* ====== RESET SUAVE ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    img { max-width: 100%; display: block; }
 
-    /* Asegurar layout del header como en Servicios */
-.header .header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-}
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo { height: 40px; width: auto; }
-
-/* Evitar superposiciones: que nada cubra el header */
-.header { position: relative; z-index: 1000; }
-.tabs { position: static; z-index: auto; } /* evita que las tabs tapen el menú */
-.section { position: relative; }
-
-/* Si algún contenedor accidentalmente estaba bloqueando clics */
-header *, nav * { pointer-events: auto; }
-
-    /* ====== Estilos específicos de esta página ====== */
-    .logo {
-      height: 40px;
-      width: auto;
+    /* ====== THEME (oscuro) ====== */
+    :root{
+      --bg:#0e1520;
+      --bg-card:#141823;
+      --text:#e6e6e6;
+      --text-dim:#cfcfcf;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 10px 28px rgba(0,0,0,.35);
+      --pill-grad: linear-gradient(180deg,#ff9a2a,#ff7a00);
+      --brand: #ff7a00;
+    }
+    body{
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      line-height: 1.45;
     }
 
-
-    /* Contenedor principal de la sección */
-    .section {
-      padding: 28px 20px 64px;
-      max-width: 1100px;
+    /* ====== LAYOUT ====== */
+    .qpl-wrap{
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 28px 16px 60px;
     }
 
-    /* Título de sección */
-    .section-title {
-      margin: 18px 0 16px;
-      font-size: 28px;
+    /* ====== HEADER SIMPLE (opcional) ====== */
+    .qpl-header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:10px 0 6px;
+    }
+    .qpl-brand{
+      display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px;
+    }
+    .qpl-brand .dot{ font-size:22px }
+    .qpl-nav{ display:flex; gap:20px; flex-wrap:wrap; }
+    .qpl-nav a{
+      color: var(--text); text-decoration:none; opacity:.85;
+    }
+    .qpl-nav a:hover{ opacity:1; }
+
+    /* ====== TÍTULO ====== */
+    .qpl-title{
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin: 18px 0 12px;
     }
 
-    /* Tabs */
-    .tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      background: linear-gradient(var(--bg), var(--bg));
-      padding: 8px 0 12px;
+    /* ====== PILLS REGIONES ====== */
+    .qpl-pills{
+      display:flex; gap:14px; flex-wrap:wrap; margin:18px 0 22px;
     }
-    .tab-btn {
-      appearance: none;
-      cursor: pointer;
-      font-weight: 700;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: none;
-      color: #fff;
-      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    .qpl-pill{
+      background: var(--pill-grad);
+      color:#111; font-weight:700; border:0; border-radius:28px; padding:10px 18px;
+      cursor:pointer; box-shadow:0 8px 18px rgba(255,122,0,.25);
+      transition:transform .08s ease, opacity .2s, box-shadow .2s;
     }
-    .tab-btn:hover {
-      transform: scale(1.05);
-      filter: brightness(1.05);
-      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+    .qpl-pill[aria-current="true"]{
+      outline:2px solid rgba(255,255,255,.35);
+      box-shadow:0 10px 24px rgba(255,122,0,.35);
     }
-    .tab-btn[aria-selected="true"] {
-      background: linear-gradient(135deg, #ffcc80 0%, #ff7a00 100%);
-      box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+    .qpl-pill:active{ transform:scale(.98); }
+
+    /* ====== HERO REGIÓN ====== */
+    .qpl-hero{
+      border-radius:18px; overflow:hidden; background:#111; box-shadow: var(--shadow);
+      margin-bottom:18px;
     }
+    .qpl-hero img{ width:100%; height:300px; object-fit:cover; }
 
-    /* Paneles */
-    .panels .panel { display: none; }
-    .panels .panel[hidden] { display: none; }
-    .panels .panel:not([hidden]) { display: block; }
-    .panel { width: 100%; height: auto; overflow: visible; animation: fade .22s ease; }
-    @keyframes fade { from { opacity: .6; transform: translateY(2px);} }
-
-     /* Nuevo requisitos-destino */
-#requisitos-destino .card {
-  border: 1px solid var(--divider); /* línea sutil */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* sombra ligera */
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--c-card); /* fondo oscuro coherente */
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-
-#requisitos-destino .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 26px rgba(0,0,0,.35);
-}
-
-    /* Tarjeta */
-     .card{
-      background: radial-gradient(120% 140% at 80% -10%, var(--card-start), var(--card-end));
+    /* ====== TARJETA TEXTO ====== */
+    .qpl-card{
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ====== ACORDEONES POR PAÍS ====== */
+    details.qpl-country{
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr;
     }
-    .hero{
-      position: relative;
-      min-height: 240px;
-      background: var(--surface);
-      display: grid;
-      place-items: center;
+    summary.qpl-country-title{
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-weight: 800;
+      color: var(--text);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
-    .hero img{ width: 100%; height: 100%; object-fit: cover; opacity: .95; filter: saturate(1.05); }
-    .content{ padding: 18px; }
-    .content h2{ margin: 0 0 10px; font-size: 22px; }
-    .content ul{ color: var(--muted); padding-left: 20px; }
-    .content li{ margin-bottom: 8px; }
-
-    /* === Recuadro para requisitos, estilo "Servicios" === */
-#requisitos-destino .card {
-  position: relative;
-  border-radius: 18px;
-  background: rgba(15, 22, 32, 0.92);       /* mismo fondo oscuro que servicios */
-  border: 1px solid rgba(255, 255, 255, .06);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  margin-top: 14px;
-}
-
-/* línea interna sutil */
-#requisitos-destino .card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
-  pointer-events: none;
-}
-
-/* Imagen */
-#requisitos-destino .card .hero {
-  position: relative;
-  min-height: 280px;
-  overflow: hidden;
-}
-#requisitos-destino .card .hero img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Contenido */
-#requisitos-destino .card .content {
-  padding: 24px 28px;
-}
-#requisitos-destino .card .content h2 {
-  margin: 0 0 12px;
-  font-size: clamp(20px, 2.4vw, 26px);
-  font-weight: 800;
-}
-#requisitos-destino .card .content ul {
-  margin: 0;
-  padding-left: 18px;
-  display: grid;
-  gap: 8px;
-  color: var(--c-muted, #cfd6df);
-}
-
-/* Responsive: imagen arriba, texto abajo */
-@media (min-width: 960px) {
-  #requisitos-destino .card {
-    grid-template-columns: 1.1fr 1fr; /* imagen | texto */
-  }
-  #requisitos-destino .card .hero { min-height: 100%; }
-}
-
-    @media (min-width: 960px){
-      .panel .card{
-        grid-template-columns: 6fr 6fr;
-      }
-      .panel .card .hero{
-        min-height: 100%;
-        position: relative;
-        overflow: hidden;
-      }
-      .panel .card .hero::after{
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 60px;
-        height: 100%;
-        background: linear-gradient(to right, rgba(0,0,0,0) 0%, var(--surface) 100%);
-        pointer-events: none;
-      }
+    summary.qpl-country-title::-webkit-details-marker{ display:none; }
+    .qpl-badge{
+      display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px;
+      background:rgba(255,255,255,.06); color:var(--text-dim); border:1px solid var(--border);
+      white-space:nowrap;
     }
+    .qpl-country-body{ padding: 0 18px 18px 18px; color: var(--text-dim); }
+    .qpl-country-body ul{ margin: 8px 0 0 18px; }
+    .qpl-note{ margin-top:10px; font-size:13px; opacity:.85 }
 
-    /* Botones de acción en header (consistencia con Servicios) */
-    header.navbar a.btn-contacto {
-      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
-      color: #fff !important;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    header.navbar a.btn-contacto:hover {
-      filter: brightness(1.05);
-      box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
-    }
-
-    /* Header base (alineado al estilo global) */
-    header.navbar{
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 20px; background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-    header .logo img{ height: 40px; }
-    header nav a{
-      margin-left: 15px; text-decoration: none; color: var(--text); font-weight: 600;
-    }
+    /* ====== FOOTER BREVE ====== */
+    .qpl-footer{ opacity:.75; font-size:13px; margin-top:28px; }
+    .qpl-footer a{ color: var(--brand); text-decoration:none; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-<header class="header" id="inicio">
-  <div class="container header-inner">
-    <a href="../index.html" class="brand">
-      <img src="../assets/logo.png" class="logo" alt="Logo Quisqueya Pet Logistics" />
+  <header class="qpl-wrap qpl-header">
+    <div class="qpl-brand">
+      <span class="dot">🦜</span>
       <span>Quisqueya Pet Logistics</span>
-    </a>
-
-    <nav class="nav" id="mainNav">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#servicios">Servicios</a>
-      <a href="../index.html#faq">Preguntas</a>
-      <a href="../index.html#contacto" class="btn btn-sm">Cotiza</a>
-      <a href="https://wa.me/18095203331?text=Hola,%20quiero%20cotizar%20el%20traslado%20de%20mi%20mascota" class="btn btn-sm btn-whatsapp" target="_blank">Contacto</a>
+    </div>
+    <nav class="qpl-nav">
+      <a href="/index.html">Home</a>
+      <a href="/servicios.html">Servicios</a>
+      <a href="/faq.html">Preguntas</a>
+      <a href="/contacto.html">Contacto</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-  <!-- CONTENIDO -->
-  <section id="requisitos-destino" class="section">
-    <h1 class="section-title">Requisitos según destino</h1>
+  <main class="qpl-wrap" id="qpl-app">
+    <h1 class="qpl-title">Requisitos según destino</h1>
 
-    <!-- Botones -->
-    <div class="tabs" role="tablist" aria-label="Destinos">
-      <button class="tab-btn" role="tab" aria-selected="true" aria-controls="usa">USA</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="caribe">Caribe</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="latam">Latinoamérica</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="europa">Europa</button>
+    <!-- Pills de regiones -->
+    <div class="qpl-pills" id="region-pills">
+      <button class="qpl-pill" data-region="usa">USA</button>
+      <button class="qpl-pill" data-region="caribe">Caribe</button>
+      <button class="qpl-pill" data-region="latam">Latinoamérica</button>
+      <button class="qpl-pill" data-region="europa">Europa</button>
     </div>
 
-    <!-- Paneles -->
-    <div class="panels">
-
-      <!-- USA -->
-      <div class="panel" id="usa" role="tabpanel">
-        <div class="card">
-          <div class="hero">
-            <img src="usa.webp" alt="USA">
-          </div>
-          <div class="content">
-            <h2>USA — Documentos solicitados y aduanales</h2>
-            <ul>
-              <li>Certificado de salud vigente.</li>
-              <li>Certificado de vacunas al día.</li>
-              <li>Documentos exigidos por aduanas.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Caribe -->
-      <div class="panel" id="caribe" role="tabpanel" hidden>
-        <div class="card">
-          <div class="hero">
-            <img src="caribe.webp" alt="Caribe">
-          </div>
-          <div class="content">
-            <h2>Caribe — Certificados y requisitos sanitarios</h2>
-            <ul>
-              <li>Certificado de salud emitido por veterinario autorizado.</li>
-              <li>Vacunas obligatorias según el país de destino.</li>
-              <li>Documentación de importación/exportación.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Latinoamérica -->
-      <div class="panel" id="latam" role="tabpanel" hidden>
-        <div class="card">
-          <div class="hero">
-            <img src="latam.webp" alt="Latinoamérica">
-          </div>
-          <div class="content">
-            <h2>Latinoamérica — Certificados y vacunación</h2>
-            <ul>
-              <li>Certificado de salud vigente.</li>
-              <li>Vacunas obligatorias según el país.</li>
-              <li>Documentos de ingreso y salida de mascotas.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Europa -->
-      <div class="panel" id="europa" role="tabpanel" hidden>
-        <div class="card">
-          <div class="hero">
-            <img src="europa.webp" alt="Europa">
-          </div>
-          <div class="content">
-            <h2>Europa — Certificados, vacunación y aduanales</h2>
-            <ul>
-              <li>Certificado de salud y vacunación antirrábica.</li>
-              <li>Microchip homologado.</li>
-              <li>Documentos exigidos por la UE.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
+    <!-- Hero región -->
+    <div class="qpl-hero">
+      <img id="region-hero-img" alt="Destino">
     </div>
-  </section>
 
-  <!-- FOOTER (idéntico al de Servicios) -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-columns">
-        <div class="footer-col col-dir">
-          <h4>📍 Dirección</h4>
-          <p>
-            Ruta 66, Aeropuerto Las Américas.<br>
-            Terminal de Carga<br>
-            Santo Domingo, RD 11336
-          </p>
-        </div>
-        <div class="footer-col col-contacto">
-          <h4>📞 Contacto</h4>
-          <p>
-            +1 (809)520-3331<br>
-            ventas.quisqueyapetlogistics<br>@gmail.com<br>
-            quisqueyapetlogistics@gmail.com
-          </p>
-        </div>
-        <div class="footer-col col-horario">
-          <h4>⏰ Horarios</h4>
-          <p>Horario de seguimiento 24/7</p>
-          <p>Servicio al cliente Lun. a Vie. 8:30AM a 5:30PM</p>
-        </div>
-        <div class="footer-col col-redes">
-          <h4>🔗 Redes sociales</h4>
-          <div class="social-icons">
-            <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          </div>
-        </div>
-      </div>
+    <!-- Intro región -->
+    <div class="qpl-card" id="region-intro" aria-live="polite"></div>
 
-      <div class="footer-bottom">
-        <p>© 2025 Quisqueya Pet Logistics · Santo Domingo, RD</p>
-      </div>
-    </div>
-  </footer>
+    <!-- Acordeones por país -->
+    <div id="countries-wrap" style="display:grid; gap:14px;"></div>
 
-  <!-- Script de pestañas -->
+    <p class="qpl-footer">
+      ¿Llegaste aquí desde el home? También puedes abrir directamente una región usando:
+      <code>?dest=usa</code>, <code>?dest=caribe</code>, <code>?dest=latam</code>, <code>?dest=europa</code>.
+    </p>
+  </main>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const tabs = document.querySelectorAll('.tab-btn');
-      const panels = document.querySelectorAll('.panel');
+  (() => {
+    // ====== 1) Catálogo por región ======
+    const REGIONS = {
+      usa: {
+        key: "usa",
+        label: "USA",
+        hero: "https://images.unsplash.com/photo-1536012441393-2f8a15f2c3b0?q=80&w=1600&auto=format&fit=crop",
+        intro: "Requisitos generales para viajar con mascotas hacia/desde Estados Unidos.",
+        countries: [
+          "Estados Unidos"
+        ]
+      },
+      caribe: {
+        key: "caribe",
+        label: "Caribe",
+        hero: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
+        intro: "Selecciona tu país de destino en el Caribe para ver los requisitos habituales.",
+        countries: [
+          "República Dominicana","Puerto Rico","Jamaica","Bahamas","Cuba",
+          "Aruba","Curazao","Barbados","Trinidad y Tobago","Islas Caimán"
+        ]
+      },
+      latam: {
+        key: "latam",
+        label: "Latinoamérica",
+        hero: "https://images.unsplash.com/photo-1569429599800-5ae164d2a1c5?q=80&w=1600&auto=format&fit=crop",
+        intro: "Países de Latinoamérica. Verifica requisitos específicos de tu aerolínea y conexión.",
+        countries: [
+          "México","Panamá","Costa Rica","Colombia","Perú","Chile",
+          "Argentina","Ecuador","Uruguay","Paraguay","Brasil"
+        ]
+      },
+      europa: {
+        key: "europa",
+        label: "Europa",
+        hero: "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?q=80&w=1600&auto=format&fit=crop",
+        intro: "Principales destinos de Europa. Muchos países exigen microchip ISO y pasaporte/HE.",
+        countries: [
+          "España","Portugal","Francia","Italia","Alemania","Países Bajos",
+          "Bélgica","Irlanda","Reino Unido","Suecia","Suiza","Dinamarca"
+        ]
+      }
+    };
 
-      // Estado inicial: mostrar USA, ocultar resto
-      panels.forEach(p => {
-        if (p.id === 'usa') {
-          p.hidden = false;
-          p.style.display = 'block';
-        } else {
-          p.hidden = true;
-          p.style.display = 'none';
-        }
+    // ====== 2) Helpers DOM ======
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+    const pills = $$("#region-pills .qpl-pill");
+    const heroImg = $("#region-hero-img");
+    const wrap = $("#countries-wrap");
+    const intro = $("#region-intro");
+
+    // ====== 3) Lee parámetro ?dest=
+    const url = new URL(window.location.href);
+    const param = (url.searchParams.get("dest") || "").toLowerCase();
+    const VALID = Object.keys(REGIONS);
+    const initialRegion = VALID.includes(param) ? param : "usa"; // cambia "usa" por "europa" si prefieres
+
+    // ====== 4) Render por región ======
+    function renderRegion(regionKey, pushState=false){
+      const region = REGIONS[regionKey];
+      if(!region) return;
+
+      // Hero e intro
+      heroImg.src = region.hero;
+      heroImg.alt = region.label;
+      intro.innerHTML = `<strong>${region.label}</strong> — ${region.intro}`;
+
+      // Pills activo
+      pills.forEach(b => b.setAttribute("aria-current", String(b.dataset.region === regionKey)));
+
+      // Acordeones por país
+      wrap.innerHTML = "";
+      region.countries.forEach(country => {
+        const details = document.createElement("details");
+        details.className = "qpl-country";
+
+        const summary = document.createElement("summary");
+        summary.className = "qpl-country-title";
+        summary.innerHTML = `
+          <span>${country}</span>
+          <span class="qpl-badge">Ver requisitos</span>
+        `;
+
+        const body = document.createElement("div");
+        body.className = "qpl-country-body";
+        body.innerHTML = `
+          <p>Documentación típica para viajar con mascotas a <strong>${country}</strong>:</p>
+          <ul>
+            <li>Certificado de salud veterinario vigente (emitido por autoridad competente).</li>
+            <li>Vacunas al día según destino (antirrábica y otras si aplican).</li>
+            <li>Microchip ISO, si es requerido por el país.</li>
+            <li>Permisos/zoosanitarios y requisitos aduanales del destino.</li>
+            <li>Contenedor (kennel) conforme a la normativa IATA.</li>
+          </ul>
+          <p class="qpl-note">
+            * Los requisitos exactos varían por aerolínea, país y conexiones. En QPL confirmamos cada caso con la aerolínea y autoridad sanitaria antes de la reserva.
+          </p>
+        `;
+
+        details.appendChild(summary);
+        details.appendChild(body);
+        wrap.appendChild(details);
       });
 
-      tabs.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Desactivar todos los botones
-          tabs.forEach(b => b.setAttribute('aria-selected', 'false'));
-          // Ocultar todos los paneles
-          panels.forEach(p => {
-            p.hidden = true;
-            p.style.display = 'none';
-          });
-          // Activar botón clickeado
-          btn.setAttribute('aria-selected', 'true');
-          // Mostrar panel destino
-          const target = btn.getAttribute('aria-controls');
-          const panel = document.getElementById(target);
-          if (panel) {
-            panel.hidden = false;
-            panel.style.display = 'block';
-          }
-        });
-      });
+      // URL limpia/actualizada
+      if(pushState){
+        const u = new URL(window.location.href);
+        u.searchParams.set("dest", regionKey);
+        history.pushState({dest:regionKey}, "", u.toString());
+      }
+    }
+
+    // ====== 5) Eventos en pills ======
+    pills.forEach(b => {
+      b.addEventListener("click", () => renderRegion(b.dataset.region, true));
     });
+
+    // ====== 6) Primera carga ======
+    renderRegion(initialRegion);
+
+    // ====== 7) Navegación back/forward ======
+    window.addEventListener("popstate", (e) => {
+      const k = (e.state && e.state.dest) || (new URL(location.href).searchParams.get("dest")) || "usa";
+      renderRegion(k);
+    });
+  })();
   </script>
 </body>
 </html>
