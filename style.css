@@ -2596,3 +2596,32 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   display: flex;
   align-items: center;
 }
+
+/* ====== Banner único de requisitos ====== */
+.req-banner{
+  position:relative; display:block; width:100%;
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  transform:translateZ(0);
+}
+.req-banner img{
+  width:100%; height:360px; object-fit:cover;
+  transition:transform .6s ease;
+}
+.req-banner:hover img{ transform:scale(1.03) }
+
+.req-overlay{
+  position:absolute; inset:auto 0 0 0; /* franja inferior */
+  padding:18px; display:grid; place-items:center;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,.55) 100%);
+}
+
+.req-btn{
+  display:inline-block; padding:12px 22px; border-radius:999px;
+  background:linear-gradient(180deg,#ff9a2a,#ff7a00); color:#111;
+  font-weight:800; letter-spacing:.2px;
+  box-shadow:0 8px 22px rgba(255,122,0,.30);
+  transition:transform .08s ease, box-shadow .2s ease;
+}
+.req-btn:hover{ box-shadow:0 0 0 0 rgba(255,122,0,.12), 0 10px 26px rgba(255,122,0,.38) }
+.req-btn:active{ transform:scale(.98) }
