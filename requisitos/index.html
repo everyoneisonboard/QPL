@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Requisitos según destino | Quisqueya Pet Logistics</title>
+  <title>Requisitos según el destino | Quisqueya Pet Logistics</title>
   <meta name="description" content="Requisitos de viaje con mascotas por destino: USA, Caribe, Latinoamérica y Europa.">
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <style>
-    /* ====== RESET SUAVE ====== */
+    /* ====== RESET ====== */
     *,*::before,*::after{box-sizing:border-box}
     html,body{margin:0;padding:0}
     img{max-width:100%;display:block}
@@ -22,7 +22,7 @@
       --shadow:0 10px 28px rgba(0,0,0,.35);
       --brand:#ff7a00;
       --brand2:#ff9a2a;
-      --pill-grad:linear-gradient(180deg,var(--brand2),var(--brand));
+      --grad:linear-gradient(180deg,var(--brand2),var(--brand));
       --ring:0 0 0 8px rgba(255,122,0,.12);
     }
     body{
@@ -32,7 +32,7 @@
     }
     .wrap{max-width:1200px;margin:0 auto;padding:28px 16px 60px}
 
-    /* ====== HEADER SIMPLE ====== */
+    /* ====== HEADER ====== */
     .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0 6px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
     .nav{display:flex;gap:20px;flex-wrap:wrap}
@@ -42,26 +42,24 @@
     /* ====== TITLES ====== */
     .title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:.2px;margin:18px 0 12px}
 
-    /* ====== PILLS (solo en modo multi-región) ====== */
-    .pills{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 22px}
+    /* ====== PILLS CENTRADAS ====== */
+    .pills{
+      display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 22px;
+      justify-content:center; /* centrado */
+    }
     .pill{
-      background:var(--pill-grad); color:#111; font-weight:700; border:0; border-radius:28px;
+      background:var(--grad); color:#111; font-weight:700; border:0; border-radius:28px;
       padding:10px 18px; cursor:pointer; box-shadow:0 8px 18px rgba(255,122,0,.25);
       transition:transform .08s ease, box-shadow .2s, opacity .2s;
     }
     .pill[aria-current="true"]{outline:2px solid rgba(255,255,255,.35);box-shadow:0 10px 24px rgba(255,122,0,.35)}
     .pill:active{transform:scale(.98)}
 
-    /* ====== BREADCRUMB (solo región única) ====== */
-    .crumb{margin:6px 0 10px;opacity:.8;font-size:14px}
-    .crumb a{color:var(--brand);text-decoration:none}
-    .crumb a:hover{text-decoration:underline}
-
     /* ====== HERO ====== */
     .hero{border-radius:18px;overflow:hidden;background:#111;box-shadow:var(--shadow);margin:10px 0 16px}
     .hero img{width:100%;height:300px;object-fit:cover}
 
-    /* ====== INTRO CARD ====== */
+    /* ====== INTRO ====== */
     .card{
       background:var(--bg-card);border:1px solid var(--border);border-radius:18px;
       padding:16px 18px;margin-bottom:16px;box-shadow:var(--shadow)
@@ -73,35 +71,23 @@
       animation:fadeUp .45s ease both;
     }
     @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
     summary.country-title{
       list-style:none;cursor:pointer;padding:16px 18px;font-weight:800;color:var(--text);
       display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
     summary.country-title::-webkit-details-marker{display:none}
-
     .cta{
       display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;
-      padding:8px 14px;background:var(--pill-grad);color:#111;font-weight:800;
+      padding:8px 14px;background:var(--grad);color:#111;font-weight:800;
       box-shadow:0 6px 18px rgba(255,122,0,.28);transition:transform .08s ease, box-shadow .2s;
       white-space:nowrap;
     }
     .cta svg{width:18px;height:18px;stroke:#111}
     .cta:hover{box-shadow:0 0 0 0 var(--ring),0 10px 22px rgba(255,122,0,.35)}
     .cta:active{transform:scale(.98)}
-
-    .country-body{
-      padding:0 18px 18px 18px;color:var(--text-dim);
-      /* animación abrir/cerrar */
-      transition:opacity .25s ease;
-    }
-    details[open] .country-body{opacity:1}
-    details:not([open]) .country-body{opacity:.9}
-
+    .country-body{padding:0 18px 18px 18px;color:var(--text-dim)}
     .country-body ul{margin:8px 0 0 18px}
     .note{margin-top:10px;font-size:13px;opacity:.85}
-
-    /* Icono chevron animado en el summary */
     .chev{
       width:22px;height:22px;flex:0 0 22px;border-radius:50%;
       display:grid;place-items:center;background:rgba(255,122,0,.12);border:1px solid rgba(255,122,0,.35);
@@ -109,8 +95,6 @@
     }
     .chev svg{width:14px;height:14px;stroke:var(--brand);transition:transform .25s ease}
     details[open] .chev svg{transform:rotate(180deg)}
-
-    /* Separación de acordeones */
     #countries{display:grid;gap:14px}
   </style>
 </head>
@@ -126,9 +110,10 @@
   </header>
 
   <main class="wrap" id="app">
-    <h1 class="title" id="page-title">Requisitos según destino</h1>
+    <!-- 1) Título siempre fijo -->
+    <h1 class="title" id="page-title">Requisitos según el destino</h1>
 
-    <!-- Pills multi-región (se ocultarán si hay ?dest= válido) -->
+    <!-- 2) Pastillas centradas, arriba del hero -->
     <div class="pills" id="pills">
       <button class="pill" data-region="usa">USA</button>
       <button class="pill" data-region="caribe">Caribe</button>
@@ -136,18 +121,13 @@
       <button class="pill" data-region="europa">Europa</button>
     </div>
 
-    <!-- Breadcrumb solo región única -->
-    <div class="crumb" id="crumb" hidden>
-      <a href="index.html">Cambiar región</a>
-    </div>
-
-    <!-- Hero -->
+    <!-- 3) Hero -->
     <div class="hero"><img id="hero" alt="Destino"></div>
 
-    <!-- Intro -->
+    <!-- 4) Intro -->
     <div class="card" id="intro"></div>
 
-    <!-- Acordeones -->
+    <!-- 5) Acordeones -->
     <div id="countries"></div>
   </main>
 
@@ -181,33 +161,60 @@
       }
     };
 
+    // ====== Banderas por país ======
+    const FLAGS = {
+      "Estados Unidos":"🇺🇸",
+      "República Dominicana":"🇩🇴",
+      "Puerto Rico":"🇵🇷",
+      "Jamaica":"🇯🇲",
+      "Bahamas":"🇧🇸",
+      "Cuba":"🇨🇺",
+      "Aruba":"🇦🇼",
+      "Curazao":"🇨🇼",
+      "Barbados":"🇧🇧",
+      "Trinidad y Tobago":"🇹🇹",
+      "Islas Caimán":"🇰🇾",
+      "México":"🇲🇽",
+      "Panamá":"🇵🇦",
+      "Costa Rica":"🇨🇷",
+      "Colombia":"🇨🇴",
+      "Perú":"🇵🇪",
+      "Chile":"🇨🇱",
+      "Argentina":"🇦🇷",
+      "Ecuador":"🇪🇨",
+      "Uruguay":"🇺🇾",
+      "Paraguay":"🇵🇾",
+      "Brasil":"🇧🇷",
+      "España":"🇪🇸",
+      "Portugal":"🇵🇹",
+      "Francia":"🇫🇷",
+      "Italia":"🇮🇹",
+      "Alemania":"🇩🇪",
+      "Países Bajos":"🇳🇱",
+      "Bélgica":"🇧🇪",
+      "Irlanda":"🇮🇪",
+      "Reino Unido":"🇬🇧",
+      "Suecia":"🇸🇪",
+      "Suiza":"🇨🇭",
+      "Dinamarca":"🇩🇰"
+    };
+    const withFlag = (name) => `${name} ${FLAGS[name] ?? ""}`.trim();
+
     // ====== Helpers ======
     const $ = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
     const pills   = $$("#pills .pill");
-    const pillsBox= $("#pills");
-    const crumb   = $("#crumb");
     const heroImg = $("#hero");
     const intro   = $("#intro");
     const list    = $("#countries");
-    const title   = $("#page-title");
 
-    // Lee ?dest=
+    // Lee ?dest= y decide región inicial (solo se renderiza esa región)
     const params = new URL(location.href).searchParams;
     const param  = (params.get("dest")||"").toLowerCase();
     const valid  = Object.keys(REGIONS);
-    const hasSingle = valid.includes(param);        // si viene desde home con dest válido
-    const regionKey = hasSingle ? param : "usa";    // por defecto (multi-región) muestra USA
+    const regionKey = valid.includes(param) ? param : "usa";
 
-    // Si es región única, ocultamos pills y mostramos breadcrumb
-    if(hasSingle){
-      pillsBox.hidden = true;
-      crumb.hidden = false;
-      title.textContent = `Requisitos — ${REGIONS[regionKey].label}`;
-    }
-
-    // Render
     function renderRegion(key, push=false){
       const r = REGIONS[key]; if(!r) return;
 
@@ -215,7 +222,7 @@
       heroImg.src = r.hero; heroImg.alt = r.label;
       intro.innerHTML = `<strong>${r.label}</strong> — ${r.intro}`;
 
-      // pills estado (si visible)
+      // estado de pastillas
       pills.forEach(b => b.setAttribute("aria-current", String(b.dataset.region===key)));
 
       // países
@@ -223,12 +230,12 @@
       r.countries.forEach((c, i) => {
         const details = document.createElement("details");
         details.className = "country";
-        if(i===0) details.open = true; // abre el primero por UX
+        if(i===0) details.open = true;
 
         const summary = document.createElement("summary");
         summary.className = "country-title";
         summary.innerHTML = `
-          <span>${c}</span>
+          <span>${withFlag(c)}</span>
           <span style="display:flex;align-items:center;gap:10px">
             <button class="cta" type="button" title="Ver requisitos">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -271,13 +278,13 @@
       }
     }
 
-    // Eventos en pills (multi-región)
+    // Click en pastillas
     pills.forEach(b => b.addEventListener("click", ()=>renderRegion(b.dataset.region, true)));
 
     // Primera carga
     renderRegion(regionKey);
 
-    // Soporte back/forward
+    // Back/forward
     addEventListener("popstate", e=>{
       const k = (e.state && e.state.dest) || (new URL(location.href).searchParams.get("dest")) || regionKey;
       renderRegion(k);
