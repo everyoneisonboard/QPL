@@ -319,3 +319,52 @@ details.item:active summary.item-title{transform:scale(.998)}
   .footer-col h4{color:#0f172a}
   .footer-col p,.footer-bottom p{color:#334155}
 }
+/* ===== FIX: HERO/SLIDER Home ===== */
+/* El contenedor debe ser relativo para apilar imagen + overlay + textos */
+.home .hero{
+  position: relative;
+  min-height: 72vh;    /* alto grande en desktop */
+  overflow: hidden;
+}
+
+/* La imagen (o <picture>) del slide debe cubrir todo el hero */
+.home .hero picture,
+.home .hero img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;           /* debajo del overlay y del texto */
+}
+
+/* La capa oscura va por encima de la imagen pero debajo del texto */
+.home .hero-layer{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+  z-index: 2;
+}
+
+/* El contenido (título, subtítulo, botones) por encima de todo */
+.home .hero-inner{
+  position: relative;
+  z-index: 3;
+}
+
+/* Los bullets del slider (si usas los de tu HTML) */
+.home .hero-dots{ position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:4; }
+.home .hero-dots .dot{
+  width:10px; height:10px; border-radius:50%;
+  border:1px solid #fff; background:transparent; opacity:.75;
+}
+.home .hero-dots .dot.is-active{ background:#fff; opacity:1; }
+
+/* Alturas responsivas del hero para móvil */
+@media (max-width:900px){
+  .home .hero{ min-height: 56vh; }
+}
+@media (max-width:600px){
+  .home .hero{ min-height: 48vh; }
+}
