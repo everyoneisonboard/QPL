@@ -8,21 +8,17 @@
   <meta name="description" content="Requisitos de viaje con mascotas por destino: USA, Caribe, Latinoamérica y Europa.">
 
   <style>
-    /* ========== Tokens de tema (Light por defecto) ========== */
+    /* ========== Tokens de tema (Light / Dark) ========== */
     :root{
       --bg:#f7fafc; --surface:#ffffff; --text:#0b1722; --muted:#405361; --border:#d9e4ef;
-      /* Naranja SUAVE (más sutil que antes) */
-      --brand-start:#ffc482;   /* claro */
-      --brand-end:#ff8a2a;     /* medio */
+      --brand-start:#ffc482; --brand-end:#ff8a2a; /* anaranjado suave */
       --grad-soft:linear-gradient(135deg,var(--brand-start),var(--brand-end));
       --shadow:0 6px 18px rgba(0,0,0,.08);
     }
     @media (prefers-color-scheme: dark){
       :root{
         --bg:#0f1720; --surface:#121a24; --text:#e8f1ff; --muted:#9fb3c8; --border:#213448;
-        /* En dark, aún más suave para no “quemar” */
-        --brand-start:#ffb06a;
-        --brand-end:#ff7f1f;
+        --brand-start:#ffb06a; --brand-end:#ff7f1f;
         --shadow:0 10px 28px rgba(0,0,0,.35);
       }
     }
@@ -34,33 +30,22 @@
     img{max-width:100%;display:block}
     .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
 
-    /* ========== Header (estilo Servicios) ========== */
-    .header{
-      background:var(--surface);
-      border-bottom:1px solid var(--border); /* línea inferior del header */
-      position:sticky;top:0;z-index:50;
-    }
+    /* ========== Header (igual al de Servicios) ========== */
+    .header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
     .container{max-width:1100px;margin:0 auto;padding:10px 20px}
     .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800}
-    .brand .logo{height:28px;width:auto} /* logo un poco más grande */
+    .brand .logo{height:28px;width:auto}
     .nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
     .nav a{color:var(--text);text-decoration:none;font-weight:700;opacity:.95}
     .nav a:hover{opacity:1}
-    /* Botones naranjas del header (suaves) */
-    .btn{
-      display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#111;text-decoration:none;
-      background:var(--grad-soft);box-shadow:var(--shadow);
-    }
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#111;text-decoration:none;background:var(--grad-soft);box-shadow:var(--shadow)}
     .btn.btn-sm{padding:8px 12px}
 
     /* ========== Título y pills ========== */
     .title{font-size:clamp(28px,4vw,44px);font-weight:800;margin:18px 0 12px;text-align:center}
     .pills{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 22px;justify-content:center}
-    .pill{
-      background:var(--grad-soft);color:#111;font-weight:800;border:0;border-radius:28px;padding:10px 18px;
-      cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease, filter .2s ease;
-    }
+    .pill{background:var(--grad-soft);color:#111;font-weight:800;border:0;border-radius:28px;padding:10px 18px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease, filter .2s ease}
     .pill:hover{filter:saturate(1.02) brightness(1.02)}
     .pill:active{transform:scale(.98)}
     .pill[aria-current="true"]{outline:2px solid transparent}
@@ -72,14 +57,10 @@
     /* ========== Intro ========== */
     .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px 18px;margin-bottom:16px}
 
-    /* ========== Países (barra naranja suave de ancho completo) ========== */
+    /* ========== Países (barra naranja suave) ========== */
     #countries{display:grid;gap:12px}
     details.country{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface)}
-    summary.country-title{
-      list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;color:#111;background:var(--grad-soft);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;letter-spacing:.2px;
-      box-shadow:var(--shadow);transition:filter .2s ease, transform .08s ease;
-    }
+    summary.country-title{list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;color:#111;background:var(--grad-soft);display:flex;align-items:center;justify-content:space-between;gap:12px;letter-spacing:.2px;box-shadow:var(--shadow);transition:filter .2s ease, transform .08s ease}
     summary.country-title::-webkit-details-marker{display:none}
     details.country:hover summary.country-title{filter:saturate(1.03) brightness(1.02)}
     details.country:active summary.country-title{transform:scale(.998)}
@@ -87,35 +68,33 @@
     .country-body ul{margin:8px 0 0 18px}
     .note{margin-top:10px;font-size:13px;opacity:.85}
 
-    /* ========== Footer con divisores ========== */
+    /* ========== Footer con divisores y iconos naranjas ========== */
     .footer{border-top:1px solid var(--border);background:var(--surface);color:var(--muted)}
     .footer .container{padding:22px 20px}
     .footer-columns{display:grid;grid-template-columns:repeat(1,1fr);gap:16px;margin-bottom:10px}
     .footer h4{margin:0 0 8px;color:var(--text)}
-    .social-icons a{color:var(--text);opacity:.8;margin-right:10px;text-decoration:none}
-    .social-icons a:hover{opacity:1}
     .footer-bottom{border-top:1px solid var(--border);margin-top:10px;padding-top:10px;text-align:center}
-    /* Divisores verticales en pantallas amplias */
-    @media (min-width: 900px){
+    @media (min-width:900px){
       .footer-columns{grid-template-columns:repeat(4,1fr)}
-      .footer-columns > div{padding-right:16px}
-      .footer-columns > div:not(:last-child){border-right:1px solid var(--border)}
+      .footer-columns>div{padding-right:16px}
+      .footer-columns>div:not(:last-child){border-right:1px solid var(--border)}
     }
+    /* Íconos naranjas */
+    .social-icons{display:flex;gap:12px;align-items:center;margin-top:8px}
+    .icon-btn{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;background:var(--grad-soft);color:#111;text-decoration:none;box-shadow:var(--shadow);transition:transform .08s ease,filter .2s ease}
+    .icon-btn:hover{filter:saturate(1.04) brightness(1.03)}
+    .icon-btn:active{transform:scale(.98)}
+    .icon-btn svg{width:20px;height:20px;stroke:#111;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
     /* ========== Botón “Volver arriba” ========== */
-    .to-top{
-      position:fixed; right:18px; bottom:18px; z-index:60;
-      border:0; border-radius:999px; padding:12px 14px; cursor:pointer;
-      background:var(--grad-soft); color:#111; font-weight:900;
-      box-shadow:var(--shadow); display:none;
-    }
+    .to-top{position:fixed;right:18px;bottom:18px;z-index:60;border:0;border-radius:999px;padding:12px 14px;cursor:pointer;background:var(--grad-soft);color:#111;font-weight:900;box-shadow:var(--shadow);display:none}
     .to-top.show{display:inline-flex}
   </style>
 </head>
 <body>
 
   <!-- ===== Header ===== -->
-  <header class="header" id="inicio">
+  <header class="header">
     <div class="container header-inner">
       <a href="/index.html" class="brand" aria-label="Ir al inicio">
         <img src="/assets/logo.png" class="logo" alt="Logo Quisqueya Pet Logistics">
@@ -123,7 +102,6 @@
       </a>
       <nav class="nav" id="mainNav">
         <a href="/index.html">Home</a>
-        <!-- Enlace que te lleva al Home y baja a la sección de Nuestros servicios -->
         <a href="/index.html#servicios">Nuestros servicios</a>
         <a href="/index.html#faq">Preguntas</a>
         <a href="/index.html#contacto" class="btn btn-sm">Cotiza</a>
@@ -136,7 +114,6 @@
   <main class="wrap" id="app">
     <h1 class="title">Requisitos según el destino</h1>
 
-    <!-- Pills centradas con naranja suave -->
     <div class="pills" id="pills">
       <button class="pill" data-region="usa">USA</button>
       <button class="pill" data-region="caribe">Caribe</button>
@@ -144,13 +121,10 @@
       <button class="pill" data-region="europa">Europa</button>
     </div>
 
-    <!-- Hero con imágenes locales -->
     <div class="hero"><picture id="hero-picture"></picture></div>
 
-    <!-- Intro -->
     <div class="card" id="intro"></div>
 
-    <!-- Países -->
     <div id="countries"></div>
   </main>
 
@@ -158,24 +132,33 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-columns">
-        <div class="footer-col">
+        <div>
           <h4>📍 Dirección</h4>
           <p>Ruta 66, Aeropuerto Las Américas<br>Terminal de Carga<br>Santo Domingo, RD 11336</p>
         </div>
-        <div class="footer-col">
+        <div>
           <h4>📞 Contacto</h4>
           <p>+1 (809) 520-3331<br>ventas.quisqueyapetlogistics<wbr>@gmail.com<br>quisqueyapetlogistics@gmail.com</p>
         </div>
-        <div class="footer-col">
+        <div>
           <h4>⏰ Horario de seguimiento</h4>
           <p>24/7</p>
         </div>
-        <div class="footer-col">
+        <div>
           <h4>🔗 Redes sociales</h4>
           <div class="social-icons">
-            <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-            <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" rel="noopener" aria-label="LinkedIn">IN</a>
-            <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <!-- Instagram -->
+            <a class="icon-btn" href="https://instagram.com/quisqueyapetlogistics" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.5"></circle><circle cx="17.5" cy="6.5" r="1.5" fill="#111" stroke="none"></circle></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a class="icon-btn" href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none"></rect><line x1="7.5" y1="9" x2="7.5" y2="17"></line><circle cx="7.5" cy="6.5" r="1.25" fill="#111" stroke="none"></circle><path d="M11 17v-5.1c0-1.8 1.1-2.9 2.8-2.9 1.6 0 2.7 1 2.7 3.1V17"></path></svg>
+            </a>
+            <!-- Facebook -->
+            <a class="icon-btn" href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M15 3h-2.2A3.8 3.8 0 0 0 9 6.8V9H7v3h2v9h3v-9h3l.5-3H12V6.8c0-.44.36-.8.8-.8H15V3z"></path></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -189,31 +172,13 @@
   <!-- ===== Script ===== -->
   <script>
   (() => {
-    // Año footer
-    document.getElementById('y').textContent=new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Imágenes locales por región
     const REGIONS = {
-      usa:{label:"USA",
-        hero:{srcset:"assets/hero-usa-1600.webp 1600w, assets/hero-usa-1200.webp 1200w",fallback:"assets/hero-usa-1200.webp"},
-        intro:"Requisitos generales para viajar con mascotas hacia/desde Estados Unidos.",
-        countries:["Estados Unidos 🇺🇸"]
-      },
-      caribe:{label:"Caribe",
-        hero:{srcset:"assets/hero-caribe-1600.webp 1600w, assets/hero-caribe-1200.webp 1200w",fallback:"assets/hero-caribe-1200.webp"},
-        intro:"Selecciona tu país de destino en el Caribe para ver los requisitos habituales.",
-        countries:["República Dominicana 🇩🇴","Puerto Rico 🇵🇷","Jamaica 🇯🇲","Bahamas 🇧🇸","Cuba 🇨🇺","Aruba 🇦🇼","Curazao 🇨🇼","Barbados 🇧🇧","Trinidad y Tobago 🇹🇹","Islas Caimán 🇰🇾"]
-      },
-      latam:{label:"Latinoamérica",
-        hero:{srcset:"assets/hero-latam-1600.webp 1600w, assets/hero-latam-1200.webp 1200w",fallback:"assets/hero-latam-1200.webp"},
-        intro:"Países de Latinoamérica. Verifica requisitos específicos de tu aerolínea y conexión.",
-        countries:["México 🇲🇽","Panamá 🇵🇦","Costa Rica 🇨🇷","Colombia 🇨🇴","Perú 🇵🇪","Chile 🇨🇱","Argentina 🇦🇷","Ecuador 🇪🇨","Uruguay 🇺🇾","Paraguay 🇵🇾","Brasil 🇧🇷"]
-      },
-      europa:{label:"Europa",
-        hero:{srcset:"assets/hero-europa-1600.webp 1600w, assets/hero-europa-1200.webp 1200w",fallback:"assets/hero-europa-1200.webp"},
-        intro:"Principales destinos de Europa. Muchos países exigen microchip ISO y pasaporte/HE.",
-        countries:["España 🇪🇸","Portugal 🇵🇹","Francia 🇫🇷","Italia 🇮🇹","Alemania 🇩🇪","Países Bajos 🇳🇱","Bélgica 🇧🇪","Irlanda 🇮🇪","Reino Unido 🇬🇧","Suecia 🇸🇪","Suiza 🇨🇭","Dinamarca 🇩🇰"]
-      }
+      usa:{label:"USA",hero:{srcset:"assets/hero-usa-1600.webp 1600w, assets/hero-usa-1200.webp 1200w",fallback:"assets/hero-usa-1200.webp"},intro:"Requisitos generales para viajar con mascotas hacia/desde Estados Unidos.",countries:["Estados Unidos 🇺🇸"]},
+      caribe:{label:"Caribe",hero:{srcset:"assets/hero-caribe-1600.webp 1600w, assets/hero-caribe-1200.webp 1200w",fallback:"assets/hero-caribe-1200.webp"},intro:"Selecciona tu país de destino en el Caribe para ver los requisitos habituales.",countries:["República Dominicana 🇩🇴","Puerto Rico 🇵🇷","Jamaica 🇯🇲","Bahamas 🇧🇸","Cuba 🇨🇺","Aruba 🇦🇼","Curazao 🇨🇼","Barbados 🇧🇧","Trinidad y Tobago 🇹🇹","Islas Caimán 🇰🇾"]},
+      latam:{label:"Latinoamérica",hero:{srcset:"assets/hero-latam-1600.webp 1600w, assets/hero-latam-1200.webp 1200w",fallback:"assets/hero-latam-1200.webp"},intro:"Países de Latinoamérica. Verifica requisitos específicos de tu aerolínea y conexión.",countries:["México 🇲🇽","Panamá 🇵🇦","Costa Rica 🇨🇷","Colombia 🇨🇴","Perú 🇵🇪","Chile 🇨🇱","Argentina 🇦🇷","Ecuador 🇪🇨","Uruguay 🇺🇾","Paraguay 🇵🇾","Brasil 🇧🇷"]},
+      europa:{label:"Europa",hero:{srcset:"assets/hero-europa-1600.webp 1600w, assets/hero-europa-1200.webp 1200w",fallback:"assets/hero-europa-1200.webp"},intro:"Principales destinos de Europa. Muchos países exigen microchip ISO y pasaporte/HE.",countries:["España 🇪🇸","Portugal 🇵🇹","Francia 🇫🇷","Italia 🇮🇹","Alemania 🇩🇪","Países Bajos 🇳🇱","Bélgica 🇧🇪","Irlanda 🇮🇪","Reino Unido 🇬🇧","Suecia 🇸🇪","Suiza 🇨🇭","Dinamarca 🇩🇰"]}
     };
 
     const pills=[...document.querySelectorAll('#pills .pill')];
@@ -221,7 +186,6 @@
     const intro=document.getElementById('intro');
     const countries=document.getElementById('countries');
 
-    // Región inicial por ?dest=
     const qs=new URL(location.href).searchParams;
     const initial=(()=>{const p=(qs.get('dest')||'').toLowerCase();return REGIONS[p]?p:'usa'})();
 
@@ -233,7 +197,6 @@
       `;
       intro.innerHTML=`<strong>${r.label}</strong> — ${r.intro}`;
       pills.forEach(b=>b.setAttribute('aria-current', String(b.dataset.region===key)));
-
       countries.innerHTML='';
       r.countries.forEach((name,i)=>{
         const d=document.createElement('details'); d.className='country'; if(i===0) d.open=true;
@@ -249,29 +212,4 @@
             <li>Kennel conforme a normativa IATA.</li>
           </ul>
           <p class="note">* Requisitos exactos varían por país, aerolínea y conexiones. QPL los confirma caso por caso.</p>`;
-        d.appendChild(s); d.appendChild(body); countries.appendChild(d);
-      });
-
-      if(push){
-        const u=new URL(location.href); u.searchParams.set('dest',key);
-        history.pushState({dest:key},'',u);
-      }
-    }
-
-    pills.forEach(b=>b.addEventListener('click',()=>renderRegion(b.dataset.region,true)));
-    renderRegion(initial);
-    addEventListener('popstate',e=>{
-      const k=(e.state && e.state.dest)||(new URL(location.href).searchParams.get('dest'))||initial;
-      renderRegion(k);
-    });
-
-    // Volver arriba
-    const toTop=document.getElementById('toTop');
-    const onScroll=()=>{ (document.documentElement.scrollTop||document.body.scrollTop) > 400 ? toTop.classList.add('show') : toTop.classList.remove('show'); };
-    window.addEventListener('scroll',onScroll,{passive:true});
-    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    onScroll();
-  })();
-  </script>
-</body>
-</html>
+        d.appendChild(s); d.appendChild
