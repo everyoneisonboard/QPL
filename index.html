@@ -101,17 +101,29 @@
 </section>
 
   <!-- Requisitos por destino (banner único) -->
-<section id="requisitos-destino" class="section alt">
+<section id="requisitos-destino" class="section alt hero-section">
   <div class="container">
     <h2 class="section-title">Requisitos según el destino</h2>
 
-    <a class="req-banner" href="requisitos/index.html">
-      <img src="assets/dest-panorama.webp" alt="Ver requisitos por destino" />
-      <div class="req-overlay">
-        <span class="req-btn">Ver requisitos</span>
+    <!-- Banner único con CTA dentro (idéntico a "Ver servicios") -->
+    <a class="hero-card" href="/requisitos/index.html" aria-label="Ver requisitos por destino">
+      <picture>
+        <!-- Usa tus versiones responsivas si las tienes -->
+        <source type="image/webp" srcset="
+          assets/dest-panorama-1920.webp 1920w,
+          assets/dest-panorama-1536.webp 1536w,
+          assets/dest-panorama-1280.webp 1280w,
+          assets/dest-panorama-768.webp 768w,
+          assets/dest-panorama-480.webp 480w
+        " sizes="(min-width:1200px) 1200px, 100vw">
+        <img src="assets/dest-panorama-1280.webp" alt="Requisitos de viaje por destino" loading="lazy" decoding="async">
+      </picture>
+
+      <!-- CTA centrado sobre el borde inferior de la imagen -->
+      <div class="hero-overlay">
+        <span class="hero-btn">Ver requisitos</span>
       </div>
     </a>
-
   </div>
 </section>
 
