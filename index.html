@@ -75,30 +75,54 @@
     <nav class="hero-dots" aria-label="Cambiar imagen"></nav>
   </section>
 
-  <!-- Servicios -->
-  <section id="servicios" class="section">
-    <div class="container">
-      <h2 class="section-title">Nuestros servicios</h2>
-      <div class="grid cards">
-        <a class="card" href="servicios.html#transporte-aereo">
-          <img src="assets/service-1.webp" alt="Transporte aéreo" />
-          <div class="card-body"><h3>Transporte aéreo</h3></div>
-        </a>
-        <a class="card" href="servicios.html#transporte-terrestre">
-          <img src="assets/service-2.webp" alt="Transporte terrestre" />
-          <div class="card-body"><h3>Transporte terrestre</h3></div>
-        </a>
-        <a class="card" href="servicios.html#documentacion">
-          <img src="assets/service-3.webp" alt="Gestión de documentos" />
-          <div class="card-body"><h3>Gestión de documentos</h3></div>
-        </a>
-        <a class="card" href="servicios.html#puerta-a-puerta">
-          <img src="assets/service-4.webp" alt="Acompañamiento personalizado" />
-          <div class="card-body"><h3>Acompañamiento personalizado</h3></div>
-        </a>
-      </div>
-    </div>
-  </section>
+ /* === Banners hero reutilizables para HOME === */
+.hero-section .section-title{
+  text-align:center;
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 18px 0 22px;
+}
+
+/* Card panorámica (se usa para Servicios y Requisitos) */
+.hero-card{
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 40px rgba(0,0,0,.20);
+  transform: translateZ(0);
+}
+
+.hero-card picture img{
+  width: 100%;
+  height: 360px;         /* MISMA ALTURA PARA AMBOS */
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.hero-card:hover picture img{ transform: scale(1.03) }
+
+/* Overlay y botón */
+.hero-overlay{
+  position: absolute; inset: auto 0 0 0;
+  padding: 20px; display: grid; place-items: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,.55) 100%);
+}
+
+.hero-btn{
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-decoration: none;
+  background: linear-gradient(135deg,#ffc482,#ff8a2a);  /* naranja suave */
+  color: #111;
+  box-shadow: 0 8px 22px rgba(255,122,0,.30);
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+.hero-btn:hover{ box-shadow: 0 10px 26px rgba(255,122,0,.38) }
+.hero-btn:active{ transform: scale(.98) }
 
   <!-- Requisitos por destino (banner único) -->
 <section id="requisitos-destino" class="section alt">
