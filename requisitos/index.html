@@ -8,15 +8,22 @@
   <meta name="description" content="Requisitos de viaje con mascotas por destino: USA, Caribe, Latinoamérica y Europa.">
 
   <style>
-    /* ========== Tokens de tema (light por defecto) ========== */
+    /* ========== Tokens de tema (Light por defecto) ========== */
     :root{
       --bg:#f7fafc; --surface:#ffffff; --text:#0b1722; --muted:#405361; --border:#d9e4ef;
-      --brand:#ff7a00; --brand2:#ff9a2a;
-      --grad:linear-gradient(135deg, var(--brand2) 0%, var(--brand) 100%);
+      /* Naranja SUAVE (más sutil que antes) */
+      --brand-start:#ffc482;   /* claro */
+      --brand-end:#ff8a2a;     /* medio */
+      --grad-soft:linear-gradient(135deg,var(--brand-start),var(--brand-end));
+      --shadow:0 6px 18px rgba(0,0,0,.08);
     }
     @media (prefers-color-scheme: dark){
       :root{
         --bg:#0f1720; --surface:#121a24; --text:#e8f1ff; --muted:#9fb3c8; --border:#213448;
+        /* En dark, aún más suave para no “quemar” */
+        --brand-start:#ffb06a;
+        --brand-end:#ff7f1f;
+        --shadow:0 10px 28px rgba(0,0,0,.35);
       }
     }
 
@@ -27,71 +34,87 @@
     img{max-width:100%;display:block}
     .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
 
-    /* ========== Header (idéntico a Servicios) ========== */
+    /* ========== Header (estilo Servicios) ========== */
     .header{
       background:var(--surface);
-      border-bottom:1px solid var(--border); /* la línea inferior del header */
+      border-bottom:1px solid var(--border); /* línea inferior del header */
       position:sticky;top:0;z-index:50;
     }
     .container{max-width:1100px;margin:0 auto;padding:10px 20px}
     .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800}
-    .brand .logo{height:22px;width:auto}
+    .brand .logo{height:28px;width:auto} /* logo un poco más grande */
     .nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
     .nav a{color:var(--text);text-decoration:none;font-weight:700;opacity:.95}
     .nav a:hover{opacity:1}
-    /* Botones naranjas del header */
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#111;text-decoration:none;background:var(--grad);box-shadow:0 8px 20px rgba(255,122,0,.28)}
-    .btn:hover{box-shadow:0 10px 24px rgba(255,122,0,.35)}
+    /* Botones naranjas del header (suaves) */
+    .btn{
+      display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#111;text-decoration:none;
+      background:var(--grad-soft);box-shadow:var(--shadow);
+    }
     .btn.btn-sm{padding:8px 12px}
 
     /* ========== Título y pills ========== */
     .title{font-size:clamp(28px,4vw,44px);font-weight:800;margin:18px 0 12px;text-align:center}
     .pills{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 22px;justify-content:center}
     .pill{
-      background:var(--grad);color:#111;font-weight:800;border:0;border-radius:28px;padding:10px 18px;
-      cursor:pointer;box-shadow:0 8px 18px rgba(255,122,0,.25);transition:transform .08s ease, box-shadow .2s ease;
+      background:var(--grad-soft);color:#111;font-weight:800;border:0;border-radius:28px;padding:10px 18px;
+      cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease, filter .2s ease;
     }
-    .pill:hover{box-shadow:0 10px 24px rgba(255,122,0,.35)}
+    .pill:hover{filter:saturate(1.02) brightness(1.02)}
     .pill:active{transform:scale(.98)}
-    .pill[aria-current="true"]{outline:2px solid rgba(0,0,0,0)}
+    .pill[aria-current="true"]{outline:2px solid transparent}
 
     /* ========== Hero ========== */
-    .hero{border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:0 10px 28px rgba(0,0,0,.10);margin:10px 0 16px}
-    @media (prefers-color-scheme: dark){ .hero{box-shadow:0 10px 28px rgba(0,0,0,.35)} }
+    .hero{border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow);margin:10px 0 16px}
     .hero img{width:100%;height:300px;object-fit:cover}
 
     /* ========== Intro ========== */
     .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px 18px;margin-bottom:16px}
 
-    /* ========== Países: barra naranja larga con hover ========== */
+    /* ========== Países (barra naranja suave de ancho completo) ========== */
     #countries{display:grid;gap:12px}
     details.country{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface)}
     summary.country-title{
-      list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;color:#111;background:var(--grad);
+      list-style:none;cursor:pointer;padding:14px 18px;font-weight:900;color:#111;background:var(--grad-soft);
       display:flex;align-items:center;justify-content:space-between;gap:12px;letter-spacing:.2px;
-      box-shadow:0 8px 18px rgba(255,122,0,.22);transition:filter .2s ease, transform .08s ease;
+      box-shadow:var(--shadow);transition:filter .2s ease, transform .08s ease;
     }
     summary.country-title::-webkit-details-marker{display:none}
-    details.country:hover summary.country-title{filter:saturate(1.05) brightness(1.02)}
+    details.country:hover summary.country-title{filter:saturate(1.03) brightness(1.02)}
     details.country:active summary.country-title{transform:scale(.998)}
     .country-body{padding:14px 18px 18px 18px;color:var(--muted)}
     .country-body ul{margin:8px 0 0 18px}
     .note{margin-top:10px;font-size:13px;opacity:.85}
 
-    /* ========== Footer (igual estilo general) ========== */
+    /* ========== Footer con divisores ========== */
     .footer{border-top:1px solid var(--border);background:var(--surface);color:var(--muted)}
     .footer .container{padding:22px 20px}
-    .footer-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:10px}
+    .footer-columns{display:grid;grid-template-columns:repeat(1,1fr);gap:16px;margin-bottom:10px}
     .footer h4{margin:0 0 8px;color:var(--text)}
     .social-icons a{color:var(--text);opacity:.8;margin-right:10px;text-decoration:none}
     .social-icons a:hover{opacity:1}
     .footer-bottom{border-top:1px solid var(--border);margin-top:10px;padding-top:10px;text-align:center}
+    /* Divisores verticales en pantallas amplias */
+    @media (min-width: 900px){
+      .footer-columns{grid-template-columns:repeat(4,1fr)}
+      .footer-columns > div{padding-right:16px}
+      .footer-columns > div:not(:last-child){border-right:1px solid var(--border)}
+    }
+
+    /* ========== Botón “Volver arriba” ========== */
+    .to-top{
+      position:fixed; right:18px; bottom:18px; z-index:60;
+      border:0; border-radius:999px; padding:12px 14px; cursor:pointer;
+      background:var(--grad-soft); color:#111; font-weight:900;
+      box-shadow:var(--shadow); display:none;
+    }
+    .to-top.show{display:inline-flex}
   </style>
 </head>
 <body>
 
-  <!-- ===== Header (clon del de Servicios) ===== -->
+  <!-- ===== Header ===== -->
   <header class="header" id="inicio">
     <div class="container header-inner">
       <a href="/index.html" class="brand" aria-label="Ir al inicio">
@@ -100,7 +123,8 @@
       </a>
       <nav class="nav" id="mainNav">
         <a href="/index.html">Home</a>
-        <a href="/index.html#requisitos-destino">Requisitos por destino</a>
+        <!-- Enlace que te lleva al Home y baja a la sección de Nuestros servicios -->
+        <a href="/index.html#servicios">Nuestros servicios</a>
         <a href="/index.html#faq">Preguntas</a>
         <a href="/index.html#contacto" class="btn btn-sm">Cotiza</a>
         <a href="https://wa.me/18095203331?text=Hola,%20quiero%20cotizar%20el%20traslado%20de%20mi%20mascota" class="btn btn-sm" target="_blank" rel="noopener">Contacto</a>
@@ -112,7 +136,7 @@
   <main class="wrap" id="app">
     <h1 class="title">Requisitos según el destino</h1>
 
-    <!-- Pills centradas -->
+    <!-- Pills centradas con naranja suave -->
     <div class="pills" id="pills">
       <button class="pill" data-region="usa">USA</button>
       <button class="pill" data-region="caribe">Caribe</button>
@@ -143,15 +167,15 @@
           <p>+1 (809) 520-3331<br>ventas.quisqueyapetlogistics<wbr>@gmail.com<br>quisqueyapetlogistics@gmail.com</p>
         </div>
         <div class="footer-col">
-          <h4>⏰ Horarios</h4>
-          <p>Seguimiento 24/7 · Servicio al cliente Lun–Vie 8:30–17:30</p>
+          <h4>⏰ Horario de seguimiento</h4>
+          <p>24/7</p>
         </div>
         <div class="footer-col">
-          <h4>🔗 Redes</h4>
+          <h4>🔗 Redes sociales</h4>
           <div class="social-icons">
-            <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com/quisqueyapetlogistics" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a href="https://www.linkedin.com/company/quisqueya-pet-logistics" target="_blank" rel="noopener" aria-label="LinkedIn">IN</a>
+            <a href="https://www.facebook.com/profile.php?id=61574772152792" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
           </div>
         </div>
       </div>
@@ -159,9 +183,15 @@
     </div>
   </footer>
 
-  <!-- ===== Script de la página ===== -->
+  <!-- Botón Volver Arriba -->
+  <button id="toTop" class="to-top" aria-label="Volver arriba">↑</button>
+
+  <!-- ===== Script ===== -->
   <script>
   (() => {
+    // Año footer
+    document.getElementById('y').textContent=new Date().getFullYear();
+
     // Imágenes locales por región
     const REGIONS = {
       usa:{label:"USA",
@@ -190,9 +220,6 @@
     const heroPic=document.getElementById('hero-picture');
     const intro=document.getElementById('intro');
     const countries=document.getElementById('countries');
-
-    // Año footer
-    document.getElementById('y').textContent=new Date().getFullYear();
 
     // Región inicial por ?dest=
     const qs=new URL(location.href).searchParams;
@@ -237,6 +264,13 @@
       const k=(e.state && e.state.dest)||(new URL(location.href).searchParams.get('dest'))||initial;
       renderRegion(k);
     });
+
+    // Volver arriba
+    const toTop=document.getElementById('toTop');
+    const onScroll=()=>{ (document.documentElement.scrollTop||document.body.scrollTop) > 400 ? toTop.classList.add('show') : toTop.classList.remove('show'); };
+    window.addEventListener('scroll',onScroll,{passive:true});
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    onScroll();
   })();
   </script>
 </body>
