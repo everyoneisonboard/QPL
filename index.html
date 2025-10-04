@@ -309,6 +309,56 @@
     }
   });
 </script>
+  <!-- Control de botón Volver arriba -->
+  <script>
+    const backTop = document.getElementById('backtop');
+
+    // Mostrar solo cuando el usuario baja
+    function toggleBackTop() {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if (y > 400) backTop.classList.add('show');
+      else backTop.classList.remove('show');
+    }
+
+    // Smooth scroll al hacer clic
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Ejecutar al cargar y al hacer scroll
+    window.addEventListener('scroll', toggleBackTop, { passive: true });
+    toggleBackTop();
+  </script>
+
+  <style>
+    /* Mostrar/ocultar */
+    #backtop {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ffc482, #ff8a2a);
+      color: #111;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(40px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    #backtop.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  </style>
+  
+</body>
+</html>
 
 </body>
 </html>
