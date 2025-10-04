@@ -2718,3 +2718,109 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   color: color-mix(in oklab, var(--text), #ff8a2a 55%);
   border-color: color-mix(in oklab, #ff8a2a, transparent 30%);
 }
+
+/* ====== Ajustes base para móviles ====== */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { line-height: 1.5; }
+
+/* Evitar textos pegados/rotos en títulos y párrafos */
+h1, h2, h3 { line-height: 1.2; word-break: normal; hyphens: auto; }
+p, li { line-height: 1.55; }
+
+/* Botones y elementos táctiles cómodos */
+button, .btn, .pill, summary, .icon-btn { min-height: 44px; }
+
+/* Imágenes siempre fluidas */
+img, picture { max-width: 100%; height: auto; }
+
+/* ====== BREAKPOINT 900px: tablets en vertical ====== */
+@media (max-width: 900px){
+
+  /* Contenedores */
+  .wrap, .container { padding-left: 16px; padding-right: 16px; }
+
+  /* Header */
+  .header-inner { flex-wrap: wrap; gap: 10px; }
+  .brand { order: 0; }
+  .nav { order: 1; width: 100%; justify-content: flex-start; gap: 10px 14px; }
+
+  /* Títulos */
+  .title, .section-title { font-size: clamp(24px, 5vw, 34px); }
+
+  /* Pills (botones de regiones/servicios) */
+  .pills { justify-content: flex-start; gap: 10px; }
+  .pill { padding: 10px 14px; border-radius: 22px; font-size: 15px; }
+
+  /* Hero internos */
+  .hero img { height: 220px; } /* antes 300px */
+
+  /* Banner panorámico Home (si usas .hero-card) */
+  .hero-card picture img { height: 280px; } /* antes 360px */
+  .hero-overlay { padding: 14px; }
+  .hero-btn { padding: 10px 18px; font-size: 15px; }
+
+  /* Acordeones (países/servicios) */
+  summary.country-title,
+  summary.item-title { padding: 12px 14px; font-size: 15px; }
+  .country-body, .item-body { padding: 12px 14px 16px 14px; }
+
+  /* Work steps (“¿Cómo trabajamos?”) */
+  .work-steps { max-width: 100%; gap: 10px; }
+  .work-steps > li { padding: 12px 14px 12px 46px; }
+
+  /* Footer: de 4 columnas → 2 */
+  .footer-columns { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .footer-columns > div { padding-right: 0; border-right: none; }
+}
+
+/* ====== BREAKPOINT 600px: móviles comunes ====== */
+@media (max-width: 600px){
+
+  /* Títulos y textos */
+  .title, .section-title { font-size: clamp(22px, 6vw, 30px); }
+  p, li { font-size: 15px; }
+
+  /* Navbar: botones pequeños */
+  .btn.btn-sm, .btn { padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+
+  /* Pills */
+  .pill { padding: 9px 12px; font-size: 14px; border-radius: 20px; }
+
+  /* Hero internos */
+  .hero img { height: 180px; }
+
+  /* Banner panorámico Home */
+  .hero-card picture img { height: 220px; }
+  .hero-btn { padding: 9px 16px; font-size: 14px; }
+
+  /* Acordeones */
+  summary.country-title,
+  summary.item-title { font-size: 14.5px; }
+
+  /* Work steps */
+  .work-steps > li { font-size: 15px; }
+  .work-steps > li::before { width: 24px; height: 24px; }
+
+  /* Footer: una sola columna y más espacio táctil */
+  .footer-columns { grid-template-columns: 1fr; }
+  .icon-btn { width: 36px; height: 36px; }
+}
+
+/* ====== BREAKPOINT 380px: muy estrechos ====== */
+@media (max-width: 380px){
+
+  .brand .logo { height: 24px; }
+  .nav { gap: 8px; }
+  .btn, .btn.btn-sm { padding: 7px 10px; font-size: 13px; }
+
+  .pill { padding: 8px 10px; font-size: 13.5px; }
+
+  .hero img { height: 160px; }
+  .hero-card picture img { height: 200px; }
+  .hero-btn { font-size: 13.5px; padding: 8px 14px; }
+
+  .work-steps > li { padding-left: 44px; }
+  .work-steps > li::before { left: 10px; width: 22px; height: 22px; }
+
+  #toTop { right: 14px; bottom: 14px; }
+}
