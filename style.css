@@ -1,0 +1,2720 @@
+/* ========== BASE ========== */
+:root{
+  /* ...lo que ya tengas... */
+  --brand: #ff7a00;        /* NARANJA MARCA */
+  --brand-600: #e56e00;    /* hover */
+  --brand-700: #c66200;    /* activo */
+  --brand-glow: rgba(255,122,0,.35);
+  
+    /* Variables base */
+  --c-bg:#0f1320;
+  --c-bg-2:#111a24;
+  --c-card:#1c2733;
+  --c-text:#ffffff;
+  --c-muted:#cfd6df;
+}
+
+/* ====== Tema automático claro/oscuro ====== */
+/* Valores por defecto: CLARO */
+:root {
+  /* Colores base (ajústalos a tu diseño) */
+  --bg: #ffffff;               /* fondo general */
+  --surface: #f6f8fb;          /* secciones alternas / tarjetas claras */
+  --text: #0f172a;             /* texto principal */
+  --muted: #475569;            /* texto suave */
+  --divider: rgba(15, 23, 42, .10);  /* líneas divisorias */
+  /* Si ya tienes --brand, etc., no toques eso */
+}
+
+/* Overrides para OSCURO cuando el usuario lo prefiere */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --surface: #0f1628;
+    --text: #e5e7eb;
+    --muted: #a3adc2;
+    --divider: rgba(148, 163, 184, .14);
+  }
+}
+
+/* Aplicación de las variables a la UI (cubre lo esencial) */
+html, body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Secciones / alterna */
+.section { background: var(--bg) !important; }
+.section.alt { background: var(--surface) !important; }
+
+/* Header y Footer al mismo fondo */
+.header, .footer { background: var(--bg) !important; color: var(--text) !important; }
+
+/* División entre columnas del footer (si usas divisores) */
+.footer .cols-grid > * + * { border-left: 1px solid var(--divider); }
+
+/* Asegura que textos “suaves” usen el color correcto */
+.muted, .footer .footer-copy { color: var(--muted); }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height:1.4;
+}
+a{color:inherit;text-decoration:none}
+
+/* ====== HEADER EN UNA SOLA LÍNEA ====== */
+.header{
+  background: var(--c-bg);
+}
+
+/* Flex en el contenedor interno */
+.header .header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* izquierda ↔ derecha */
+  gap: 24px;
+  flex-wrap: nowrap;               /* 👈 evita que salte de línea */
+}
+
+/* Marca (logo + texto) alineados en fila */
+.header .brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;                    /* para que no empuje al nav */
+}
+.header .brand img.logo{
+  height: 40px; width: auto; display: block;
+}
+.header .brand span{
+  white-space: nowrap;             /* “Quisqueya Pet Logistics” en una línea */
+  font-weight: 600;
+}
+
+/* Navegación a la derecha en fila */
+.header .nav{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;               /* 👈 no permitir salto */
+}
+.header .nav a{ white-space: nowrap; }
+
+/* Botones del header un poco más compactos */
+.header .nav .btn.btn-sm{ padding: 8px 12px; }
+
+/* ========== LAYOUT ========== */
+.container{width:min(1200px,90%);margin:0 auto}
+
+/* Header */
+/* BOTONES BASE (marca) */
+.btn{
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:10px;
+  background: var(--brand);
+  color:#1a0c00;               /* buen contraste con naranja */
+  border: none;
+  font-weight: 700;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn-sm{ padding:8px 12px; font-size:.95rem; }
+
+/* Hover: leve zoom + brillo + glow */
+.btn:hover{
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.04);
+  box-shadow: 0 10px 28px var(--brand-glow);
+  background: var(--brand-600);
+}
+
+/* Estado activo/focus */
+.btn:active{ transform: translateY(0) scale(0.99); background: var(--brand-700); }
+.btn:focus{ outline: 2px solid var(--brand-600); outline-offset: 2px; }
+
+/* Variante “solid” (igual a base) */
+.btn.btn-solid{ background: var(--brand); color:#1a0c00; }
+
+/* Variante “outline” */
+.btn.btn-outline{
+  background: transparent;
+  color:#fff;
+  border: 1.5px solid var(--brand);
+}
+.btn.btn-outline:hover{
+  background: var(--brand);
+  color:#1a0c00;
+  box-shadow: 0 10px 28px var(--brand-glow);
+}
+
+/* Botones generales (Cotiza, Contacto) con degradado naranja */
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  color: #fff !important;
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
+/* Botón volver arriba con mismo degradado */
+.backtop {
+  background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%) !important;
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.backtop:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
+/* ========== HERO (HOME) ========== */
+.home .hero{position:relative;min-height:72vh;overflow:hidden}
+.home .hero-slide{
+  position:absolute;inset:0;
+  background-image: var(--bg);
+  background-position:center;
+  background-size:cover;
+  opacity:0;visibility:hidden;
+  transition:opacity .8s ease, visibility .8s ease, transform .8s ease;
+  transform:scale(1.02);
+}
+.home .hero-slide.is-active{
+  opacity:1;visibility:visible;transform:scale(1);
+}
+.home .hero-slide.is-leaving{opacity:0;transform:scale(1.02)}
+/* Capa naranja con blur */
+.home .hero-layer{
+  position:absolute;
+  inset:0;
+  background: rgba(255, 140, 0, 0.35); /* naranja semitransparente */
+  backdrop-filter: blur(4px);           /* 👈 Gaussian Blur */
+  -webkit-backdrop-filter: blur(4px);   /* soporte Safari */
+}
+
+.home .hero-inner{
+  position:relative;z-index:2;
+  height:100%;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:0 16px;
+}
+.home .hero-title{font-size:clamp(28px,5vw,56px);font-weight:800;margin-bottom:10px}
+.home .hero-sub{font-size:clamp(14px,2.4vw,20px);opacity:.95}
+.home .hero-cta{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.home .hero-dots{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;
+  display:flex;gap:8px;
+}
+.home .hero-dots .dot{
+  width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:transparent;opacity:.7
+}
+.home .hero-dots .dot.is-active{background:#fff;opacity:1}
+
+/* ========== SECTIONS ========= */
+.section{padding:64px 0;background:var(--c-bg)}
+.section.alt{background:var(--c-bg-2)}
+.section-title{text-align:center;font-size:clamp(22px,3vw,32px);margin-bottom:28px}
+
+/* Grid y Cards */
+.grid{display:grid;gap:18px}
+.cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--c-card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card img{
+  width:100%;
+  height:200px;            /* 👈 evita que los íconos pequeños se “aplasten” fuera de las cards */
+  object-fit:cover;
+  display:block;
+}
+.card-body{padding:14px 16px}
+.card h3{font-size:1.05rem}
+
+/* Paso a paso */
+.steps .stepper{counter-reset:st;display:grid;gap:10px}
+.steps .stepper li{list-style:none;background:var(--c-card);padding:12px 14px;border-radius:12px}
+.steps .stepper li span{
+  display:inline-grid;place-items:center;
+  width:22px;height:22px;border-radius:50%;
+  background:#2b3a49;margin-right:8px;font-size:.9rem
+}
+
+/* FAQ */
+.accordion details{background:var(--c-card);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+.accordion summary{cursor:pointer;font-weight:600}
+.accordion p{color:var(--c-muted);margin-top:8px}
+
+/* Formulario */
+.form-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.form label{display:flex;flex-direction:column;gap:6px;color:#e7edf5}
+.form input,.form select,.form textarea{
+  background:#0f1722;border:1px solid #2b3a49;color:#dfe6ee;border-radius:10px;padding:10px 12px
+}
+.form .full{grid-column:1 / -1}
+.form-actions{display:flex;gap:10px;margin-top:10px}
+.form-note{color:#9fb1c3;margin-top:10px;font-size:.95rem}
+
+/* Footer */
+.footer{background:#0b0f18;border-top:1px solid rgba(255,255,255,.06);padding:18px 0;margin-top:40px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer .top{opacity:.8}
+
+/* Back to top */
+.backtop{position:fixed;right:16px;bottom:16px;width:40px;height:40px;border-radius:50%;background:#2b3a49;border:none;color:#fff;cursor:pointer}
+
+/* ========== COSAS QUE ROMPÍAN EL HOME (neutralizado) ========== */
+/* 1) Nada de filtros globales que ponen gris las imágenes */
+img, .card img{filter:none !important}
+
+/* 2) No forzar tamaños a TODOS los <img> del sitio */
+img{height:auto;max-width:100%} /* comportamiento seguro */
+
+/* 3) Si en otro CSS tenías reglas globales como `* { ... }`, aísla eso allá. */
+/* Recuadro naranja en las cards del home */
+.home .cards .card{
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.home .cards .card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 26px rgba(0,0,0,.35);
+}
+
+/* Etiqueta inferior (recuadro) */
+.home .cards .card-body{
+  position: relative;
+  background: var(--brand);
+  color:#1a0c00;
+  font-weight: 800;
+  overflow: hidden;            /* para el brillo “sheen” */
+}
+
+/* Efecto “sheen” al pasar el mouse */
+.home .cards .card-body::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events:none;
+}
+.home .cards .card:hover .card-body::after{
+  transform: translateX(120%);
+}
+
+/* Opcional: un toque de relieve al hover del recuadro */
+.home .cards .card:hover .card-body{
+  filter: brightness(1.04);
+}
+.btn.on-image{
+  border:1px solid rgba(0,0,0,.25);
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+/* ==== OVERRIDES FINALES (forzar marca) ==== */
+/* Botones: marca naranja obligatoria */
+.btn,
+.header .btn,
+.section .btn {
+  background: var(--brand) !important;
+  color: #1a0c00 !important;
+  border: none !important;
+  font-weight: 700;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover,
+.header .btn:hover,
+.section .btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 28px var(--brand-glow);
+  background: var(--brand-600) !important;
+}
+.btn:active { transform: translateY(0) scale(.99); background: var(--brand-700) !important; }
+
+/* Variantes */
+.btn.btn-outline { background: transparent !important; color: #fff !important; border: 1.5px solid var(--brand) !important; }
+.btn.btn-outline:hover { background: var(--brand) !important; color: #1a0c00 !important; }
+.btn.btn-whatsapp { background: var(--brand) !important; color: #1a0c00 !important; border: none !important; }
+
+/* Recuadro (etiqueta) de las cards en HOME: naranja sí o sí */
+.home .cards .card > .card-body {
+  background: var(--brand) !important;
+  color: #1a0c00 !important;
+  position: relative;
+  overflow: hidden;
+}
+.home .cards .card:hover > .card-body {
+  filter: brightness(1.04);
+}
+.home .cards .card > .card-body::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events:none;
+}
+.home .cards .card:hover > .card-body::after{ transform: translateX(120%); }
+
+/* Por si algún CSS externo estaba poniendo filtros o colores raros */
+img, .card img { filter: none !important; }
+
+/* ==== CONTROL DE LOGO EN HEADER ==== */
+.header .brand img.logo {
+  height: 40px;       /* altura fija del logo */
+  width: auto;        /* mantiene proporción */
+  max-width: 160px;   /* por seguridad, no pasa de 160px */
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .header .brand img.logo {
+    height: 32px;     /* más pequeño en móviles */
+    max-width: 120px;
+  }
+}
+
+/* ==== HEADER EN UNA SOLA LÍNEA ==== */
+.header {
+  display: flex;
+  justify-content: space-between; /* Logo a la izquierda, menú a la derecha */
+  align-items: center;            /* Centrar verticalmente */
+  padding: 10px 20px;
+  background: var(--c-bg);
+}
+
+.header .brand {
+  display: flex;
+  align-items: center;  /* Logo y texto en línea */
+  gap: 8px;             /* Espacio entre logo y texto */
+}
+
+.header .brand img.logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Espacio entre enlaces */
+}
+
+.header nav a {
+  color: var(--c-text);
+  font-weight: 500;
+}
+
+/* === CARDS HOME: banda naranja perfecta y alineada === */
+
+/* El contenedor de la card controla el recorte y el radio */
+.home .cards .card{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;          /* recorta imagen + banda */
+  background: transparent;   /* evita la “franja” gris de fondo */
+  display: block;
+}
+
+/* Todas las imágenes con el mismo alto y sin espacios fantasma */
+.home .cards .card > img{
+  display: block;            /* quita el gap de inline images */
+  width: 100%;
+  height: 200px;             /* ajusta si quieres más/menos alto */
+  object-fit: cover;
+}
+
+/* La banda naranja va ABSOLUTA al fondo de la card */
+.home .cards .card > .card-body{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  margin: 0;                 /* por si alguna regla anterior le puso margin */
+  padding: 14px 16px;
+  background: var(--brand);
+  color: #1a0c00;
+  font-weight: 800;
+  border: none;
+  border-top: 0;
+  box-shadow: none;          /* evita línea “gris” debajo */
+}
+
+/* Hover sutil y consistente en todas */
+.home .cards .card{
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.home .cards .card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 26px rgba(0,0,0,.35);
+}
+.home .cards .card:hover > .card-body{
+  filter: brightness(1.04);
+}
+
+/* “Sheen” (brillo) diagonal en la banda al pasar el mouse */
+.home .cards .card > .card-body::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events:none;
+}
+.home .cards .card:hover > .card-body::after{
+  transform: translateX(120%);
+}
+
+/* ==== BOTÓN VOLVER ARRIBA (backtop) ==== */
+.backtop {
+  background: var(--brand);     /* Naranja de marca */
+  color: #1a0c00;               /* Texto/ícono oscuro para contraste */
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* Hover con zoom + glow */
+.backtop:hover {
+  transform: translateY(-2px) scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px var(--brand-glow);
+}
+
+/* ==== CARDS EN FORMATO VERTICAL (imagen izquierda + texto derecha) ==== */
+.home .cards .card{
+  display: flex;
+  flex-direction: row;   /* en fila */
+  align-items: stretch;
+  height: 160px;         /* ajusta la altura como prefieras */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Imagen a la izquierda */
+.home .cards .card > img{
+  width: 55%;            /* ocupa un poco más de la mitad */
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Banda naranja a la derecha */
+.home .cards .card > .card-body{
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: #1a0c00;
+  font-weight: 800;
+  padding: 0 10px;
+}
+
+/* ==== CARDS VERTICALES (portrait) – Servicios + Requisitos ==== */
+/* Anula cualquier card en fila que hayamos puesto antes */
+.home .cards .card,
+#requisitos-destino .cards .card{
+  display: block !important;     /* vuelve al flujo de bloque */
+  position: relative;
+  width: 100%;
+  height: 320px;                 /* 👈 misma anchura, MÁS ALTAS; ajusta 300–360 a gusto */
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;              /* evita “bordes grises” cuando la imagen carga */
+}
+
+/* La imagen llena TODO el cuadro */
+.home .cards .card > img,
+#requisitos-destino .cards .card > img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* cubre ancho y alto */
+  border-radius: 0;
+  display: block;
+}
+
+/* Banda naranja pegada abajo y al 100% del ancho */
+.home .cards .card > .card-body,
+#requisitos-destino .cards .card > .card-body{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;  /* ocupa todo el ancho inferior */
+  width: 100%;
+  min-height: 56px;              /* alto cómodo de la banda */
+  padding: 12px 16px;
+  margin: 0;
+  background: var(--brand);
+  color: #1a0c00;
+  font-weight: 800;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Hover consistente (opcional) */
+.home .cards .card,
+#requisitos-destino .cards .card{
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.home .cards .card:hover,
+#requisitos-destino .cards .card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 26px rgba(0,0,0,.35);
+}
+.home .cards .card:hover > .card-body,
+#requisitos-destino .cards .card:hover > .card-body{
+  filter: brightness(1.04);
+}
+
+/* ==== FOOTER INFO EN TRES COLUMNAS ==== */
+.footer-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 24px;
+  margin-bottom: 20px;
+  color: var(--c-text);
+}
+
+.footer-info h4 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.footer-info p {
+  font-size: .95rem;
+  line-height: 1.4;
+  color: var(--c-muted);
+}
+
+/* Versión responsive en móviles */
+@media (max-width: 768px) {
+  .footer-info {
+    grid-template-columns: 1fr; /* se apilan en una sola columna */
+    text-align: center;
+  }
+}
+
+/* ==== FOOTER INFO CENTRADO ==== */
+.footer-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1000px;        /* 👈 ancho máximo del bloque */
+  margin: 0 auto 20px;      /* 👈 centrado automático */
+  padding: 30px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 12px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.footer-box:last-child { border-right: none; }
+
+.footer-icon {
+  background: var(--brand);
+  color: #1a0c00;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer-text h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.footer-text p {
+  margin: 0;
+  font-size: .95rem;
+  color: var(--c-muted);
+  line-height: 1.4;
+}
+
+/* Responsive en móvil */
+@media (max-width: 768px) {
+  .footer-info {
+    grid-template-columns: 1fr;
+    text-align: center;
+    max-width: 100%;
+  }
+  .footer-box {
+    border-right: none;
+    justify-content: center;
+  }
+}
+
+/* Footer info centrado + divisiones */
+.footer-info{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+  max-width:1000px;         /* bloque centrado */
+  margin:0 auto 20px;
+  padding:30px 0;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+/* Borde vertical entre columnas (soporta .footer-box o <div> directo) */
+.footer-info > div,
+.footer-info .footer-box{
+  padding:0 16px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+.footer-info > div:last-child,
+.footer-info .footer-box:last-child{
+  border-right:none;
+}
+
+/* Copyright 100% centrado, sin depender del container */
+.footer-copy{
+  width:100%;
+  display:flex;              /* fuerza centrado real */
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:12px 0 24px;
+  border-top:1px solid rgba(255,255,255,.08); /* opcional: línea arriba */
+}
+.footer-copy p{ margin:0; color:var(--c-muted); font-size:.9rem; }
+
+/* ====== FOOTER INFO (3 columnas con divisiones) ====== */
+.footer-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1000px;         /* centrado como bloque */
+  margin: 0 auto 20px;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Divisiones verticales entre columnas */
+.footer-info > div {
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.2);
+}
+.footer-info > div:last-child {
+  border-right: none; /* la última sin línea */
+}
+
+/* ====== COPYRIGHT CENTRADO ====== */
+.footer-copy {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px 0 24px;
+  border-top: 1px solid rgba(255,255,255,.08); /* línea opcional arriba */
+}
+.footer-copy p {
+  margin: 0;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* ==== FOOTER SOCIAL ICONS ==== */
+.footer-social {
+  display: flex;
+  justify-content: center;    /* centrado debajo */
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #1a0c00;
+  font-size: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Redes sociales en footer */
+.footer-social {
+  display: flex;
+  justify-content: flex-end;  /* 👈 A la derecha */
+  gap: 16px;
+  max-width: 1000px;          /* mismo ancho que el grid */
+  margin: 10px auto 0;        /* centrado del bloque */
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #1a0c00;
+  font-size: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.footer-social a:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Social a la derecha, mismo ancho visual que las columnas */
+.footer-social{
+  display:flex;
+  justify-content:flex-end;    /* ⟶ derecha */
+  gap:16px;
+  padding-top:10px;
+  max-width:1000px;            /* igual que el bloque centrado de columnas */
+  margin:0 auto;               /* centra el contenedor y alinea su contenido a la derecha */
+  border-bottom:1px solid rgba(255,255,255,.08); /* línea sutil encima del copy (opcional) */
+}
+
+.footer-social a{
+  width:36px;height:36px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--brand);
+  color:#1a0c00;
+  font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* Copy centrado (por si no lo tenías) */
+.footer-copy{
+  width:100%;
+  display:flex;justify-content:center;align-items:center;
+  text-align:center;
+  padding:12px 0 24px;
+}
+.footer-copy p{ margin:0; color:var(--c-muted); font-size:.9rem; }
+
+/* ===== Footer: fila inferior en grid (copy centrado + redes derecha) ===== */
+.footer-bottom{
+  display:grid;
+  grid-template-columns: 1fr auto auto; /* [espacio] [copy] [redes] */
+  align-items:center;
+  gap:16px;
+  max-width:1000px;      /* mismo ancho visual que las columnas */
+  margin:10px auto 0;    /* centrado del bloque */
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* Copy centrado en su celda */
+.footer-copy{ text-align:center; }
+.footer-copy p{ margin:0; color:var(--c-muted); font-size:.9rem; }
+
+/* Redes a la derecha */
+.footer-social{
+  justify-self:end;      /* 👈 a la derecha del bloque */
+  display:flex; gap:16px;
+}
+.footer-social a{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* Responsive: en móviles todo centrado y en columna */
+@media (max-width:768px){
+  .footer-bottom{
+    grid-template-columns: 1fr;  /* una sola columna */
+    row-gap:10px;
+  }
+ /* Footer redes sociales */
+.footer-social{
+  display:flex;
+  justify-content:flex-end;
+  gap:16px;
+  max-width:1000px;
+  margin:0 auto;
+  padding-top:15px;
+  border-top:1px solid rgba(255,255,255,.08); /* 👈 misma línea que las columnas */
+}
+
+.footer-social a{
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* Copyright centrado, sin línea extra */
+.footer-copy{
+  text-align:center;
+  padding:15px 0 20px;
+}
+.footer-copy p{
+  margin:0;
+  color:var(--c-muted);
+  font-size:.9rem;
+}
+/* Una sola línea para columnas + redes */
+.footer-top{
+  max-width: 1000px;           /* mismo ancho visual */
+  margin: 0 auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Las 3 columnas (sin líneas aquí) */
+.footer-info{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 10px;         /* pequeño respiro antes de las redes */
+}
+.footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.footer-info > div:last-child{ border-right: none; }
+
+/* Redes alineadas a la derecha y SIN línea propia */
+.footer-social{
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+.footer-social a{
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--brand); color: #1a0c00; font-size: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Copyright centrado abajo (sin línea) */
+.footer-copy{
+  text-align: center;
+  padding: 15px 0 20px;
+}
+.footer-copy p{ margin: 0; color: var(--c-muted); font-size: .9rem; }
+
+/* Responsive */
+@media (max-width: 768px){
+  .footer-info{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-info > div{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 12px 0;
+  }
+  .footer-info > div:last-child{ border-bottom: none; }
+  .footer-social{ justify-content: center; }
+}
+
+/* ===== Fila inferior del footer (como la maqueta) ===== */
+.footer-bottom{
+  max-width: 1000px;                 /* mismo ancho visual que las columnas */
+  margin: 0 auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);  /* línea arriba de la fila */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;          /* [espacio] [©] [redes] */
+  align-items: center;
+  column-gap: 16px;
+}
+
+/* © totalmente centrado en la fila */
+.footer-bottom .footer-copy{
+  text-align: center;
+}
+.footer-bottom .footer-copy p{
+  margin: 0;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* Redes pegadas a la derecha */
+.footer-bottom .footer-social{
+  justify-self: end;                 /* ⟵ a la derecha */
+  display: flex;
+  gap: 16px;
+}
+.footer-bottom .footer-social a{
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--brand); color: #1a0c00; font-size: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-bottom .footer-social a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Responsive: en móvil todo centrado y apilado */
+@media (max-width: 768px){
+  .footer-bottom{
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+  .footer-bottom .footer-social{ justify-self: center; }
+}
+
+/* ===== 1) UNA SOLA LÍNEA: debajo de las columnas ===== */
+.footer-info {
+  /* si ya la tienes en tu CSS, déjala. Importante que tenga la línea: */
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 12px;
+  margin-bottom: 14px;  /* espacio antes de la fila de copy + redes */
+}
+
+/* ===== 2) Fila de copy + redes (MISMA FILA) ===== */
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto auto;  /* [espacio] [©] [redes] */
+  align-items: center;
+  column-gap: 16px;
+}
+
+/* ANULAR cualquier línea/estilo antiguo que esté generando la segunda raya */
+.footer-bottom,
+.footer-social,
+.footer-copy,
+.footer-copy p {
+  border: none !important;
+}
+
+/* © centrado en su celda */
+.footer-copy { text-align: center; }
+.footer-copy p { margin: 0; color: var(--c-muted); font-size: .9rem; }
+
+/* Redes a la derecha */
+.footer-social {
+  justify-self: end;
+  display: flex; gap: 16px;
+}
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--brand); color: #1a0c00; font-size: 18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* ===== 3) Responsive ===== */
+@media (max-width: 768px) {
+  .footer-bottom { grid-template-columns: 1fr; row-gap: 10px; }
+  .footer-social { justify-self: center; }
+}
+
+/* ==== Footer: 4 columnas ==== */
+.footer-info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr); /* 👈 ahora 4 */
+  gap:32px;
+  max-width:1000px;
+  margin:0 auto;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.footer-info > div{
+  padding:0 16px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+.footer-info > div:last-child{ border-right:none; }
+
+/* Columna de redes */
+.footer-social-col .social-icons{
+  display:flex;
+  gap:16px;
+  margin-top:8px;
+}
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* Copyright centrado abajo */
+.footer-copy{
+  text-align:center;
+  padding:15px 0 20px;
+}
+.footer-copy p{
+  margin:0;
+  color:var(--c-muted);
+  font-size:.9rem;
+}
+
+/* Responsive */
+@media (max-width:1000px){
+  .footer-info{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:640px){
+  .footer-info{ grid-template-columns:1fr; }
+  .footer-info > div{ border-right:none; border-bottom:1px solid rgba(255,255,255,.08); padding:12px 0; }
+  .footer-info > div:last-child{ border-bottom:none; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+
+/* === Footer: 4 columnas con "Redes sociales" a la derecha === */
+.footer-info{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto; /* Dirección | Contacto | Horario | Redes */
+  align-items: start;
+  gap: 28px;
+}
+
+/* Borde vertical entre columnas (opcional) */
+.footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.footer-info > div:last-child{ border-right: none; }
+
+/* La 4ta columna pegada a la derecha */
+.footer-social-col{ justify-self: end; text-align: left; }
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* === Breakpoints: mantenemos 4 columnas hasta 900px === */
+/* (esto pisa tu regla antigua que lo bajaba a 2 columnas muy pronto) */
+@media (max-width: 900px){
+  .footer-info{ grid-template-columns: repeat(2, 1fr); }
+  .footer-social-col{ justify-self: center; }
+}
+@media (max-width: 560px){
+  .footer-info{ grid-template-columns: 1fr; }
+  .footer-info > div{ border-right:none; border-bottom:1px solid rgba(255,255,255,.08); padding:12px 0; }
+  .footer-info > div:last-child{ border-bottom:none; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+
+/* ==== Forzar 4 columnas en el footer ==== */
+footer .footer-inner .footer-info.cols-4{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr auto !important; /* Dirección | Contacto | Horario | Redes */
+  align-items: start;
+  gap: 28px;
+}
+
+/* Borde entre columnas (si lo usas) */
+footer .footer-inner .footer-info.cols-4 > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+footer .footer-inner .footer-info.cols-4 > div:last-child{ border-right: none; }
+
+/* Columna de Redes (círculos naranjas) */
+.footer-social-col{ justify-self: end; }
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Breakpoints: 2 columnas desde 900px y 1 columna en móvil */
+@media (max-width: 900px){
+  footer .footer-inner .footer-info.cols-4{
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .footer-social-col{ justify-self: center; }
+}
+@media (max-width: 560px){
+  footer .footer-inner .footer-info.cols-4{
+    grid-template-columns: 1fr !important;
+  }
+  footer .footer-inner .footer-info.cols-4 > div{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 12px 0;
+  }
+  footer .footer-inner .footer-info.cols-4 > div:last-child{ border-bottom:none; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+
+/* === Footer 4 columnas con grid-areas (fija "Redes" a la derecha) === */
+footer .footer-inner .footer-info.cols-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr auto !important;  /* Dir | Contacto | Horario | Redes */
+  grid-template-areas:
+    "dir contacto horario redes" !important;
+  align-items: start;
+  gap: 28px;
+}
+
+/* Mapea cada columna a su área */
+.footer-info.cols-grid .col-dir{       grid-area: dir; }
+.footer-info.cols-grid .col-contacto{  grid-area: contacto; }
+.footer-info.cols-grid .col-horario{   grid-area: horario; }
+.footer-info.cols-grid .col-redes{     grid-area: redes; justify-self: end; }
+
+/* Divisores verticales en desktop */
+.footer-info.cols-grid > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.footer-info.cols-grid > div:last-child{ border-right: none; }
+
+/* Estilo de los iconos */
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* ===== Responsivo: 2 columnas desde 900px, 1 columna en móvil ===== */
+@media (max-width: 900px){
+  footer .footer-inner .footer-info.cols-grid{
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "dir contacto"
+      "horario redes" !important;           /* Redes se queda al lado de Horario */
+  }
+  .footer-info.cols-grid > div{ border-right: none; }
+}
+
+@media (max-width: 560px){
+  footer .footer-inner .footer-info.cols-grid{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "dir"
+      "contacto"
+      "horario"
+      "redes" !important;
+  }
+  .footer-info.cols-grid > div{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 12px 0;
+  }
+  .footer-info.cols-grid > div:last-child{ border-bottom: none; }
+  .footer-social-col .social-icons{ justify-content: center; }
+}
+
+/* Línea única bajo las 4 columnas */
+.footer-top{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* 4 columnas fijas con 'Redes' a la derecha */
+.footer-info.cols-grid{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr auto !important; /* Dirección | Contacto | Horario | Redes */
+  grid-template-areas: "dir contacto horario redes" !important;
+  align-items: start;
+  gap: 28px;
+}
+
+/* Mapeo de áreas */
+.footer-info.cols-grid .col-dir{ grid-area: dir; }
+.footer-info.cols-grid .col-contacto{ grid-area: contacto; }
+.footer-info.cols-grid .col-horario{ grid-area: horario; }
+.footer-info.cols-grid .col-redes{ grid-area: redes; justify-self: end; }
+
+/* Divisores verticales opcionales */
+.footer-info.cols-grid > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.footer-info.cols-grid > div:last-child{ border-right: none; }
+
+/* Iconos sociales */
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 14px var(--brand-glow);
+}
+
+/* Copyright centrado */
+.footer-copy{ text-align:center; padding:15px 0 24px; }
+.footer-copy p{ margin:0; color:var(--c-muted); font-size:.9rem; }
+
+/* Responsive: 2 col desde 900px; 1 col desde 560px */
+@media (max-width: 900px){
+  .footer-info.cols-grid{
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas:
+      "dir contacto"
+      "horario redes" !important;
+  }
+  .footer-info.cols-grid > div{ border-right:none; }
+}
+@media (max-width: 560px){
+  .footer-info.cols-grid{
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "dir" "contacto" "horario" "redes" !important;
+  }
+  .footer-info.cols-grid > div{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:12px 0;
+  }
+  .footer-info.cols-grid > div:last-child{ border-bottom:none; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+
+/* ===== FOOTER FIX HOTPATCH ===== */
+
+/* 1) Línea única bajo el bloque superior del footer */
+footer.footer .footer-top{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* 2) Fuerza 4 columnas: Dirección | Contacto | Horario | Redes */
+footer.footer .footer-top .footer-info{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr auto !important;
+  gap: 28px !important;
+  align-items: start !important;
+}
+
+/* 3) Divisores verticales sólo en las 3 primeras columnas */
+footer.footer .footer-top .footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+footer.footer .footer-top .footer-info > div:last-child{
+  border-right: none;
+}
+
+/* 4) Asegura Redes a la derecha (y sin divisor) */
+footer.footer .footer-top .footer-info .footer-social-col{
+  justify-self: end !important;
+  border-right: none !important;
+}
+
+/* 5) Copyright centrado y separado abajo */
+footer.footer .footer-copy{
+  text-align: center;
+  padding: 15px 0 24px;
+}
+footer.footer .footer-copy p{
+  margin: 0;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* 6) Responsive limpio */
+@media (max-width: 900px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+  }
+}
+@media (max-width: 560px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  footer.footer .footer-top .footer-info > div{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 12px 0;
+  }
+  footer.footer .footer-top .footer-info > div:last-child{
+    border-bottom: none;
+  }
+}
+
+/* ====== FOOTER – FIX FINAL ====== */
+
+/* 0) El bloque superior usa TODO el ancho del .container y sólo una línea */
+footer.footer .footer-top{
+  width: 100%;
+  max-width: none;              /* ← quita el tope de 1000px */
+  margin: 0 auto;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10);  /* ← única línea */
+}
+
+/* 1) 4 columnas con mínimos para que Dirección y Horario no se achiquen */
+footer.footer .footer-top .footer-info{
+  display: grid !important;
+  grid-template-columns:
+    minmax(260px, 1.2fr)   /* Dirección */
+    minmax(320px, 1.3fr)   /* Contacto */
+    minmax(220px, 1fr)     /* Horario */
+    auto                   /* Redes */
+  !important;
+  gap: 28px !important;
+  align-items: start !important;
+}
+
+/* 2) Separadores verticales sólo en las 3 primeras columnas */
+footer.footer .footer-top .footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+footer.footer .footer-top .footer-info > div:last-child{
+  border-right: none;
+}
+
+/* 3) Redes siempre a la derecha */
+footer.footer .footer-top .footer-info .footer-social-col{
+  justify-self: end !important;
+}
+
+/* 4) Copyright centrado abajo y SIN líneas extra */
+footer.footer,
+footer.footer .footer-inner,
+footer.footer .footer-copy{
+  border: none !important;
+}
+footer.footer .footer-copy{
+  text-align: center;
+  padding: 16px 0 28px;        /* espacio al fondo */
+}
+footer.footer .footer-copy::before,
+footer.footer .footer-copy::after{
+  display: none !important;    /* elimina cualquier pseudo-línea */
+}
+
+/* 5) Evita una segunda línea heredada en cualquier parte del footer */
+footer.footer *{
+  border-bottom-color: inherit;
+}
+footer.footer hr{ display:none; }
+
+/* ====== Responsive ====== */
+@media (max-width: 900px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 22px !important;
+  }
+}
+@media (max-width: 560px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  footer.footer .footer-top .footer-info > div{
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 12px 0;
+  }
+  footer.footer .footer-top .footer-info > div:last-child{
+    border-bottom: none;
+  }
+}
+
+/* ===== FOOTER – FIX DEFINITIVO ===== */
+
+/* Fuerza que el contenedor del footer apile (evita que el copy se vaya a la derecha) */
+footer.footer .footer-inner{
+  display: block !important;
+  border: 0 !important;
+}
+
+/* Bloque superior: ocupa el ancho del container y SOLO una línea debajo */
+footer.footer .footer-top{
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10); /* única línea */
+}
+
+/* 4 columnas y anchos mínimos para que Dirección y Horario no se achiquen */
+footer.footer .footer-top .footer-info{
+  display: grid !important;
+  grid-template-columns:
+    minmax(260px, 1.1fr)   /* Dirección */
+    minmax(340px, 1.3fr)   /* Contacto */
+    minmax(240px, 1fr)     /* Horario */
+    auto                   /* Redes */
+  !important;
+  gap: 28px !important;
+  align-items: start !important;
+}
+
+/* Divisores verticales SOLO en las tres primeras */
+footer.footer .footer-top .footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+footer.footer .footer-top .footer-info > div:last-child{
+  border-right: none;
+}
+
+/* Redes pegado a la derecha */
+footer.footer .footer-top .footer-info .footer-social-col{
+  justify-self: end !important;
+}
+
+/* Quita líneas extras posibles en cualquier parte inferior del footer */
+footer.footer .footer-copy,
+footer.footer .footer-inner,
+footer.footer .footer-top + *,
+footer.footer .footer-copy::before,
+footer.footer .footer-copy::after{
+  border: none !important;
+}
+
+/* Copyright centrado y separado del borde inferior */
+footer.footer .footer-copy{
+  text-align: center !important;
+  padding: 16px 0 28px !important;
+}
+footer.footer .footer-copy p{
+  margin: 0 !important;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* Seguridad: no mostrar hr si existe */
+footer.footer hr{ display:none !important; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 22px !important;
+  }
+}
+@media (max-width: 560px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  footer.footer .footer-top .footer-info > div{
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    padding: 12px 0 !important;
+  }
+  footer.footer .footer-top .footer-info > div:last-child{
+    border-bottom: none !important;
+  }
+}
+
+/* ===== FOOTER – FIX FINAL Y SIMPLE ===== */
+
+/* Apila el contenido del footer: el copy queda abajo, centrado */
+footer.footer .footer-inner{
+  display: block !important;
+  border: 0 !important;
+}
+
+/* Bloque superior: sólo UNA línea inferior */
+footer.footer .footer-top{
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.10); /* única línea */
+}
+
+/* 4 columnas con mínimos más cómodos (no se achican) */
+footer.footer .footer-top .footer-info{
+  display: grid !important;
+  grid-template-columns:
+    minmax(420px, 1.2fr)   /* Dirección */
+    minmax(480px, 1.5fr)   /* Contacto */
+    minmax(360px, 1.1fr)   /* Horario */
+    auto                   /* Redes */
+  !important;
+  gap: 28px !important;
+  align-items: start !important;
+}
+
+/* Divisores verticales sólo en las 3 primeras */
+footer.footer .footer-top .footer-info > div{
+  padding: 0 16px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+footer.footer .footer-top .footer-info > div:last-child{
+  border-right: none;
+}
+
+/* Redes pegado a la derecha */
+footer.footer .footer-top .footer-info .footer-social-col{
+  justify-self: end !important;
+}
+
+/* Evita que el título "Horario de seguimiento" se parta en dos líneas */
+footer.footer .col-horario h4{
+  white-space: nowrap;
+}
+
+/* Copyright centrado y sin líneas extra */
+footer.footer .footer-copy{
+  text-align: center !important;
+  padding: 16px 0 28px !important;
+  border: none !important;
+}
+footer.footer .footer-copy p{
+  margin: 0 !important;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* Limpia cualquier otra línea sobrante */
+footer.footer hr{ display:none !important; }
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns:
+      minmax(360px, 1.2fr)
+      minmax(420px, 1.4fr)
+      minmax(320px, 1.1fr)
+      auto !important;
+  }
+}
+@media (max-width: 900px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr 1fr !important;
+    gap: 22px !important;
+  }
+}
+@media (max-width: 560px){
+  footer.footer .footer-top .footer-info{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  footer.footer .footer-top .footer-info > div{
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+    padding: 12px 0 !important;
+  }
+  footer.footer .footer-top .footer-info > div:last-child{
+    border-bottom: none !important;
+  }
+}
+
+/* ===== FOOTER – OVERRIDE FINAL (pegar al final del CSS) ===== */
+
+/* El contenedor del footer deja de ser flex para que el copy no se vaya a la derecha */
+.footer .footer-inner{ display:block !important; }
+
+/* Una sola línea debajo de las 4 columnas */
+.footer .footer-top{
+  width:100%;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+/* 4 columnas con anchos mínimos para que Dirección y Horario NO se achiquen */
+.footer-info.footer--final-grid{
+  display:grid !important;
+  grid-template-columns:
+    minmax(420px,1.2fr)   /* Dirección */
+    minmax(420px,1.2fr)   /* Contacto  */
+    minmax(300px,1fr)     /* Horario   */
+    auto                  /* Redes     */
+  !important;
+  gap:28px !important;
+  align-items:start !important;
+}
+
+/* Divisores verticales solo en las 3 primeras */
+.footer-info.footer--final-grid > .footer-col{
+  padding:0 16px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+.footer-info.footer--final-grid > .footer-col:last-child{ border-right:none; }
+
+/* Horario en una sola línea el título, y 24/7 debajo */
+.col-horario h4{ white-space:nowrap; }
+
+/* Estilo de redes (círculos naranjas) */
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* Copyright totalmente centrado y SIN líneas extra */
+.footer-copy{
+  text-align:center !important;
+  padding:16px 0 28px !important;
+  border:0 !important;
+}
+.footer-copy p{ margin:0 !important; color:var(--c-muted); font-size:.9rem; }
+
+/* Limpia cualquier raya sobrante que venga de estilos viejos */
+.footer, .footer *, .footer-copy::before, .footer-copy::after, .footer hr{ border-bottom:none !important; }
+
+/* Responsive: 2 columnas y luego 1 */
+@media (max-width: 1000px){
+  .footer-info.footer--final-grid{
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer-info.footer--final-grid > .footer-col{ border-right:none; }
+}
+@media (max-width: 560px){
+  .footer-info.footer--final-grid{
+    grid-template-columns: 1fr !important;
+    gap:16px !important;
+  }
+  .footer-info.footer--final-grid > .footer-col{
+    border-right:none; 
+    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:12px 0;
+  }
+  .footer-info.footer--final-grid > .footer-col:last-child{ border-bottom:none; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+/* ======== FIX FOOTER (forzar layout final) ======== */
+
+/* 1) El contenedor del footer NO es flex. Así el copy baja y se centra */
+body.home .footer > .container.footer-inner{ display:block !important; }
+}
+
+/* 2) Una sola línea bajo las 4 columnas */
+.footer .footer-top{
+  padding-bottom:16px !important;
+  border-bottom:1px solid rgba(255,255,255,.12) !important;
+}
+
+/* 3) 4 columnas reales, sin wraps raros */
+.footer .footer-top .footer-info{
+  display:grid !important;
+  grid-template-columns:
+    minmax(420px,1.2fr)   /* Dirección más ancha */
+    minmax(420px,1.2fr)   /* Contacto más ancho  */
+    minmax(300px,1fr)     /* Horario               */
+    auto                  /* Redes a la derecha    */
+  !important;
+  gap:28px !important;
+  align-items:start !important;
+}
+
+/* 4) Divisores verticales coherentes (solo en las 3 primeras) */
+.footer .footer-top .footer-info > .footer-col{
+  padding:0 16px !important;
+  border-right:1px solid rgba(255,255,255,.12) !important;
+}
+.footer .footer-top .footer-info > .footer-col:last-child{
+  border-right:none !important;
+}
+
+/* 5) Título de horario en una línea; “24/7” debajo */
+.col-horario h4{ white-space:nowrap !important; }
+
+/* 6) Iconos de redes (círculo naranja) */
+.footer-social-col .social-icons{ display:flex; gap:16px; margin-top:8px; }
+.footer-social-col .social-icons a{
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); color:#1a0c00; font-size:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.footer-social-col .social-icons a:hover{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:0 6px 14px var(--brand-glow);
+}
+
+/* 7) Copyright centrado y sin líneas extra */
+.footer-copy{
+  text-align:center !important;
+  padding:16px 0 28px !important;
+  border:0 !important;
+}
+.footer-copy p{ margin:0 !important; color:var(--c-muted); font-size:.9rem; }
+
+/* 8) Quitar cualquier raya duplicada que venga de estilos viejos */
+.footer hr, .footer .footer-copy::before, .footer .footer-copy::after{ display:none !important; border:0 !important; }
+
+/* ===== Responsive ===== */
+@media (max-width: 1000px){
+  /* En pantallas medianas pasamos a 2 columnas */
+  .footer .footer-top .footer-info{
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer .footer-top .footer-info > .footer-col{ border-right:none !important; }
+}
+@media (max-width: 560px){
+  /* En móvil, una columna y divisores horizontales suaves */
+  .footer .footer-top .footer-info{
+    grid-template-columns: 1fr !important;
+    gap:16px !important;
+  }
+  .footer .footer-top .footer-info > .footer-col{
+    border-right:none !important;
+    border-bottom:1px solid rgba(255,255,255,.08) !important;
+    padding:12px 0 !important;
+  }
+  .footer .footer-top .footer-info > .footer-col:last-child{ border-bottom:none !important; }
+  .footer-social-col .social-icons{ justify-content:center; }
+}
+
+/* === FIX: copyright ocupa toda la fila y queda centrado bajo las columnas === */
+
+/* Si por cualquier motivo el copy está DENTRO del grid (.footer-info), 
+   lo forzamos a ocupar de la 1 a la última columna y lo centramos. */
+.footer .footer-top .footer-info .footer-copy{
+  grid-column: 1 / -1 !important;   /* Toda la fila del grid */
+  text-align: center !important;
+  padding: 14px 0 18px !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+/* Estilo del texto del copy (esté dentro o fuera del grid) */
+.footer .footer-copy,
+.footer .footer-top .footer-info .footer-copy{
+  text-align: center !important;
+}
+.footer .footer-copy p,
+.footer .footer-top .footer-info .footer-copy p{
+  margin: 0 !important;
+  color: var(--c-muted);
+  font-size: .9rem;
+}
+
+/* Línea superior bajo las columnas (única) y espacio para que el copy
+   quede “entre las dos líneas” del pie */
+.footer .footer-top{
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  padding-bottom: 16px !important;
+}
+
+/* Si el copy está FUERA del grid (caso alterno) mantiene el centrado y el espacio */
+.footer .footer-copy{
+  padding: 14px 0 20px !important;
+  border: 0 !important;
+}
+
+/* Por si alguna regla previa añade rayas extra al copy: las anulamos */
+.footer .footer-copy::before,
+.footer .footer-copy::after{ content: none !important; display: none !important; }
+
+/* =========================
+   FOOTER NUEVO (forzar sobre estilos viejos)
+   ========================= */
+
+/* Neutraliza cualquier grid/estilo viejo del footer que pudiera colarse */
+.footer .footer-top,
+.footer .footer-info,
+.footer .cols-grid {
+  display: contents !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Contenedor de 4 columnas */
+.footer-columns{
+  display: grid !important;
+  grid-template-columns: 1.25fr 1.15fr 1fr 0.9fr; /* + ancho para Dirección y Horario */
+  gap: 32px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 24px;
+}
+
+/* Columnas */
+.footer-col h4{
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.footer-col p{
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Iconos sociales */
+.footer .social-icons{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.footer .social-icons a{
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand, #f4810b);
+  color: #111;
+  text-decoration: none;
+  transition: transform .15s ease, filter .15s ease;
+}
+.footer .social-icons a:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+}
+
+/* Franja inferior del copy */
+.footer-bottom{
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 14px 0 20px;
+  text-align: center;
+}
+.footer-bottom p{
+  margin: 0;
+  color: var(--c-muted, #9aa3af);
+  font-size: .9rem;
+}
+
+/* Responsivo */
+@media (max-width: 1024px){
+  .footer-columns{
+    grid-template-columns: 1.2fr 1fr 1fr; /* junta Redes con Horario si hace falta */
+    grid-auto-flow: row;
+  }
+  .col-redes{ order: 4; }
+}
+@media (max-width: 760px){
+  .footer-columns{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ======= FOOTER – FIX FINAL ======= */
+
+/* 4 columnas en una fila (flex, más resistente que grid frente a estilos viejos) */
+.footer .footer-columns{
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 32px !important;
+  align-items: flex-start !important;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+  padding: 24px 0 16px !important;
+}
+
+/* Anchos relativos: Dirección y Horario un poco más amplios */
+.footer .footer-col{ min-width: 240px !important; }
+.footer .col-dir{      flex: 1.25 1 0 !important; }  /* Dirección */
+.footer .col-contacto{ flex: 1.10 1 0 !important; }  /* Contacto */
+.footer .col-horario{  flex: 1.05 1 0 !important; }  /* Horario */
+.footer .col-redes{    flex: 0.90 1 0 !important; }  /* Redes */
+
+/* Títulos y párrafos dentro de las columnas */
+.footer .footer-col h4{ margin: 0 0 10px !important; font-weight: 700 !important; }
+.footer .footer-col p{  margin: 0 !important; line-height: 1.6 !important; }
+
+/* Iconos sociales */
+.footer .social-icons{ display:flex !important; gap:16px !important; align-items:center !important; }
+.footer .social-icons a{
+  display:inline-flex !important; width:40px !important; height:40px !important;
+  border-radius:50% !important; align-items:center !important; justify-content:center !important;
+  background: var(--brand, #f4810b) !important; color:#111 !important;
+  text-decoration:none !important; transition: transform .15s ease, filter .15s ease !important;
+}
+.footer .social-icons a:hover{ transform: translateY(-1px) !important; filter: brightness(1.07) !important; }
+
+/* Franja inferior: copyright centrado */
+.footer .footer-bottom{
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+  padding: 14px 0 22px !important;
+  text-align: center !important;
+}
+.footer .footer-bottom p{
+  margin: 0 auto !important;
+  width: fit-content !important;
+  color: var(--c-muted, #9aa3af) !important;
+  font-size: .9rem !important;
+}
+
+/* Responsivo */
+@media (max-width: 1024px){
+  .footer .footer-columns{ flex-wrap: wrap !important; }
+  .footer .col-dir{ flex-basis: 100% !important; } /* Dirección ocupa fila completa */
+  .footer .col-contacto, .footer .col-horario, .footer .col-redes{ flex: 1 1 280px !important; }
+}
+@media (max-width: 760px){
+  .footer .footer-columns{ flex-direction: column !important; gap: 20px !important; }
+}
+
+/* ======= Divisores entre columnas del footer ======= */
+
+/* Línea vertical entre columnas (desktop) */
+.footer .footer-col{
+  padding-right: 20px !important;             /* respiración antes del divisor */
+}
+.footer .footer-col:not(:last-child){
+  border-right: 1px solid rgba(255,255,255,.14) !important;
+}
+
+/* Cuando las columnas se apilen (tablet/móvil), usamos divisores horizontales */
+@media (max-width: 1024px){
+  .footer .footer-col{
+    border-right: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 16px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  }
+  .footer .footer-col:last-child{
+    border-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+/* ==== Footer: que el correo no toque el divisor ni se salga ==== */
+
+/* Más respiración a la derecha solo para la columna de Contacto */
+.footer .col-contacto{
+  padding-right: 28px;                  /* separa del divisor */
+  box-sizing: border-box;
+}
+
+/* Si el correo es muy largo, permite partirlo dentro de la columna */
+.footer .col-contacto p,
+.footer .col-contacto a{
+  overflow-wrap: anywhere;              /* moderno */
+  word-break: break-word;               /* fallback */
+  hyphens: auto;
+}
+
+/* =========================
+   HOTFIX MODO CLARO (LIGHT)
+   ========================= */
+@media (prefers-color-scheme: light) {
+  /* Paleta clara base (no toca tu oscuro) */
+  :root{
+    --c-bg: #ffffff;
+    --c-surface: #ffffff;
+    --c-surface-2: #f4f7fb;           /* tarjetas/controles suaves */
+    --c-border: #e6eaf0;
+    --c-text: #0b1220;                /* texto principal */
+    --c-muted: #6b7280;               /* texto secundario */
+  }
+
+  /* Header: los links no se veían en claro */
+  .header{
+    background: #fff;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .header .brand span{ color: var(--c-text); }
+  .header .nav a{
+    color: var(--c-text) !important;
+    opacity:.9;
+  }
+  .header .nav a:hover{ opacity:1; }
+
+  /* Botones “outline” sobre fondo claro */
+  .btn.btn-outline{
+    background: transparent;
+    color: var(--brand);
+    border: 1px solid var(--brand);
+  }
+  .btn.btn-outline:hover{
+    background: rgba(255,122,0,.08);
+    color: var(--brand);
+    border-color: var(--brand);
+  }
+
+  /* Stepper “¿Cómo trabajamos?” */
+  .stepper li{
+    background: var(--c-surface-2);
+    color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+  .stepper li span{                       /* numerito */
+    background: var(--brand);
+    color: #1a0c00;
+  }
+
+  /* FAQs (accordion) */
+  .accordion summary{
+    background: var(--c-surface-2);
+    color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+  .accordion summary:hover{
+    filter: brightness(0.98);
+  }
+  .accordion p{ color: var(--c-text); }
+
+  /* Formulario de cotización (inputs en claro) */
+  .form input,
+  .form select,
+  .form textarea{
+    background: #fff;
+    color: var(--c-text);
+    border: 1px solid var(--c-border);
+  }
+  .form input::placeholder,
+  .form select::placeholder,
+  .form textarea::placeholder{
+    color: #9aa5b1;
+  }
+  .form input:focus,
+  .form select:focus,
+  .form textarea:focus{
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(255,122,0,.18);
+  }
+
+  /* Tarjetas (Nuestros servicios / Requisitos) si alguna usa color oscuro por defecto */
+  .cards .card .card-body{
+    background: rgba(255,255,255,.9);
+    color: var(--c-text);
+  }
+
+  /* Footer columnas: en claro mantenemos mismo aspecto */
+  .footer .columns{
+    border-top: 1px solid var(--c-border);
+  }
+  .footer .col + .col{
+    border-left: 1px solid var(--c-border);
+  }
+  .footer .footer-copy{
+    color: var(--c-muted);
+    border-top: 1px solid var(--c-border);
+    text-align: center;
+    padding: 16px 0 24px;
+  }
+}
+
+/* =====================================================
+   LIGHT THEME FIXES (preferencias del sistema: claro)
+   Pegar al FINAL del style.css
+   ===================================================== */
+@media (prefers-color-scheme: light) {
+  /* Base */
+  html, body { background:#fff; color:#0f172a; }
+  .section.alt { background:#f8fafc; }
+
+  /* Header */
+  .header { background:#fff; border-bottom:1px solid #e5e7eb; }
+  .header .brand span { color:#0f172a; }
+  .header .nav a { color:#0f172a; }
+  .header .nav a:hover { color:#111827; }
+
+  /* Botones (mantener marca naranja) */
+  .btn,
+  .btn.btn-solid { background:#ff7a00; color:#111827; }
+  .btn.btn-outline { background:#fff; color:#ff7a00; border:1px solid #ff7a00; }
+  .btn.btn-outline:hover { background:#ff7a00; color:#111827; }
+
+  /* Hero (siempre texto blanco legible) */
+  .hero-title,
+  .hero-sub { color:#fff; }
+  .hero-layer {
+    /* velo para garantizar contraste en día */
+    background: linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.45));
+  }
+  .hero-dots .dot { background:rgba(255,255,255,.6); }
+  .hero-dots .dot.is-active { background:#fff; }
+
+  /* “¿Cómo trabajamos?” (stepper) */
+  .steps .stepper li {
+    background:#eef2f6;
+    color:#0f172a;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+  }
+  .steps .stepper li span { background:#e5e7eb; color:#0f172a; }
+
+  /* FAQ / Accordion */
+  .accordion details { background:#fff; border:1px solid #e5e7eb; border-radius:12px; }
+  .accordion summary { color:#0f172a; }
+  .accordion p { color:#0f172a; }
+
+  /* Cards de “Nuestros servicios / Requisitos” (solo la franja ya la tienes naranja) */
+  .cards .card { background:#fff; }
+  .cards .card .card-body { color:#0f172a; }
+
+  /* Formulario – inputs claros */
+  .form input,
+  .form select,
+  .form textarea {
+    background:#fff !important;
+    color:#0f172a !important;
+    border:1px solid #e5e7eb !important;
+  }
+  .form input::placeholder,
+  .form textarea::placeholder { color:#94a3b8; }
+
+  /* Footer claro + legible */
+  .footer { background:#fff; border-top:1px solid #e5e7eb; }
+  .footer .footer-info h4 { color:#0f172a; }
+  .footer .footer-info p,
+  .footer .footer-copy { color:#334155; }
+  .footer .social-icons a {
+    background:#ff7a00;
+    color:#111827;
+    box-shadow:none;
+  }
+}
+
+/* === Mejora de contraste para labels del formulario (modo claro) === */
+@media (prefers-color-scheme: light) {
+  /* Texto de los labels (Nombre, Correo, etc.) */
+  .form label {
+    color: #0f172a !important;  /* azul gris oscuro, buen contraste */
+    font-weight: 600;           /* un poco más “fuerte” */
+    opacity: 1 !important;      /* por si algún estilo anterior lo atenuaba */
+  }
+
+  /* El texto de ayuda debajo del form */
+  .form-note {
+    color: #475569;             /* Slate-600, legible en blanco */
+  }
+
+  /* Borde de los inputs un poco más definido en día */
+  .form input,
+  .form select,
+  .form textarea {
+    border-color: #cbd5e1 !important; /* Slate-300 */
+    color: #0f172a !important;
+    background: #fff !important;
+  }
+
+  /* Placeholders (ligeramente gris) */
+  .form input::placeholder,
+  .form textarea::placeholder {
+    color: #94a3b8; /* Slate-400 */
+  }
+}
+
+/* ===== Divisores visibles en el footer – MODO CLARO ===== */
+@media (prefers-color-scheme: light) {
+  /* Color base de línea en modo claro */
+  :root {
+    --footer-line: #e2e8f0; /* Slate-200 */
+  }
+
+  /* Línea superior e inferior del bloque del footer */
+  .footer .footer-top,
+  .footer .footer-columns,
+  .footer .footer-info,
+  .footer .cols-grid {
+    border-top: 1px solid var(--footer-line);
+    border-bottom: 1px solid var(--footer-line);
+  }
+
+  /* Divisor vertical entre columnas (funciona con cualquiera de los
+     contenedores que has usado: .footer-cols / .footer-info / .cols-grid) */
+  .footer .footer-cols > *,
+  .footer .footer-info > *,
+  .footer .cols-grid > * {
+    position: relative;
+  }
+
+  .footer .footer-cols > *:not(:last-child)::after,
+  .footer .footer-info > *:not(:last-child)::after,
+  .footer .cols-grid > *:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -16px;          /* separa un poco la línea del contenido */
+    width: 1px;
+    height: 100%;
+    background: var(--footer-line);
+  }
+
+  /* Un poco de aire a los lados de cada columna para que se vea mejor */
+  .footer .footer-cols > *,
+  .footer .footer-info > *,
+  .footer .cols-grid > * {
+    padding-right: 24px;
+    margin-right: 24px;
+  }
+}
+
+/* ===== Divisores VERTICALES en el footer – solo MODO CLARO ===== */
+@media (prefers-color-scheme: light) {
+  :root { --footer-line: #e5e7eb; } /* color de la línea */
+
+  /* Aseguramos que cada columna pueda dibujar su línea */
+  .footer .footer-cols > div,
+  .footer .footer-columns > div,
+  .footer .footer-info > div,
+  .footer .cols-grid > div {
+    position: relative;
+    padding-right: 24px;    /* pequeño respiro a la derecha */
+    margin-right: 16px;     /* espacio para la línea */
+  }
+
+  /* Línea vertical a la derecha de cada columna menos la última */
+  .footer .footer-cols > div:not(:last-child)::after,
+  .footer .footer-columns > div:not(:last-child)::after,
+  .footer .footer-info > div:not(:last-child)::after,
+  .footer .cols-grid > div:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -8px;            /* céntrala en el hueco de 16px (ajústalo si quieres) */
+    width: 1px;
+    height: 100%;
+    background: var(--footer-line);
+    opacity: .95;
+    pointer-events: none;
+  }
+
+  /* En pantallas pequeñas (cuando se apilan) ocultamos los divisores verticales */
+  @media (max-width: 900px) {
+    .footer .footer-cols > div:not(:last-child)::after,
+    .footer .footer-columns > div:not(:last-child)::after,
+    .footer .footer-info > div:not(:last-child)::after,
+    .footer .cols-grid > div:not(:last-child)::after {
+      display: none;
+    }
+
+    /* quitamos los huecos extra cuando no hay líneas */
+    .footer .footer-cols > div,
+    .footer .footer-columns > div,
+    .footer .footer-info > div,
+    .footer .cols-grid > div {
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+/* ========= SERVICIOS: barra de pestañas fija ========= */
+/* Ajusta estos dos valores si tu header o la barra tienen otra altura */
+:root {
+  --svc-header-h: 64px;  /* altura del header */
+  --svc-tabs-h:   56px;  /* altura visual de la barra de pestañas */
+}
+
+/* Fija SOLO la barra de pestañas en la página de servicios */
+.service-menu {
+    position: static; /* o relative */
+    top: auto;
+}
+
+/* fondo y sombra sólo cuando está pegada para que se lea siempre */
+#tabsBar.is-stuck::before{
+  content: "";
+  position: absolute;
+  inset: -8px -12px;               /* crea una “pastilla” detrás de los botones */
+  background: var(--bg, rgba(20,22,26,0.78));
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.22);
+  z-index: -1;
+}
+
+/* tema claro: fondo más claro cuando está pegada */
+@media (prefers-color-scheme: light){
+  #tabsBar.is-stuck::before{
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  }
+}
+
+/* Forzar que la barra de pestañas en servicios NO sea fija */
+.servicios-page .service-menu,
+.service-menu {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+}
+.service-menu.is-stuck,
+.service-menu.sticky {
+    position: static !important;
+    top: auto !important;
+}
+
+@media (min-width:960px) {
+  .panel .card {
+    position: relative;
+  }
+.section-title {
+  text-align: center;
+  margin: 18px 0;
+}
+
+/* === DEGRADADO NARANJA (aplicar a botones y banners) === */
+:root {
+  --brand-gradient: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+}
+
+/* Botones generales */
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.35);
+}
+
+/* Banda inferior en las cards (Servicios / Requisitos) */
+.home .cards .card > .card-body,
+#requisitos-destino .cards .card > .card-body {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  font-weight: 800;
+}
+
+/* ==== FINAL OVERRIDE: degradado para TODOS los botones ==== */
+:root{
+  --brand-gradient: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+}
+
+/* Header (Cotiza/Contacto), formulario (Enviar/WhatsApp) y botones generales */
+.header .nav .btn,
+.form .btn,
+.btn,
+.btn.btn-solid,
+.btn.btn-whatsapp {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+
+/* Hover consistente */
+.header .nav .btn:hover,
+.form .btn:hover,
+.btn:hover,
+.btn.btn-solid:hover,
+.btn.btn-whatsapp:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 28px rgba(255,122,0,.35) !important;
+}
+
+/* Bandas naranjas de las cards (Servicios / Requisitos) */
+.home .cards .card > .card-body,
+#requisitos-destino .cards .card > .card-body {
+  background: var(--brand-gradient) !important;
+  color: #fff !important;
+}
+
+/* ===== Requisitos: panel tipo "Servicios" ===== */
+.req-panel{
+  position: relative;
+  border-radius: 18px;
+  background: rgba(15, 22, 32, 0.92);                /* fondo del recuadro */
+  border: 1px solid rgba(255,255,255,.06);           /* línea sutil */
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);           /* sombra */
+  overflow: hidden;
+  padding: 0;                                        /* sin padding alrededor de la imagen */
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;                  /* imagen | texto */
+  gap: 0;
+}
+
+/* “línea” interior suave (igual al estilo de Servicios) */
+.req-panel::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04); /* línea interna */
+  pointer-events:none;
+}
+
+/* Columna de imagen */
+.req-panel .req-img{
+  position: relative;
+  min-height: 360px;                                 /* alto visual */
+  overflow: hidden;
+}
+.req-panel .req-img img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  transform: scale(1);                               /* limpio */
+}
+
+/* Columna de contenido */
+.req-panel .req-content{
+  padding: 24px 28px;
+  display:flex; flex-direction:column; gap:12px;
+}
+.req-panel .req-content h3{
+  margin: 6px 0 8px;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+}
+.req-panel .req-content p,
+.req-panel .req-content li{
+  color: var(--c-muted, #cfd6df);
+}
+.req-panel .req-content ul{
+  margin: 6px 0 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+/* Badge/etiqueta (opcional, como “Revisión en 24–48 h”) */
+.req-panel .req-badge{
+  align-self: flex-start;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #e9edf3;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .95rem;
+  margin-top: 8px;
+}
+
+/* Responsive: apila en móvil */
+@media (max-width: 960px){
+  .req-panel{
+    grid-template-columns: 1fr;
+  }
+  .req-panel .req-img{ min-height: 260px; }
+  .req-panel .req-content{ padding: 18px 16px; }
+}
+
+/* Separación del panel respecto a los tabs */
+#requisitos-destino .req-panel{ margin-top: 14px; }
+
+#requisitos-destino .card > .card-body {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--brand);
+  color: #1a0c00;
+  font-weight: 800;
+  border-top: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ====== Banner único de requisitos ====== */
+.req-banner{
+  position:relative; display:block; width:100%;
+  border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  transform:translateZ(0);
+}
+.req-banner img{
+  width:100%; height:360px; object-fit:cover;
+  transition:transform .6s ease;
+}
+.req-banner:hover img{ transform:scale(1.03) }
+
+.req-overlay{
+  position:absolute; inset:auto 0 0 0; /* franja inferior */
+  padding:18px; display:grid; place-items:center;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,.55) 100%);
+}
+
+.req-btn{
+  display:inline-block; padding:12px 22px; border-radius:999px;
+  background:linear-gradient(180deg,#ff9a2a,#ff7a00); color:#111;
+  font-weight:800; letter-spacing:.2px;
+  box-shadow:0 8px 22px rgba(255,122,0,.30);
+  transition:transform .08s ease, box-shadow .2s ease;
+}
+.req-btn:hover{ box-shadow:0 0 0 0 rgba(255,122,0,.12), 0 10px 26px rgba(255,122,0,.38) }
+.req-btn:active{ transform:scale(.98) }
+
+/* === Banners hero reutilizables para HOME === */
+.hero-section .section-title{
+  text-align:center;
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 18px 0 22px;
+}
+
+/* Card panorámica (se usa para Servicios y Requisitos) */
+.hero-card{
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 40px rgba(0,0,0,.20);
+  transform: translateZ(0);
+}
+
+.hero-card picture img{
+  width: 100%;
+  height: 360px;         /* MISMA ALTURA PARA AMBOS */
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.hero-card:hover picture img{ transform: scale(1.03) }
+
+/* Overlay y botón */
+.hero-overlay{
+  position: absolute; inset: auto 0 0 0;
+  padding: 20px; display: grid; place-items: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,.55) 100%);
+}
+
+.hero-btn{
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  text-decoration: none;
+  background: linear-gradient(135deg,#ffc482,#ff8a2a);  /* naranja suave */
+  color: #111;
+  box-shadow: 0 8px 22px rgba(255,122,0,.30);
+  transition: transform .08s ease, box-shadow .2s ease;
+}
+.hero-btn:hover{ box-shadow: 0 10px 26px rgba(255,122,0,.38) }
+.hero-btn:active{ transform: scale(.98) }
+
+/* Lista de pasos estilo “píldras” claras como en tu captura */
+.work-steps{
+  counter-reset: paso;
+  list-style: none;
+  padding: 0;
+  margin: 14px auto 0;
+  max-width: 980px;
+  display: grid;
+  gap: 12px;
+}
+.work-steps > li{
+  counter-increment: paso;
+  background: color-mix(in oklab, var(--surface) 85%, var(--bg));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px 14px 48px;
+  position: relative;
+  color: var(--text);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+@media (prefers-color-scheme: dark){
+  .work-steps > li{ box-shadow: 0 10px 28px rgba(0,0,0,.25); }
+}
+.work-steps > li::before{
+  content: counter(paso);
+  position: absolute;
+  left: 12px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 999px;
+  display: grid; place-items: center;
+  font-weight: 800; color: #111;
+  background: linear-gradient(135deg, var(--brand-start, #ffc482), var(--brand-end, #ff8a2a));
+  box-shadow: 0 4px 12px rgba(255,122,0,.25);
+}
+.work-steps .inline-link{
+  font-weight: 800; text-decoration: none;
+  color: color-mix(in oklab, var(--text), #ff8a2a 35%);
+  border-bottom: 2px solid color-mix(in oklab, #ff8a2a, transparent 60%);
+  padding-bottom: 1px; margin-left: 6px;
+}
+.work-steps .inline-link:hover{
+  color: color-mix(in oklab, var(--text), #ff8a2a 55%);
+  border-color: color-mix(in oklab, #ff8a2a, transparent 30%);
+}
