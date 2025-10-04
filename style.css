@@ -2674,3 +2674,47 @@ body.home .footer > .container.footer-inner{ display:block !important; }
 }
 .hero-btn:hover{ box-shadow: 0 10px 26px rgba(255,122,0,.38) }
 .hero-btn:active{ transform: scale(.98) }
+
+/* Lista de pasos estilo “píldras” claras como en tu captura */
+.work-steps{
+  counter-reset: paso;
+  list-style: none;
+  padding: 0;
+  margin: 14px auto 0;
+  max-width: 980px;
+  display: grid;
+  gap: 12px;
+}
+.work-steps > li{
+  counter-increment: paso;
+  background: color-mix(in oklab, var(--surface) 85%, var(--bg));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px 14px 48px;
+  position: relative;
+  color: var(--text);
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+@media (prefers-color-scheme: dark){
+  .work-steps > li{ box-shadow: 0 10px 28px rgba(0,0,0,.25); }
+}
+.work-steps > li::before{
+  content: counter(paso);
+  position: absolute;
+  left: 12px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 999px;
+  display: grid; place-items: center;
+  font-weight: 800; color: #111;
+  background: linear-gradient(135deg, var(--brand-start, #ffc482), var(--brand-end, #ff8a2a));
+  box-shadow: 0 4px 12px rgba(255,122,0,.25);
+}
+.work-steps .inline-link{
+  font-weight: 800; text-decoration: none;
+  color: color-mix(in oklab, var(--text), #ff8a2a 35%);
+  border-bottom: 2px solid color-mix(in oklab, #ff8a2a, transparent 60%);
+  padding-bottom: 1px; margin-left: 6px;
+}
+.work-steps .inline-link:hover{
+  color: color-mix(in oklab, var(--text), #ff8a2a 55%);
+  border-color: color-mix(in oklab, #ff8a2a, transparent 30%);
+}
