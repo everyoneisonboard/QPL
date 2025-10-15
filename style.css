@@ -2839,7 +2839,7 @@ body::before {
 </svg>');
   background-size: 180px 180px;
   background-repeat: repeat;
-  opacity: 0.15; /* 👈 aumenta o reduce este valor para más/menos visibilidad */
+  opacity: 0.25; /* 👈 aumenta o reduce este valor para más/menos visibilidad */
 }
 
 /* Asegura que todas las secciones sean transparentes */
