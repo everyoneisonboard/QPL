@@ -2848,3 +2848,26 @@ main,
 #servicios {
   background: transparent !important;
 }
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
+  <g fill="%23ffffff" fill-opacity="0.08">\
+    <g transform="translate(20,20) scale(1.4)">\
+      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
+    </g>\
+    <g transform="translate(120,120) scale(1.4)">\
+      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
+    </g>\
+    <g transform="translate(100,30) rotate(25)">\
+      <rect x="0" y="6" width="60" height="12" rx="6"/>\
+      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
+    </g>\
+    <g transform="translate(40,140) rotate(-30)">\
+      <rect x="0" y="6" width="60" height="12" rx="6"/>\
+      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
+    </g>\
+  </g>\
+</svg>');
+  }
+}
