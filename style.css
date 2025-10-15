@@ -2798,3 +2798,57 @@ body::before{
 @media (max-width: 640px){
   :root{ --pattern-size: 140px; --pattern-opacity: 0.08; }
 }
+
+/* === Fondo estampado visible en toda la página === */
+body {
+  position: relative;
+  background: var(--bg-base) !important;
+  min-height: 100%;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
+  <g fill="none" stroke="%239aa3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+    <g transform="translate(20,30) rotate(-10)">\
+      <path d="M0,10 c0,-6 8,-6 8,0 l24,0 c0,-6 8,-6 8,0 s-8,6 -8,0 l-24,0 c0,6 -8,6 -8,0z"/>\
+    </g>\
+    <g transform="translate(120,150) rotate(15)">\
+      <path d="M0,10 c0,-6 8,-6 8,0 l24,0 c0,-6 8,-6 8,0 s-8,6 -8,0 l-24,0 c0,6 -8,6 -8,0z"/>\
+    </g>\
+    <g transform="translate(140,40)">\
+      <circle cx="8" cy="14" r="8"/>\
+      <circle cx="1" cy="6" r="3.5"/>\
+      <circle cx="8" cy="3" r="3.5"/>\
+      <circle cx="15" cy="6" r="3.5"/>\
+      <circle cx="12" cy="11" r="3.5"/>\
+    </g>\
+    <g transform="translate(50,120)">\
+      <circle cx="8" cy="14" r="8"/>\
+      <circle cx="1" cy="6" r="3.5"/>\
+      <circle cx="8" cy="3" r="3.5"/>\
+      <circle cx="15" cy="6" r="3.5"/>\
+      <circle cx="12" cy="11" r="3.5"/>\
+    </g>\
+  </g>\
+</svg>');
+  background-size: 180px 180px;
+  background-repeat: repeat;
+  opacity: 0.15; /* 👈 aumenta o reduce este valor para más/menos visibilidad */
+}
+
+/* Asegura que todas las secciones sean transparentes */
+.section,
+.home,
+footer,
+.header,
+main,
+#requisitos-destino,
+#servicios {
+  background: transparent !important;
+}
