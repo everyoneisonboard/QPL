@@ -2734,140 +2734,50 @@ body.home .footer > .container.footer-inner{ display:block !important; }
   }
 }
 
-/* Capa del patrón (no bloquea clicks ni scroll) */
-body{
-  background: var(--bg-base);
-  position: relative;
-  min-height: 100%;
+/* ============= QPL: estampado sutil (patas + huesos) ============= */
+:root{
+  --qpl-pattern-size: 64px;        /* densidad del patrón (más pequeño = más denso) */
+  --qpl-pattern-opacity: 0.10;     /* 0.06–0.14 suele verse bien */
+  --qpl-pattern-color: #9aa0a6;    /* gris del estampado */
+  --qpl-pattern-bg: #ffffff;       /* color base del fondo */
 }
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: var(--pattern-opacity);
-  background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
-  <g fill="none" stroke="%239aa3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
-    <!-- Hueso -->\
-    <g transform="translate(20,30) rotate(-10)">\
-      <path d="M0,10 c0,-6 8,-6 8,0 l24,0 c0,-6 8,-6 8,0 s-8,6 -8,0 l-24,0 c0,6 -8,6 -8,0z"/>\
+
+/* Actívalo con la clase .qpl-pattern en el body o wrapper principal */
+.qpl-pattern{
+  background-color: var(--qpl-pattern-bg);
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60' fill='none'>\
+    <g fill='%239aa0a6' fill-opacity='0.10'>\
+      <!-- PATA -->\
+      <g transform='translate(8,8)'>\
+        <ellipse cx='12' cy='16' rx='9' ry='7'/>\
+        <circle cx='5' cy='6' r='3'/>\
+        <circle cx='12' cy='4' r='3'/>\
+        <circle cx='19' cy='6' r='3'/>\
+        <circle cx='23' cy='10' r='3'/>\
+      </g>\
+      <!-- HUESO -->\
+      <g transform='translate(34,6) rotate(20)'>\
+        <path d='M4 8a4 4 0 1 1 6-3 8 8 0 0 1 8 0 4 4 0 1 1 6 3 8 8 0 0 1 0 8 4 4 0 1 1-6 3 8 8 0 0 1-8 0 4 4 0 1 1-6-3 8 8 0 0 1 0-8z'/>\
+      </g>\
+      <!-- MINI PATA -->\
+      <g transform='translate(10,36) scale(0.8)'>\
+        <ellipse cx='12' cy='16' rx='8' ry='6'/>\
+        <circle cx='5' cy='6' r='2.6'/>\
+        <circle cx='12' cy='4' r='2.6'/>\
+        <circle cx='19' cy='6' r='2.6'/>\
+        <circle cx='23' cy='10' r='2.6'/>\
+      </g>\
     </g>\
-    <!-- Hueso -->\
-    <g transform="translate(120,150) rotate(15)">\
-      <path d="M0,10 c0,-6 8,-6 8,0 l24,0 c0,-6 8,-6 8,0 s-8,6 -8,0 l-24,0 c0,6 -8,6 -8,0z"/>\
-    </g>\
-    <!-- Huella -->\
-    <g transform="translate(140,40)">\
-      <circle cx="8" cy="14" r="8"/>\
-      <circle cx="1" cy="6" r="3.5"/>\
-      <circle cx="8" cy="3" r="3.5"/>\
-      <circle cx="15" cy="6" r="3.5"/>\
-      <circle cx="12" cy="11" r="3.5"/>\
-    </g>\
-    <!-- Huella -->\
-    <g transform="translate(50,120)">\
-      <circle cx="8" cy="14" r="8"/>\
-      <circle cx="1" cy="6" r="3.5"/>\
-      <circle cx="8" cy="3" r="3.5"/>\
-      <circle cx="15" cy="6" r="3.5"/>\
-      <circle cx="12" cy="11" r="3.5"/>\
-    </g>\
-    <!-- Carita gato muy simple -->\
-    <g transform="translate(90,70)">\
-      <path d="M10,6 l4,-6 4,6"/>\
-      <path d="M6,12 a10,10 0 1 0 20,0 a10,10 0 1 0 -20,0"/>\
-      <circle cx="12" cy="12" r="1.5"/><circle cx="20" cy="12" r="1.5"/>\
-      <path d="M14,16 q2,2 4,0"/>\
-    </g>\
-    <!-- Carita perro minimal -->\
-    <g transform="translate(10,170) rotate(-8)">\
-      <circle cx="16" cy="12" r="9"/>\
-      <path d="M8,8 q-4,-6 2,-8"/><path d="M24,8 q4,-6 -2,-8"/>\
-      <circle cx="13" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>\
-      <path d="M14,16 q2,2 4,0"/>\
-    </g>\
-  </g>\
-</svg>');
-  background-size: var(--pattern-size) var(--pattern-size);
+  </svg>");
+  background-size: var(--qpl-pattern-size) var(--qpl-pattern-size);
   background-repeat: repeat;
+  background-attachment: fixed;    /* se siente más “papel tapiz”; quítalo si no lo quieres fijo */
 }
 
-/* Menos ruido en pantallas pequeñas */
-@media (max-width: 640px){
-  :root{ --pattern-size: 140px; --pattern-opacity: 0.08; }
-}
+/* Opcional: densidades distintas por página */
+.qpl-pattern--light  { --qpl-pattern-size: 72px; --qpl-pattern-opacity: 0.08; }
+.qpl-pattern--dense  { --qpl-pattern-size: 52px; --qpl-pattern-opacity: 0.12; }
 
-/* === Fondo estampado visible y definido === */
-body {
-  position: relative;
-  background: var(--bg-base, #fff) !important;
-  min-height: 100%;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.08; /* ajusta intensidad */
-  background-size: 180px 180px;
-  background-repeat: repeat;
-  background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
-  <g fill="%239aa3af" fill-opacity="0.25">\
-    <!-- Huellas -->\
-    <g transform="translate(20,20) scale(1.4)">\
-      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
-    </g>\
-    <g transform="translate(120,120) scale(1.4)">\
-      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
-    </g>\
-    <!-- Huesos -->\
-    <g transform="translate(100,30) rotate(25)">\
-      <rect x="0" y="6" width="60" height="12" rx="6"/>\
-      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
-    </g>\
-    <g transform="translate(40,140) rotate(-30)">\
-      <rect x="0" y="6" width="60" height="12" rx="6"/>\
-      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
-    </g>\
-  </g>\
-</svg>');
-}
-
-/* Hace que todas las secciones sean transparentes y el patrón se vea debajo */
-.section,
-.home,
-footer,
-.header,
-main,
-#requisitos-destino,
-#servicios {
-  background: transparent !important;
-}
-@media (prefers-color-scheme: dark) {
-  body::before {
-    background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">\
-  <g fill="%23ffffff" fill-opacity="0.08">\
-    <g transform="translate(20,20) scale(1.4)">\
-      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
-    </g>\
-    <g transform="translate(120,120) scale(1.4)">\
-      <circle cx="10" cy="15" r="8"/><circle cx="3" cy="6" r="3"/><circle cx="10" cy="3" r="3"/><circle cx="17" cy="6" r="3"/>\
-    </g>\
-    <g transform="translate(100,30) rotate(25)">\
-      <rect x="0" y="6" width="60" height="12" rx="6"/>\
-      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
-    </g>\
-    <g transform="translate(40,140) rotate(-30)">\
-      <rect x="0" y="6" width="60" height="12" rx="6"/>\
-      <circle cx="0" cy="12" r="6"/><circle cx="60" cy="12" r="6"/>\
-    </g>\
-  </g>\
-</svg>');
-  }
-}
+/* Si usas contenedores blancos, asegúrate que sean transparentes para que se vea el estampado */
+.bg-white-transparent{ background-color: rgba(255,255,255,0.9); }
